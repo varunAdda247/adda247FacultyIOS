@@ -9,21 +9,117 @@
 /* Begin PBXBuildFile section */
 		6C3F3B81214915A400A8CDB6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3F3B80214915A400A8CDB6 /* AppDelegate.swift */; };
 		6C3F3B83214915A400A8CDB6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3F3B82214915A400A8CDB6 /* ViewController.swift */; };
-		6C3F3B86214915A400A8CDB6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6C3F3B84214915A400A8CDB6 /* Main.storyboard */; };
 		6C3F3B89214915A400A8CDB6 /* Adda247Faculty.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6C3F3B87214915A400A8CDB6 /* Adda247Faculty.xcdatamodeld */; };
-		6C3F3B8B214915A600A8CDB6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6C3F3B8A214915A600A8CDB6 /* Assets.xcassets */; };
-		6C3F3B8E214915A600A8CDB6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6C3F3B8C214915A600A8CDB6 /* LaunchScreen.storyboard */; };
+		6C3F3BAA21491B1300A8CDB6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6C3F3BA721491B1300A8CDB6 /* Main.storyboard */; };
+		6C3F3BAB21491B1300A8CDB6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6C3F3BA821491B1300A8CDB6 /* LaunchScreen.storyboard */; };
+		6C3F3BAC21491B1300A8CDB6 /* LoginAndRegistration.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6C3F3BA921491B1300A8CDB6 /* LoginAndRegistration.storyboard */; };
+		6C3F3BAF21491B4200A8CDB6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6C3F3BAE21491B4200A8CDB6 /* Assets.xcassets */; };
+		6C3F3BB321491E4C00A8CDB6 /* ADLoginViewConntroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3F3BB221491E4C00A8CDB6 /* ADLoginViewConntroller.swift */; };
+		6C3F3BE0214922D500A8CDB6 /* ADApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3F3BB5214922D400A8CDB6 /* ADApplication.swift */; };
+		6C3F3BE1214922D500A8CDB6 /* ADBarButtonItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3F3BB6214922D400A8CDB6 /* ADBarButtonItem.swift */; };
+		6C3F3BE2214922D500A8CDB6 /* ADBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3F3BB7214922D400A8CDB6 /* ADBundle.swift */; };
+		6C3F3BE3214922D500A8CDB6 /* ADButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3F3BB8214922D400A8CDB6 /* ADButton.swift */; };
+		6C3F3BE4214922D500A8CDB6 /* ADButtonWithImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3F3BB9214922D400A8CDB6 /* ADButtonWithImage.swift */; };
+		6C3F3BE5214922D500A8CDB6 /* ADCacher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3F3BBA214922D400A8CDB6 /* ADCacher.swift */; };
+		6C3F3BE6214922D500A8CDB6 /* ADCALayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3F3BBB214922D400A8CDB6 /* ADCALayer.swift */; };
+		6C3F3BE7214922D500A8CDB6 /* ADColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3F3BBC214922D400A8CDB6 /* ADColor.swift */; };
+		6C3F3BE8214922D500A8CDB6 /* ADDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3F3BBD214922D400A8CDB6 /* ADDate.swift */; };
+		6C3F3BE9214922D500A8CDB6 /* ADDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3F3BBE214922D400A8CDB6 /* ADDevice.swift */; };
+		6C3F3BEA214922D500A8CDB6 /* ADDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3F3BBF214922D400A8CDB6 /* ADDictionary.swift */; };
+		6C3F3BEB214922D500A8CDB6 /* ADDouble.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3F3BC0214922D400A8CDB6 /* ADDouble.swift */; };
+		6C3F3BEC214922D500A8CDB6 /* ADError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3F3BC1214922D400A8CDB6 /* ADError.swift */; };
+		6C3F3BED214922D500A8CDB6 /* ADFetchedResultController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3F3BC2214922D400A8CDB6 /* ADFetchedResultController.swift */; };
+		6C3F3BEE214922D500A8CDB6 /* ADFloat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3F3BC3214922D400A8CDB6 /* ADFloat.swift */; };
+		6C3F3BEF214922D500A8CDB6 /* ADFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3F3BC4214922D400A8CDB6 /* ADFont.swift */; };
+		6C3F3BF0214922D500A8CDB6 /* ADImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3F3BC5214922D400A8CDB6 /* ADImage.swift */; };
+		6C3F3BF1214922D500A8CDB6 /* ADImageCacheLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3F3BC6214922D400A8CDB6 /* ADImageCacheLoader.swift */; };
+		6C3F3BF2214922D500A8CDB6 /* ADImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3F3BC7214922D400A8CDB6 /* ADImageView.swift */; };
+		6C3F3BF3214922D500A8CDB6 /* ADInsetLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3F3BC8214922D400A8CDB6 /* ADInsetLabel.swift */; };
+		6C3F3BF4214922D500A8CDB6 /* ADManagedObjectContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3F3BC9214922D400A8CDB6 /* ADManagedObjectContext.swift */; };
+		6C3F3BF5214922D500A8CDB6 /* ADNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3F3BCA214922D400A8CDB6 /* ADNavigationBar.swift */; };
+		6C3F3BF6214922D500A8CDB6 /* ADObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3F3BCB214922D400A8CDB6 /* ADObject.swift */; };
+		6C3F3BF7214922D500A8CDB6 /* ADSequence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3F3BCC214922D400A8CDB6 /* ADSequence.swift */; };
+		6C3F3BF8214922D500A8CDB6 /* ADStoryModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3F3BCD214922D400A8CDB6 /* ADStoryModule.swift */; };
+		6C3F3BF9214922D500A8CDB6 /* ADString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3F3BCE214922D400A8CDB6 /* ADString.swift */; };
+		6C3F3BFA214922D500A8CDB6 /* ADTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3F3BCF214922D400A8CDB6 /* ADTableView.swift */; };
+		6C3F3BFB214922D500A8CDB6 /* ADTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3F3BD0214922D400A8CDB6 /* ADTableViewCell.swift */; };
+		6C3F3BFC214922D500A8CDB6 /* ADToast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3F3BD1214922D400A8CDB6 /* ADToast.swift */; };
+		6C3F3BFD214922D500A8CDB6 /* ADUnderLinedLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3F3BD2214922D400A8CDB6 /* ADUnderLinedLabel.swift */; };
+		6C3F3BFE214922D500A8CDB6 /* ADVerticalTopAllignLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3F3BD3214922D400A8CDB6 /* ADVerticalTopAllignLabel.swift */; };
+		6C3F3BFF214922D500A8CDB6 /* ADView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3F3BD4214922D400A8CDB6 /* ADView.swift */; };
+		6C3F3C00214922D500A8CDB6 /* ADViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3F3BD5214922D400A8CDB6 /* ADViewController.swift */; };
+		6C3F3C01214922D500A8CDB6 /* PageViewControllerExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3F3BD6214922D400A8CDB6 /* PageViewControllerExt.swift */; };
+		6C3F3C02214922D500A8CDB6 /* ADHTTPManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3F3BD8214922D400A8CDB6 /* ADHTTPManager.swift */; };
+		6C3F3C03214922D500A8CDB6 /* ADHTTPSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3F3BD9214922D400A8CDB6 /* ADHTTPSessionManager.swift */; };
+		6C3F3C04214922D500A8CDB6 /* ADServerAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3F3BDA214922D400A8CDB6 /* ADServerAPI.swift */; };
+		6C3F3C05214922D500A8CDB6 /* ADURLSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3F3BDB214922D400A8CDB6 /* ADURLSessionManager.swift */; };
+		6C3F3C06214922D500A8CDB6 /* ADWebClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3F3BDC214922D400A8CDB6 /* ADWebClient.swift */; };
+		6C3F3C07214922D500A8CDB6 /* ADReachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3F3BDE214922D400A8CDB6 /* ADReachability.swift */; };
+		6C3F3C08214922D500A8CDB6 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3F3BDF214922D400A8CDB6 /* Reachability.swift */; };
+		6C3F3C0D214923B200A8CDB6 /* ADAPIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3F3C0A214923B200A8CDB6 /* ADAPIConstants.swift */; };
+		6C3F3C0E214923B200A8CDB6 /* ADConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3F3C0B214923B200A8CDB6 /* ADConstants.swift */; };
+		6C3F3C0F214923B200A8CDB6 /* ADProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3F3C0C214923B200A8CDB6 /* ADProtocols.swift */; };
+		A41A78CE6BCA40CC202057EE /* Pods_Adda247Faculty.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7A3B0A787F731CFBE21D8A4 /* Pods_Adda247Faculty.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1FDC6926061B85893F3463A5 /* Pods-Adda247Faculty.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Adda247Faculty.release.xcconfig"; path = "Pods/Target Support Files/Pods-Adda247Faculty/Pods-Adda247Faculty.release.xcconfig"; sourceTree = "<group>"; };
+		6B37E5605C96827C4A1C31B0 /* Pods-Adda247Faculty.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Adda247Faculty.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Adda247Faculty/Pods-Adda247Faculty.debug.xcconfig"; sourceTree = "<group>"; };
 		6C3F3B7D214915A400A8CDB6 /* Adda247Faculty.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Adda247Faculty.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6C3F3B80214915A400A8CDB6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6C3F3B82214915A400A8CDB6 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		6C3F3B85214915A400A8CDB6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		6C3F3B88214915A400A8CDB6 /* Adda247Faculty.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Adda247Faculty.xcdatamodel; sourceTree = "<group>"; };
-		6C3F3B8A214915A600A8CDB6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		6C3F3B8D214915A600A8CDB6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6C3F3B8F214915A600A8CDB6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6C3F3BA721491B1300A8CDB6 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		6C3F3BA821491B1300A8CDB6 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		6C3F3BA921491B1300A8CDB6 /* LoginAndRegistration.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LoginAndRegistration.storyboard; sourceTree = "<group>"; };
+		6C3F3BAE21491B4200A8CDB6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		6C3F3BB221491E4C00A8CDB6 /* ADLoginViewConntroller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ADLoginViewConntroller.swift; sourceTree = "<group>"; };
+		6C3F3BB5214922D400A8CDB6 /* ADApplication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ADApplication.swift; sourceTree = "<group>"; };
+		6C3F3BB6214922D400A8CDB6 /* ADBarButtonItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ADBarButtonItem.swift; sourceTree = "<group>"; };
+		6C3F3BB7214922D400A8CDB6 /* ADBundle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ADBundle.swift; sourceTree = "<group>"; };
+		6C3F3BB8214922D400A8CDB6 /* ADButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ADButton.swift; sourceTree = "<group>"; };
+		6C3F3BB9214922D400A8CDB6 /* ADButtonWithImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ADButtonWithImage.swift; sourceTree = "<group>"; };
+		6C3F3BBA214922D400A8CDB6 /* ADCacher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ADCacher.swift; sourceTree = "<group>"; };
+		6C3F3BBB214922D400A8CDB6 /* ADCALayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ADCALayer.swift; sourceTree = "<group>"; };
+		6C3F3BBC214922D400A8CDB6 /* ADColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ADColor.swift; sourceTree = "<group>"; };
+		6C3F3BBD214922D400A8CDB6 /* ADDate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ADDate.swift; sourceTree = "<group>"; };
+		6C3F3BBE214922D400A8CDB6 /* ADDevice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ADDevice.swift; sourceTree = "<group>"; };
+		6C3F3BBF214922D400A8CDB6 /* ADDictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ADDictionary.swift; sourceTree = "<group>"; };
+		6C3F3BC0214922D400A8CDB6 /* ADDouble.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ADDouble.swift; sourceTree = "<group>"; };
+		6C3F3BC1214922D400A8CDB6 /* ADError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ADError.swift; sourceTree = "<group>"; };
+		6C3F3BC2214922D400A8CDB6 /* ADFetchedResultController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ADFetchedResultController.swift; sourceTree = "<group>"; };
+		6C3F3BC3214922D400A8CDB6 /* ADFloat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ADFloat.swift; sourceTree = "<group>"; };
+		6C3F3BC4214922D400A8CDB6 /* ADFont.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ADFont.swift; sourceTree = "<group>"; };
+		6C3F3BC5214922D400A8CDB6 /* ADImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ADImage.swift; sourceTree = "<group>"; };
+		6C3F3BC6214922D400A8CDB6 /* ADImageCacheLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ADImageCacheLoader.swift; sourceTree = "<group>"; };
+		6C3F3BC7214922D400A8CDB6 /* ADImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ADImageView.swift; sourceTree = "<group>"; };
+		6C3F3BC8214922D400A8CDB6 /* ADInsetLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ADInsetLabel.swift; sourceTree = "<group>"; };
+		6C3F3BC9214922D400A8CDB6 /* ADManagedObjectContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ADManagedObjectContext.swift; sourceTree = "<group>"; };
+		6C3F3BCA214922D400A8CDB6 /* ADNavigationBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ADNavigationBar.swift; sourceTree = "<group>"; };
+		6C3F3BCB214922D400A8CDB6 /* ADObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ADObject.swift; sourceTree = "<group>"; };
+		6C3F3BCC214922D400A8CDB6 /* ADSequence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ADSequence.swift; sourceTree = "<group>"; };
+		6C3F3BCD214922D400A8CDB6 /* ADStoryModule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ADStoryModule.swift; sourceTree = "<group>"; };
+		6C3F3BCE214922D400A8CDB6 /* ADString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ADString.swift; sourceTree = "<group>"; };
+		6C3F3BCF214922D400A8CDB6 /* ADTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ADTableView.swift; sourceTree = "<group>"; };
+		6C3F3BD0214922D400A8CDB6 /* ADTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ADTableViewCell.swift; sourceTree = "<group>"; };
+		6C3F3BD1214922D400A8CDB6 /* ADToast.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ADToast.swift; sourceTree = "<group>"; };
+		6C3F3BD2214922D400A8CDB6 /* ADUnderLinedLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ADUnderLinedLabel.swift; sourceTree = "<group>"; };
+		6C3F3BD3214922D400A8CDB6 /* ADVerticalTopAllignLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ADVerticalTopAllignLabel.swift; sourceTree = "<group>"; };
+		6C3F3BD4214922D400A8CDB6 /* ADView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ADView.swift; sourceTree = "<group>"; };
+		6C3F3BD5214922D400A8CDB6 /* ADViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ADViewController.swift; sourceTree = "<group>"; };
+		6C3F3BD6214922D400A8CDB6 /* PageViewControllerExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageViewControllerExt.swift; sourceTree = "<group>"; };
+		6C3F3BD8214922D400A8CDB6 /* ADHTTPManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ADHTTPManager.swift; sourceTree = "<group>"; };
+		6C3F3BD9214922D400A8CDB6 /* ADHTTPSessionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ADHTTPSessionManager.swift; sourceTree = "<group>"; };
+		6C3F3BDA214922D400A8CDB6 /* ADServerAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ADServerAPI.swift; sourceTree = "<group>"; };
+		6C3F3BDB214922D400A8CDB6 /* ADURLSessionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ADURLSessionManager.swift; sourceTree = "<group>"; };
+		6C3F3BDC214922D400A8CDB6 /* ADWebClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ADWebClient.swift; sourceTree = "<group>"; };
+		6C3F3BDE214922D400A8CDB6 /* ADReachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ADReachability.swift; sourceTree = "<group>"; };
+		6C3F3BDF214922D400A8CDB6 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
+		6C3F3C0A214923B200A8CDB6 /* ADAPIConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ADAPIConstants.swift; sourceTree = "<group>"; };
+		6C3F3C0B214923B200A8CDB6 /* ADConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ADConstants.swift; sourceTree = "<group>"; };
+		6C3F3C0C214923B200A8CDB6 /* ADProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ADProtocols.swift; sourceTree = "<group>"; };
+		A7A3B0A787F731CFBE21D8A4 /* Pods_Adda247Faculty.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Adda247Faculty.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +127,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A41A78CE6BCA40CC202057EE /* Pods_Adda247Faculty.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -42,6 +139,8 @@
 			children = (
 				6C3F3B7F214915A400A8CDB6 /* Adda247Faculty */,
 				6C3F3B7E214915A400A8CDB6 /* Products */,
+				719A15E93D30529A1D69C88A /* Pods */,
+				B828EE3C5DE2CF943356327F /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -58,13 +157,164 @@
 			children = (
 				6C3F3B80214915A400A8CDB6 /* AppDelegate.swift */,
 				6C3F3B82214915A400A8CDB6 /* ViewController.swift */,
-				6C3F3B84214915A400A8CDB6 /* Main.storyboard */,
-				6C3F3B8A214915A600A8CDB6 /* Assets.xcassets */,
-				6C3F3B8C214915A600A8CDB6 /* LaunchScreen.storyboard */,
+				6C3F3C09214923B200A8CDB6 /* Constants */,
+				6C3F3BDD214922D400A8CDB6 /* Reachability */,
+				6C3F3BD7214922D400A8CDB6 /* ServerConnection */,
+				6C3F3BB4214922D400A8CDB6 /* SupportingFiles */,
+				6C3F3BA421491A5800A8CDB6 /* Modules */,
+				6C3F3B95214917BB00A8CDB6 /* Resources */,
 				6C3F3B8F214915A600A8CDB6 /* Info.plist */,
 				6C3F3B87214915A400A8CDB6 /* Adda247Faculty.xcdatamodeld */,
 			);
 			path = Adda247Faculty;
+			sourceTree = "<group>";
+		};
+		6C3F3B95214917BB00A8CDB6 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				6C3F3BAD21491B4200A8CDB6 /* Images */,
+				6C3F3BA621491AF300A8CDB6 /* Storyboard */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		6C3F3BA421491A5800A8CDB6 /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				6C3F3BA521491A7F00A8CDB6 /* LoginAndRegister */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		6C3F3BA521491A7F00A8CDB6 /* LoginAndRegister */ = {
+			isa = PBXGroup;
+			children = (
+				6C3F3BB021491B7B00A8CDB6 /* UITableViewCell */,
+				6C3F3BB121491B7B00A8CDB6 /* UIViewController */,
+			);
+			path = LoginAndRegister;
+			sourceTree = "<group>";
+		};
+		6C3F3BA621491AF300A8CDB6 /* Storyboard */ = {
+			isa = PBXGroup;
+			children = (
+				6C3F3BA821491B1300A8CDB6 /* LaunchScreen.storyboard */,
+				6C3F3BA921491B1300A8CDB6 /* LoginAndRegistration.storyboard */,
+				6C3F3BA721491B1300A8CDB6 /* Main.storyboard */,
+			);
+			path = Storyboard;
+			sourceTree = "<group>";
+		};
+		6C3F3BAD21491B4200A8CDB6 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				6C3F3BAE21491B4200A8CDB6 /* Assets.xcassets */,
+			);
+			path = Images;
+			sourceTree = "<group>";
+		};
+		6C3F3BB021491B7B00A8CDB6 /* UITableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = UITableViewCell;
+			sourceTree = "<group>";
+		};
+		6C3F3BB121491B7B00A8CDB6 /* UIViewController */ = {
+			isa = PBXGroup;
+			children = (
+				6C3F3BB221491E4C00A8CDB6 /* ADLoginViewConntroller.swift */,
+			);
+			path = UIViewController;
+			sourceTree = "<group>";
+		};
+		6C3F3BB4214922D400A8CDB6 /* SupportingFiles */ = {
+			isa = PBXGroup;
+			children = (
+				6C3F3BB5214922D400A8CDB6 /* ADApplication.swift */,
+				6C3F3BB6214922D400A8CDB6 /* ADBarButtonItem.swift */,
+				6C3F3BB7214922D400A8CDB6 /* ADBundle.swift */,
+				6C3F3BB8214922D400A8CDB6 /* ADButton.swift */,
+				6C3F3BB9214922D400A8CDB6 /* ADButtonWithImage.swift */,
+				6C3F3BBA214922D400A8CDB6 /* ADCacher.swift */,
+				6C3F3BBB214922D400A8CDB6 /* ADCALayer.swift */,
+				6C3F3BBC214922D400A8CDB6 /* ADColor.swift */,
+				6C3F3BBD214922D400A8CDB6 /* ADDate.swift */,
+				6C3F3BBE214922D400A8CDB6 /* ADDevice.swift */,
+				6C3F3BBF214922D400A8CDB6 /* ADDictionary.swift */,
+				6C3F3BC0214922D400A8CDB6 /* ADDouble.swift */,
+				6C3F3BC1214922D400A8CDB6 /* ADError.swift */,
+				6C3F3BC2214922D400A8CDB6 /* ADFetchedResultController.swift */,
+				6C3F3BC3214922D400A8CDB6 /* ADFloat.swift */,
+				6C3F3BC4214922D400A8CDB6 /* ADFont.swift */,
+				6C3F3BC5214922D400A8CDB6 /* ADImage.swift */,
+				6C3F3BC6214922D400A8CDB6 /* ADImageCacheLoader.swift */,
+				6C3F3BC7214922D400A8CDB6 /* ADImageView.swift */,
+				6C3F3BC8214922D400A8CDB6 /* ADInsetLabel.swift */,
+				6C3F3BC9214922D400A8CDB6 /* ADManagedObjectContext.swift */,
+				6C3F3BCA214922D400A8CDB6 /* ADNavigationBar.swift */,
+				6C3F3BCB214922D400A8CDB6 /* ADObject.swift */,
+				6C3F3BCC214922D400A8CDB6 /* ADSequence.swift */,
+				6C3F3BCD214922D400A8CDB6 /* ADStoryModule.swift */,
+				6C3F3BCE214922D400A8CDB6 /* ADString.swift */,
+				6C3F3BCF214922D400A8CDB6 /* ADTableView.swift */,
+				6C3F3BD0214922D400A8CDB6 /* ADTableViewCell.swift */,
+				6C3F3BD1214922D400A8CDB6 /* ADToast.swift */,
+				6C3F3BD2214922D400A8CDB6 /* ADUnderLinedLabel.swift */,
+				6C3F3BD3214922D400A8CDB6 /* ADVerticalTopAllignLabel.swift */,
+				6C3F3BD4214922D400A8CDB6 /* ADView.swift */,
+				6C3F3BD5214922D400A8CDB6 /* ADViewController.swift */,
+				6C3F3BD6214922D400A8CDB6 /* PageViewControllerExt.swift */,
+			);
+			path = SupportingFiles;
+			sourceTree = "<group>";
+		};
+		6C3F3BD7214922D400A8CDB6 /* ServerConnection */ = {
+			isa = PBXGroup;
+			children = (
+				6C3F3BD8214922D400A8CDB6 /* ADHTTPManager.swift */,
+				6C3F3BD9214922D400A8CDB6 /* ADHTTPSessionManager.swift */,
+				6C3F3BDA214922D400A8CDB6 /* ADServerAPI.swift */,
+				6C3F3BDB214922D400A8CDB6 /* ADURLSessionManager.swift */,
+				6C3F3BDC214922D400A8CDB6 /* ADWebClient.swift */,
+			);
+			path = ServerConnection;
+			sourceTree = "<group>";
+		};
+		6C3F3BDD214922D400A8CDB6 /* Reachability */ = {
+			isa = PBXGroup;
+			children = (
+				6C3F3BDE214922D400A8CDB6 /* ADReachability.swift */,
+				6C3F3BDF214922D400A8CDB6 /* Reachability.swift */,
+			);
+			path = Reachability;
+			sourceTree = "<group>";
+		};
+		6C3F3C09214923B200A8CDB6 /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				6C3F3C0A214923B200A8CDB6 /* ADAPIConstants.swift */,
+				6C3F3C0B214923B200A8CDB6 /* ADConstants.swift */,
+				6C3F3C0C214923B200A8CDB6 /* ADProtocols.swift */,
+			);
+			path = Constants;
+			sourceTree = "<group>";
+		};
+		719A15E93D30529A1D69C88A /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				6B37E5605C96827C4A1C31B0 /* Pods-Adda247Faculty.debug.xcconfig */,
+				1FDC6926061B85893F3463A5 /* Pods-Adda247Faculty.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		B828EE3C5DE2CF943356327F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A7A3B0A787F731CFBE21D8A4 /* Pods_Adda247Faculty.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -74,9 +324,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6C3F3B92214915A600A8CDB6 /* Build configuration list for PBXNativeTarget "Adda247Faculty" */;
 			buildPhases = (
+				9FBC31221134A059796899E0 /* [CP] Check Pods Manifest.lock */,
 				6C3F3B79214915A400A8CDB6 /* Sources */,
 				6C3F3B7A214915A400A8CDB6 /* Frameworks */,
 				6C3F3B7B214915A400A8CDB6 /* Resources */,
+				2335D9D33C22B1E90166B8C9 /* [CP] Embed Pods Frameworks */,
+				3DFABAFBA3603C5248D8F2F8 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -125,45 +378,153 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6C3F3B8E214915A600A8CDB6 /* LaunchScreen.storyboard in Resources */,
-				6C3F3B8B214915A600A8CDB6 /* Assets.xcassets in Resources */,
-				6C3F3B86214915A400A8CDB6 /* Main.storyboard in Resources */,
+				6C3F3BAB21491B1300A8CDB6 /* LaunchScreen.storyboard in Resources */,
+				6C3F3BAC21491B1300A8CDB6 /* LoginAndRegistration.storyboard in Resources */,
+				6C3F3BAF21491B4200A8CDB6 /* Assets.xcassets in Resources */,
+				6C3F3BAA21491B1300A8CDB6 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		2335D9D33C22B1E90166B8C9 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Adda247Faculty/Pods-Adda247Faculty-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/AlamofireImage/AlamofireImage.framework",
+				"${BUILT_PRODUCTS_DIR}/GTMOAuth2/GTMOAuth2.framework",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMOAuth2.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Adda247Faculty/Pods-Adda247Faculty-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		3DFABAFBA3603C5248D8F2F8 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Adda247Faculty/Pods-Adda247Faculty-resources.sh",
+				"${PODS_ROOT}/GoogleSignIn/Resources/GoogleSignIn.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleSignIn.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Adda247Faculty/Pods-Adda247Faculty-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9FBC31221134A059796899E0 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Adda247Faculty-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		6C3F3B79214915A400A8CDB6 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6C3F3BF2214922D500A8CDB6 /* ADImageView.swift in Sources */,
+				6C3F3BF1214922D500A8CDB6 /* ADImageCacheLoader.swift in Sources */,
+				6C3F3BE7214922D500A8CDB6 /* ADColor.swift in Sources */,
+				6C3F3BF9214922D500A8CDB6 /* ADString.swift in Sources */,
 				6C3F3B83214915A400A8CDB6 /* ViewController.swift in Sources */,
+				6C3F3C0E214923B200A8CDB6 /* ADConstants.swift in Sources */,
+				6C3F3BE8214922D500A8CDB6 /* ADDate.swift in Sources */,
+				6C3F3BF8214922D500A8CDB6 /* ADStoryModule.swift in Sources */,
+				6C3F3C06214922D500A8CDB6 /* ADWebClient.swift in Sources */,
+				6C3F3BF3214922D500A8CDB6 /* ADInsetLabel.swift in Sources */,
 				6C3F3B81214915A400A8CDB6 /* AppDelegate.swift in Sources */,
+				6C3F3C05214922D500A8CDB6 /* ADURLSessionManager.swift in Sources */,
+				6C3F3BFD214922D500A8CDB6 /* ADUnderLinedLabel.swift in Sources */,
+				6C3F3BE3214922D500A8CDB6 /* ADButton.swift in Sources */,
+				6C3F3BFF214922D500A8CDB6 /* ADView.swift in Sources */,
+				6C3F3BE0214922D500A8CDB6 /* ADApplication.swift in Sources */,
+				6C3F3BB321491E4C00A8CDB6 /* ADLoginViewConntroller.swift in Sources */,
+				6C3F3C02214922D500A8CDB6 /* ADHTTPManager.swift in Sources */,
+				6C3F3BFA214922D500A8CDB6 /* ADTableView.swift in Sources */,
 				6C3F3B89214915A400A8CDB6 /* Adda247Faculty.xcdatamodeld in Sources */,
+				6C3F3C03214922D500A8CDB6 /* ADHTTPSessionManager.swift in Sources */,
+				6C3F3BE2214922D500A8CDB6 /* ADBundle.swift in Sources */,
+				6C3F3C0F214923B200A8CDB6 /* ADProtocols.swift in Sources */,
+				6C3F3BEB214922D500A8CDB6 /* ADDouble.swift in Sources */,
+				6C3F3BE6214922D500A8CDB6 /* ADCALayer.swift in Sources */,
+				6C3F3C08214922D500A8CDB6 /* Reachability.swift in Sources */,
+				6C3F3BED214922D500A8CDB6 /* ADFetchedResultController.swift in Sources */,
+				6C3F3C00214922D500A8CDB6 /* ADViewController.swift in Sources */,
+				6C3F3BFC214922D500A8CDB6 /* ADToast.swift in Sources */,
+				6C3F3BFE214922D500A8CDB6 /* ADVerticalTopAllignLabel.swift in Sources */,
+				6C3F3BEA214922D500A8CDB6 /* ADDictionary.swift in Sources */,
+				6C3F3BE4214922D500A8CDB6 /* ADButtonWithImage.swift in Sources */,
+				6C3F3C07214922D500A8CDB6 /* ADReachability.swift in Sources */,
+				6C3F3C04214922D500A8CDB6 /* ADServerAPI.swift in Sources */,
+				6C3F3C01214922D500A8CDB6 /* PageViewControllerExt.swift in Sources */,
+				6C3F3BF6214922D500A8CDB6 /* ADObject.swift in Sources */,
+				6C3F3BEE214922D500A8CDB6 /* ADFloat.swift in Sources */,
+				6C3F3BF5214922D500A8CDB6 /* ADNavigationBar.swift in Sources */,
+				6C3F3BE5214922D500A8CDB6 /* ADCacher.swift in Sources */,
+				6C3F3BFB214922D500A8CDB6 /* ADTableViewCell.swift in Sources */,
+				6C3F3BF4214922D500A8CDB6 /* ADManagedObjectContext.swift in Sources */,
+				6C3F3BE9214922D500A8CDB6 /* ADDevice.swift in Sources */,
+				6C3F3BEC214922D500A8CDB6 /* ADError.swift in Sources */,
+				6C3F3BE1214922D500A8CDB6 /* ADBarButtonItem.swift in Sources */,
+				6C3F3BF7214922D500A8CDB6 /* ADSequence.swift in Sources */,
+				6C3F3C0D214923B200A8CDB6 /* ADAPIConstants.swift in Sources */,
+				6C3F3BEF214922D500A8CDB6 /* ADFont.swift in Sources */,
+				6C3F3BF0214922D500A8CDB6 /* ADImage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXVariantGroup section */
-		6C3F3B84214915A400A8CDB6 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				6C3F3B85214915A400A8CDB6 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		6C3F3B8C214915A600A8CDB6 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				6C3F3B8D214915A600A8CDB6 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		6C3F3B90214915A600A8CDB6 /* Debug */ = {
@@ -282,6 +643,7 @@
 		};
 		6C3F3B93214915A600A8CDB6 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6B37E5605C96827C4A1C31B0 /* Pods-Adda247Faculty.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -300,6 +662,7 @@
 		};
 		6C3F3B94214915A600A8CDB6 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1FDC6926061B85893F3463A5 /* Pods-Adda247Faculty.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
