@@ -18,6 +18,7 @@ class ADEnterMobileNumberViewController: UIViewController,UITextFieldDelegate {
     @IBOutlet weak var messageLbl: UILabel!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
 
+    var phoneNumberLength = 10
     //MARK: View Lifecycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -187,7 +188,7 @@ class ADEnterMobileNumberViewController: UIViewController,UITextFieldDelegate {
         
         let updatedText = currentText.replacingCharacters(in: stringRange, with: string)
         
-        return updatedText.count <= 10
+        return updatedText.count <= phoneNumberLength
     }
 
     

@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 
+
 class ADLoginViewConntroller: UIViewController {
     
     //MARK: Outlets
@@ -19,8 +20,7 @@ class ADLoginViewConntroller: UIViewController {
     @IBOutlet weak var loginBtnBottomConstraint: NSLayoutConstraint!
     
     var mobileNumber = ""
-    
-    
+
     //MARK: View Lifecycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -180,7 +180,7 @@ class ADLoginViewConntroller: UIViewController {
         
         let updatedText = currentText.replacingCharacters(in: stringRange, with: string)
         
-        return updatedText.count <= 6
+        return updatedText.count <= ADUtility.pinLength
     }
     
     //MARK : Keyboard Notification

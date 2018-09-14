@@ -161,7 +161,7 @@ class ADSetNewPinViewController: UIViewController {
         
         let updatedText = currentText.replacingCharacters(in: stringRange, with: string)
         
-        return updatedText.count <= 6
+        return updatedText.count <= ADUtility.pinLength
     }
     
     //MARK : Keyboard Notification
