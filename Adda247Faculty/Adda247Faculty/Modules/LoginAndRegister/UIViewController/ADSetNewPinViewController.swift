@@ -1,24 +1,22 @@
 //
-//  ADLoginViewConntroller.swift
+//  ADSetNewPinViewController.swift
 //  Adda247Faculty
 //
-//  Created by Varun Tomar on 12/09/18.
+//  Created by Varun Tomar on 14/09/18.
 //  Copyright © 2018 Adda247. All rights reserved.
 //
 
 import Foundation
 import UIKit
 
-class ADLoginViewConntroller: UIViewController {
+class ADSetNewPinViewController: UIViewController {
     
     //MARK: Outlets
     @IBOutlet weak var pinTextField: UITextField!
-    @IBOutlet weak var loginBtn: UIButton!
-    @IBOutlet weak var forgotBtn: UIButton!
+    @IBOutlet weak var confirmPinTextField: UITextField!
+    @IBOutlet weak var continueBtn: UIButton!
     
-    @IBOutlet weak var loginBtnBottomConstraint: NSLayoutConstraint!
-    
-    var mobileNumber = ""
+    @IBOutlet weak var continueBtnBottomConstraint: NSLayoutConstraint!
     
     
     //MARK: View Lifecycle Methods
@@ -52,32 +50,16 @@ class ADLoginViewConntroller: UIViewController {
     //MARK: Internal methods
     func configureInitialValues() {
         self.view.backgroundColor = UIColor.backgroundThemeColor()
-        self.loginBtn.backgroundColor = UIColor.pinkThemeColor()
-        self.loginBtn.setTitle(NSLocalizedString("login", comment: ""), for: .normal)
+        self.continueBtn.backgroundColor = UIColor.pinkThemeColor()
+        self.continueBtn.setTitle("Continue", for: .normal)
     }
     
     //MARK: IBActions
-    @IBAction func forgotPasswordAction(_ sender: AnyObject){
-        
-        self.dismissKeyBoard()
-        
-        if Reachability.connectionAvailable() {
-            //Service Call for forgot password
-            self.forgotPinAction()
-            
-        }
-        else{
-            self.showAlertMessage(NSLocalizedString("no_internet_connection", comment: ""), alertImage: nil, alertType: .success, context: .statusBar, duration: .seconds(seconds: 2))
-            
-        }
-        
-    }
     
-    
-    @IBAction func loginAction(_ sender: AnyObject){
+    @IBAction func continueAction(_ sender: AnyObject){
         if (self.checkValidation()){
             //Make call to login
-            self.loginServiceCall()
+            self.setPinServiceCall()
         }
     }
     
@@ -88,24 +70,12 @@ class ADLoginViewConntroller: UIViewController {
         }
     }
     
-    func forgotPinAction() {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let controller:ADSetNewPinViewController = storyboard.instantiateViewController(withIdentifier: "ADSetNewPinViewController") as! ADSetNewPinViewController
-        self.present(controller, animated: true) {
-            
-        }
-    }
-    
-    func loginServiceCall() {
+    func setPinServiceCall() {
         
-        let params:NSMutableDictionary = NSMutableDictionary()
-        params.setObject(mobileNumber, forKey: "mobile" as NSCopying)
-        params.setObject(self.pinTextField.text!, forKey: "pin" as NSCopying)
-
-        let suffixUrl = "\(APIURLSuffix.login)?mobile=\(mobileNumber)&pin=\(self.pinTextField.text!)"
-
+        let suffixUrl = "\(APIURLSuffix.login)"
         
-        _ = ADWebClient.sharedClient.POST(appbBaseUrl: APIURL.baseUrl, suffixUrl: suffixUrl, parameters: params, success: { (response) in
+        
+        _ = ADWebClient.sharedClient.POST(appbBaseUrl: APIURL.baseUrl, suffixUrl: suffixUrl, parameters: nil, success: { (response) in
             print(response)
             if let response = response as? Dictionary<String,Any>{
                 if let data = response["data"] as? Dictionary<String,Any>{
@@ -127,7 +97,7 @@ class ADLoginViewConntroller: UIViewController {
                 }
                 
                 if let message = response["message"] as? String{
-                   print(message)
+                    print(message)
                 }
                 DispatchQueue.main.async(execute: {
                     self.hideActivityIndicatorView()
@@ -150,14 +120,25 @@ class ADLoginViewConntroller: UIViewController {
     
     func checkValidation() -> Bool {
         if (self.pinTextField.text?.isBlank)! {
-            self.showAlertMessage(NSLocalizedString("please_enter_register_email_id", comment: ""), alertImage: nil, alertType: .success, context: .statusBar, duration: .seconds(seconds: 2))
+            self.showAlertMessage("Please enter PIN", alertImage: nil, alertType: .success, context: .statusBar, duration: .seconds(seconds: 2))
+            return false
+        }
+        if (self.confirmPinTextField.text?.isBlank)! {
+            self.showAlertMessage("Please enter confirm PIN", alertImage: nil, alertType: .success, context: .statusBar, duration: .seconds(seconds: 2))
             return false
         }
         else if false == (self.pinTextField.text?.isPhoneNumberValid())!{
-            self.showAlertMessage("Pin is not valid", alertImage: nil, alertType: .success, context: .statusBar, duration: .seconds(seconds: 2))
+            self.showAlertMessage("PIN is not valid", alertImage: nil, alertType: .success, context: .statusBar, duration: .seconds(seconds: 2))
             return false
         }
-        
+        else if false == (self.confirmPinTextField.text?.isPhoneNumberValid())!{
+            self.showAlertMessage("Confirm PIN is not valid", alertImage: nil, alertType: .success, context: .statusBar, duration: .seconds(seconds: 2))
+            return false
+        }
+        else if ((self.confirmPinTextField.text)! != (self.pinTextField.text)!){
+            self.showAlertMessage("Confirm PIN doesn't match", alertImage: nil, alertType: .success, context: .statusBar, duration: .seconds(seconds: 2))
+            return false
+        }
         return true
     }
     
@@ -189,7 +170,7 @@ class ADLoginViewConntroller: UIViewController {
         if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
             let height = keyboardSize.height
             UIView.animate(withDuration: 0.1, animations: { () -> Void in
-                self.loginBtnBottomConstraint.constant = height
+                self.continueBtnBottomConstraint.constant = height
                 self.view.layoutIfNeeded()
             })
         }
@@ -198,7 +179,7 @@ class ADLoginViewConntroller: UIViewController {
     @objc func keyboardWillHide(notification: NSNotification) {
         
         UIView.animate(withDuration: 0.1, animations: { () -> Void in
-            self.loginBtnBottomConstraint.constant = 0
+            self.continueBtnBottomConstraint.constant = 0
             self.view.layoutIfNeeded()
         })
     }

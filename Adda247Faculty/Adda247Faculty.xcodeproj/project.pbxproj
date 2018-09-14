@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6C085CB9214A42410011C501 /* ADAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C085CB0214A42400011C501 /* ADAlertView.swift */; };
+		6C085CBA214A42410011C501 /* ADAlertView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6C085CB1214A42400011C501 /* ADAlertView.xib */; };
+		6C085CBB214A42410011C501 /* ADEmptyStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C085CB3214A42410011C501 /* ADEmptyStateView.swift */; };
+		6C085CBC214A42410011C501 /* ADNavigationTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C085CB4214A42410011C501 /* ADNavigationTitleView.swift */; };
+		6C085CBD214A42410011C501 /* ADNavigationTitleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6C085CB5214A42410011C501 /* ADNavigationTitleView.xib */; };
+		6C085CBE214A42410011C501 /* ADUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C085CB7214A42410011C501 /* ADUtility.swift */; };
+		6C085CBF214A42410011C501 /* ADUtility.swift.orig in Resources */ = {isa = PBXBuildFile; fileRef = 6C085CB8214A42410011C501 /* ADUtility.swift.orig */; };
+		6C085CC1214A4A940011C501 /* ADEnterMobileNumberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C085CC0214A4A940011C501 /* ADEnterMobileNumberViewController.swift */; };
 		6C3F3B81214915A400A8CDB6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3F3B80214915A400A8CDB6 /* AppDelegate.swift */; };
 		6C3F3B83214915A400A8CDB6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3F3B82214915A400A8CDB6 /* ViewController.swift */; };
 		6C3F3B89214915A400A8CDB6 /* Adda247Faculty.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6C3F3B87214915A400A8CDB6 /* Adda247Faculty.xcdatamodeld */; };
@@ -28,7 +36,6 @@
 		6C3F3BEA214922D500A8CDB6 /* ADDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3F3BBF214922D400A8CDB6 /* ADDictionary.swift */; };
 		6C3F3BEB214922D500A8CDB6 /* ADDouble.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3F3BC0214922D400A8CDB6 /* ADDouble.swift */; };
 		6C3F3BEC214922D500A8CDB6 /* ADError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3F3BC1214922D400A8CDB6 /* ADError.swift */; };
-		6C3F3BED214922D500A8CDB6 /* ADFetchedResultController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3F3BC2214922D400A8CDB6 /* ADFetchedResultController.swift */; };
 		6C3F3BEE214922D500A8CDB6 /* ADFloat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3F3BC3214922D400A8CDB6 /* ADFloat.swift */; };
 		6C3F3BEF214922D500A8CDB6 /* ADFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3F3BC4214922D400A8CDB6 /* ADFont.swift */; };
 		6C3F3BF0214922D500A8CDB6 /* ADImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3F3BC5214922D400A8CDB6 /* ADImage.swift */; };
@@ -59,12 +66,21 @@
 		6C3F3C0D214923B200A8CDB6 /* ADAPIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3F3C0A214923B200A8CDB6 /* ADAPIConstants.swift */; };
 		6C3F3C0E214923B200A8CDB6 /* ADConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3F3C0B214923B200A8CDB6 /* ADConstants.swift */; };
 		6C3F3C0F214923B200A8CDB6 /* ADProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3F3C0C214923B200A8CDB6 /* ADProtocols.swift */; };
+		6C43F1EC214BD43A0008CCE4 /* ADSetNewPinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C43F1EB214BD43A0008CCE4 /* ADSetNewPinViewController.swift */; };
 		A41A78CE6BCA40CC202057EE /* Pods_Adda247Faculty.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7A3B0A787F731CFBE21D8A4 /* Pods_Adda247Faculty.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		1FDC6926061B85893F3463A5 /* Pods-Adda247Faculty.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Adda247Faculty.release.xcconfig"; path = "Pods/Target Support Files/Pods-Adda247Faculty/Pods-Adda247Faculty.release.xcconfig"; sourceTree = "<group>"; };
 		6B37E5605C96827C4A1C31B0 /* Pods-Adda247Faculty.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Adda247Faculty.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Adda247Faculty/Pods-Adda247Faculty.debug.xcconfig"; sourceTree = "<group>"; };
+		6C085CB0214A42400011C501 /* ADAlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ADAlertView.swift; sourceTree = "<group>"; };
+		6C085CB1214A42400011C501 /* ADAlertView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ADAlertView.xib; sourceTree = "<group>"; };
+		6C085CB3214A42410011C501 /* ADEmptyStateView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ADEmptyStateView.swift; sourceTree = "<group>"; };
+		6C085CB4214A42410011C501 /* ADNavigationTitleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ADNavigationTitleView.swift; sourceTree = "<group>"; };
+		6C085CB5214A42410011C501 /* ADNavigationTitleView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ADNavigationTitleView.xib; sourceTree = "<group>"; };
+		6C085CB7214A42410011C501 /* ADUtility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ADUtility.swift; sourceTree = "<group>"; };
+		6C085CB8214A42410011C501 /* ADUtility.swift.orig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ADUtility.swift.orig; sourceTree = "<group>"; };
+		6C085CC0214A4A940011C501 /* ADEnterMobileNumberViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ADEnterMobileNumberViewController.swift; sourceTree = "<group>"; };
 		6C3F3B7D214915A400A8CDB6 /* Adda247Faculty.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Adda247Faculty.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6C3F3B80214915A400A8CDB6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6C3F3B82214915A400A8CDB6 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -88,7 +104,6 @@
 		6C3F3BBF214922D400A8CDB6 /* ADDictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ADDictionary.swift; sourceTree = "<group>"; };
 		6C3F3BC0214922D400A8CDB6 /* ADDouble.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ADDouble.swift; sourceTree = "<group>"; };
 		6C3F3BC1214922D400A8CDB6 /* ADError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ADError.swift; sourceTree = "<group>"; };
-		6C3F3BC2214922D400A8CDB6 /* ADFetchedResultController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ADFetchedResultController.swift; sourceTree = "<group>"; };
 		6C3F3BC3214922D400A8CDB6 /* ADFloat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ADFloat.swift; sourceTree = "<group>"; };
 		6C3F3BC4214922D400A8CDB6 /* ADFont.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ADFont.swift; sourceTree = "<group>"; };
 		6C3F3BC5214922D400A8CDB6 /* ADImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ADImage.swift; sourceTree = "<group>"; };
@@ -119,6 +134,7 @@
 		6C3F3C0A214923B200A8CDB6 /* ADAPIConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ADAPIConstants.swift; sourceTree = "<group>"; };
 		6C3F3C0B214923B200A8CDB6 /* ADConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ADConstants.swift; sourceTree = "<group>"; };
 		6C3F3C0C214923B200A8CDB6 /* ADProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ADProtocols.swift; sourceTree = "<group>"; };
+		6C43F1EB214BD43A0008CCE4 /* ADSetNewPinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ADSetNewPinViewController.swift; sourceTree = "<group>"; };
 		A7A3B0A787F731CFBE21D8A4 /* Pods_Adda247Faculty.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Adda247Faculty.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -134,6 +150,44 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6C085CAE214A42400011C501 /* Genric */ = {
+			isa = PBXGroup;
+			children = (
+				6C085CAF214A42400011C501 /* AlertMessage */,
+				6C085CB2214A42410011C501 /* UIView */,
+				6C085CB6214A42410011C501 /* Utility */,
+			);
+			path = Genric;
+			sourceTree = "<group>";
+		};
+		6C085CAF214A42400011C501 /* AlertMessage */ = {
+			isa = PBXGroup;
+			children = (
+				6C085CB0214A42400011C501 /* ADAlertView.swift */,
+				6C085CB1214A42400011C501 /* ADAlertView.xib */,
+			);
+			path = AlertMessage;
+			sourceTree = "<group>";
+		};
+		6C085CB2214A42410011C501 /* UIView */ = {
+			isa = PBXGroup;
+			children = (
+				6C085CB3214A42410011C501 /* ADEmptyStateView.swift */,
+				6C085CB4214A42410011C501 /* ADNavigationTitleView.swift */,
+				6C085CB5214A42410011C501 /* ADNavigationTitleView.xib */,
+			);
+			path = UIView;
+			sourceTree = "<group>";
+		};
+		6C085CB6214A42410011C501 /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				6C085CB7214A42410011C501 /* ADUtility.swift */,
+				6C085CB8214A42410011C501 /* ADUtility.swift.orig */,
+			);
+			path = Utility;
+			sourceTree = "<group>";
+		};
 		6C3F3B74214915A400A8CDB6 = {
 			isa = PBXGroup;
 			children = (
@@ -157,6 +211,7 @@
 			children = (
 				6C3F3B80214915A400A8CDB6 /* AppDelegate.swift */,
 				6C3F3B82214915A400A8CDB6 /* ViewController.swift */,
+				6C085CAE214A42400011C501 /* Genric */,
 				6C3F3C09214923B200A8CDB6 /* Constants */,
 				6C3F3BDD214922D400A8CDB6 /* Reachability */,
 				6C3F3BD7214922D400A8CDB6 /* ServerConnection */,
@@ -224,6 +279,8 @@
 			isa = PBXGroup;
 			children = (
 				6C3F3BB221491E4C00A8CDB6 /* ADLoginViewConntroller.swift */,
+				6C085CC0214A4A940011C501 /* ADEnterMobileNumberViewController.swift */,
+				6C43F1EB214BD43A0008CCE4 /* ADSetNewPinViewController.swift */,
 			);
 			path = UIViewController;
 			sourceTree = "<group>";
@@ -244,7 +301,6 @@
 				6C3F3BBF214922D400A8CDB6 /* ADDictionary.swift */,
 				6C3F3BC0214922D400A8CDB6 /* ADDouble.swift */,
 				6C3F3BC1214922D400A8CDB6 /* ADError.swift */,
-				6C3F3BC2214922D400A8CDB6 /* ADFetchedResultController.swift */,
 				6C3F3BC3214922D400A8CDB6 /* ADFloat.swift */,
 				6C3F3BC4214922D400A8CDB6 /* ADFont.swift */,
 				6C3F3BC5214922D400A8CDB6 /* ADImage.swift */,
@@ -380,8 +436,11 @@
 			files = (
 				6C3F3BAB21491B1300A8CDB6 /* LaunchScreen.storyboard in Resources */,
 				6C3F3BAC21491B1300A8CDB6 /* LoginAndRegistration.storyboard in Resources */,
+				6C085CBD214A42410011C501 /* ADNavigationTitleView.xib in Resources */,
+				6C085CBA214A42410011C501 /* ADAlertView.xib in Resources */,
 				6C3F3BAF21491B4200A8CDB6 /* Assets.xcassets in Resources */,
 				6C3F3BAA21491B1300A8CDB6 /* Main.storyboard in Resources */,
+				6C085CBF214A42410011C501 /* ADUtility.swift.orig in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -392,8 +451,6 @@
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-			);
-			inputFileListPaths = (
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Adda247Faculty/Pods-Adda247Faculty-frameworks.sh",
@@ -406,8 +463,6 @@
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-			);
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireImage.framework",
@@ -427,15 +482,11 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputFileListPaths = (
-			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Adda247Faculty/Pods-Adda247Faculty-resources.sh",
 				"${PODS_ROOT}/GoogleSignIn/Resources/GoogleSignIn.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-			);
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleSignIn.bundle",
 			);
@@ -449,15 +500,11 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputFileListPaths = (
-			);
 			inputPaths = (
 				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
 				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/Pods-Adda247Faculty-checkManifestLockResult.txt",
 			);
@@ -480,6 +527,8 @@
 				6C3F3B83214915A400A8CDB6 /* ViewController.swift in Sources */,
 				6C3F3C0E214923B200A8CDB6 /* ADConstants.swift in Sources */,
 				6C3F3BE8214922D500A8CDB6 /* ADDate.swift in Sources */,
+				6C43F1EC214BD43A0008CCE4 /* ADSetNewPinViewController.swift in Sources */,
+				6C085CBB214A42410011C501 /* ADEmptyStateView.swift in Sources */,
 				6C3F3BF8214922D500A8CDB6 /* ADStoryModule.swift in Sources */,
 				6C3F3C06214922D500A8CDB6 /* ADWebClient.swift in Sources */,
 				6C3F3BF3214922D500A8CDB6 /* ADInsetLabel.swift in Sources */,
@@ -495,17 +544,19 @@
 				6C3F3B89214915A400A8CDB6 /* Adda247Faculty.xcdatamodeld in Sources */,
 				6C3F3C03214922D500A8CDB6 /* ADHTTPSessionManager.swift in Sources */,
 				6C3F3BE2214922D500A8CDB6 /* ADBundle.swift in Sources */,
+				6C085CB9214A42410011C501 /* ADAlertView.swift in Sources */,
 				6C3F3C0F214923B200A8CDB6 /* ADProtocols.swift in Sources */,
 				6C3F3BEB214922D500A8CDB6 /* ADDouble.swift in Sources */,
 				6C3F3BE6214922D500A8CDB6 /* ADCALayer.swift in Sources */,
 				6C3F3C08214922D500A8CDB6 /* Reachability.swift in Sources */,
-				6C3F3BED214922D500A8CDB6 /* ADFetchedResultController.swift in Sources */,
 				6C3F3C00214922D500A8CDB6 /* ADViewController.swift in Sources */,
+				6C085CC1214A4A940011C501 /* ADEnterMobileNumberViewController.swift in Sources */,
 				6C3F3BFC214922D500A8CDB6 /* ADToast.swift in Sources */,
 				6C3F3BFE214922D500A8CDB6 /* ADVerticalTopAllignLabel.swift in Sources */,
 				6C3F3BEA214922D500A8CDB6 /* ADDictionary.swift in Sources */,
 				6C3F3BE4214922D500A8CDB6 /* ADButtonWithImage.swift in Sources */,
 				6C3F3C07214922D500A8CDB6 /* ADReachability.swift in Sources */,
+				6C085CBC214A42410011C501 /* ADNavigationTitleView.swift in Sources */,
 				6C3F3C04214922D500A8CDB6 /* ADServerAPI.swift in Sources */,
 				6C3F3C01214922D500A8CDB6 /* PageViewControllerExt.swift in Sources */,
 				6C3F3BF6214922D500A8CDB6 /* ADObject.swift in Sources */,
@@ -521,6 +572,7 @@
 				6C3F3C0D214923B200A8CDB6 /* ADAPIConstants.swift in Sources */,
 				6C3F3BEF214922D500A8CDB6 /* ADFont.swift in Sources */,
 				6C3F3BF0214922D500A8CDB6 /* ADImage.swift in Sources */,
+				6C085CBE214A42410011C501 /* ADUtility.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
