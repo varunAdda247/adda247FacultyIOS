@@ -104,7 +104,7 @@ class ADLoginViewConntroller: UIViewController {
 
         let suffixUrl = "\(APIURLSuffix.login)?mobile=\(mobileNumber)&pin=\(self.pinTextField.text!)"
 
-        
+        self.showActivityIndicatorInteractionEnabledView(false)
         _ = ADWebClient.sharedClient.POST(appbBaseUrl: APIURL.baseUrl, suffixUrl: suffixUrl, parameters: params, success: { (response) in
             print(response)
             if let response = response as? Dictionary<String,Any>{
@@ -120,9 +120,17 @@ class ADLoginViewConntroller: UIViewController {
                         ADUtility.updateToken(token: token)
                     }
                     
+                    if let id = data["facultyId"] as? String{
+                        //Update token
+                        ADUtility.updateFacultyId(id: id)
+                    }
+                    else if let id = data["facultyId"] as? NSNumber{
+                        ADUtility.updateFacultyId(id: id.stringValue)
+                    }
+                    
                     //Open home view conntroller
                     DispatchQueue.main.async(execute: {
-                        
+                        self.openHomeViewController()
                     })
                 }
                 
@@ -145,6 +153,26 @@ class ADLoginViewConntroller: UIViewController {
                 self.showAlertMessage("Please check your internet connection", alertImage: nil, alertType: .success, context: .statusBar, duration: .seconds(seconds: 2))
             })
         }
+        
+    }
+    
+    func openHomeViewController() {
+        
+        let controller:ADHomeViewController = UIStoryboard.instantiateController(forModule: ADStoryModule.main)
+//        self.navigationController?.pushViewController(controller, animated: true)
+        
+        let navigationController = UINavigationController(rootViewController: controller)
+        
+        let appDelegate = AppDelegate.getDelegate()
+        let transition = CATransition()
+        transition.duration = 1
+        transition.timingFunction = CAMediaTimingFunction( name:kCAMediaTimingFunctionEaseInEaseOut)
+        transition.type = kCATransitionFade
+        CATransaction.begin()
+        appDelegate.window?.layer.add(transition, forKey: nil)
+        appDelegate.window?.rootViewController = navigationController
+        appDelegate.window?.makeKeyAndVisible()
+        CATransaction.commit()
         
     }
     

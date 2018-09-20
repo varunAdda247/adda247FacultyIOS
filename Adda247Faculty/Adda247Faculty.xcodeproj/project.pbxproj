@@ -67,6 +67,8 @@
 		6C3F3C0E214923B200A8CDB6 /* ADConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3F3C0B214923B200A8CDB6 /* ADConstants.swift */; };
 		6C3F3C0F214923B200A8CDB6 /* ADProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3F3C0C214923B200A8CDB6 /* ADProtocols.swift */; };
 		6C43F1EC214BD43A0008CCE4 /* ADSetNewPinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C43F1EB214BD43A0008CCE4 /* ADSetNewPinViewController.swift */; };
+		6C76B4AB21522162001F869D /* ADHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C76B4AA21522162001F869D /* ADHomeViewController.swift */; };
+		6C9E23C82153AA3C0091D53A /* ADOtpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C9E23C72153AA3C0091D53A /* ADOtpViewController.swift */; };
 		A41A78CE6BCA40CC202057EE /* Pods_Adda247Faculty.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7A3B0A787F731CFBE21D8A4 /* Pods_Adda247Faculty.framework */; };
 /* End PBXBuildFile section */
 
@@ -135,6 +137,8 @@
 		6C3F3C0B214923B200A8CDB6 /* ADConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ADConstants.swift; sourceTree = "<group>"; };
 		6C3F3C0C214923B200A8CDB6 /* ADProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ADProtocols.swift; sourceTree = "<group>"; };
 		6C43F1EB214BD43A0008CCE4 /* ADSetNewPinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ADSetNewPinViewController.swift; sourceTree = "<group>"; };
+		6C76B4AA21522162001F869D /* ADHomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ADHomeViewController.swift; sourceTree = "<group>"; };
+		6C9E23C72153AA3C0091D53A /* ADOtpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ADOtpViewController.swift; sourceTree = "<group>"; };
 		A7A3B0A787F731CFBE21D8A4 /* Pods_Adda247Faculty.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Adda247Faculty.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -236,6 +240,7 @@
 		6C3F3BA421491A5800A8CDB6 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				6C76B4A721522122001F869D /* Home */,
 				6C3F3BA521491A7F00A8CDB6 /* LoginAndRegister */,
 			);
 			path = Modules;
@@ -281,6 +286,7 @@
 				6C3F3BB221491E4C00A8CDB6 /* ADLoginViewConntroller.swift */,
 				6C085CC0214A4A940011C501 /* ADEnterMobileNumberViewController.swift */,
 				6C43F1EB214BD43A0008CCE4 /* ADSetNewPinViewController.swift */,
+				6C9E23C72153AA3C0091D53A /* ADOtpViewController.swift */,
 			);
 			path = UIViewController;
 			sourceTree = "<group>";
@@ -354,6 +360,30 @@
 				6C3F3C0C214923B200A8CDB6 /* ADProtocols.swift */,
 			);
 			path = Constants;
+			sourceTree = "<group>";
+		};
+		6C76B4A721522122001F869D /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				6C76B4A821522153001F869D /* UITableViewCell */,
+				6C76B4A921522153001F869D /* UIViewController */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		6C76B4A821522153001F869D /* UITableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = UITableViewCell;
+			sourceTree = "<group>";
+		};
+		6C76B4A921522153001F869D /* UIViewController */ = {
+			isa = PBXGroup;
+			children = (
+				6C76B4AA21522162001F869D /* ADHomeViewController.swift */,
+			);
+			path = UIViewController;
 			sourceTree = "<group>";
 		};
 		719A15E93D30529A1D69C88A /* Pods */ = {
@@ -524,6 +554,7 @@
 				6C3F3BF1214922D500A8CDB6 /* ADImageCacheLoader.swift in Sources */,
 				6C3F3BE7214922D500A8CDB6 /* ADColor.swift in Sources */,
 				6C3F3BF9214922D500A8CDB6 /* ADString.swift in Sources */,
+				6C9E23C82153AA3C0091D53A /* ADOtpViewController.swift in Sources */,
 				6C3F3B83214915A400A8CDB6 /* ViewController.swift in Sources */,
 				6C3F3C0E214923B200A8CDB6 /* ADConstants.swift in Sources */,
 				6C3F3BE8214922D500A8CDB6 /* ADDate.swift in Sources */,
@@ -552,6 +583,7 @@
 				6C3F3C00214922D500A8CDB6 /* ADViewController.swift in Sources */,
 				6C085CC1214A4A940011C501 /* ADEnterMobileNumberViewController.swift in Sources */,
 				6C3F3BFC214922D500A8CDB6 /* ADToast.swift in Sources */,
+				6C76B4AB21522162001F869D /* ADHomeViewController.swift in Sources */,
 				6C3F3BFE214922D500A8CDB6 /* ADVerticalTopAllignLabel.swift in Sources */,
 				6C3F3BEA214922D500A8CDB6 /* ADDictionary.swift in Sources */,
 				6C3F3BE4214922D500A8CDB6 /* ADButtonWithImage.swift in Sources */,

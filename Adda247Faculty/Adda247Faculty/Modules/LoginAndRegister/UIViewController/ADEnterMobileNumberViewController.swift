@@ -57,7 +57,6 @@ class ADEnterMobileNumberViewController: UIViewController,UITextFieldDelegate {
     @IBAction func continueAction(_ sender: AnyObject){
         
         if (self.checkValidation()){
-            print("Validation successfull")
             //Make server call to check number registration
             let params:NSMutableDictionary = NSMutableDictionary()
             params.setObject(self.mobileNumberTextField.text!, forKey: "mobile" as NSCopying)
@@ -66,28 +65,36 @@ class ADEnterMobileNumberViewController: UIViewController,UITextFieldDelegate {
 
            self.showDataLoadingMessage()
             
-           _ = ADWebClient.sharedClient.POST(appbBaseUrl: APIURL.baseUrl, suffixUrl: suffixUrl, parameters: params, success: { (response) in
+           _ = ADWebClient.sharedClient.POST(appbBaseUrl: APIURL.baseUrl, suffixUrl: suffixUrl, parameters: nil, success: { (response) in
             print(response)
             if let response = response as? Dictionary<String,Any>{
                 if let success = response["success"] as? NSNumber{
                     print(success)
-                    if(success == 0){
-                        //Faculty is not on ERP
-                        
+                    if let data = response["data"] as? Dictionary<String,Any>{
+                        if let statusCode = data["statusCode"] as? NSNumber{
+                            
+                            if(statusCode == 0){
+                                //Faculty is not on ERP
+                                DispatchQueue.main.async(execute: {
+                                    self.openOtpController()
+                                })
+                            }
+                            else if(statusCode == 1){
+                                //Faculty is on ERP and have loged in before so just open login screen from here
+                                DispatchQueue.main.async(execute: {
+                                    self.openLoginController()
+                                })
+                            }
+                            else if(statusCode == 2){
+                                //Faculty is on ERP but loging first time, now needs to pass through OTP screen
+                                DispatchQueue.main.async(execute: {
+                                    self.openLoginController()
+                                })
+                                
+                            }
+                        }
                     }
-                    else if(success == 1){
-                        //Faculty is on ERP and have loged in before so just open login screen from here
-                        DispatchQueue.main.async(execute: {
-                            self.openLoginController()
-                        })
-                    }
-                    else if(success == 2){
-                        //Faculty is on ERP but loging first time, now needs to pass through OTP screen
-                        DispatchQueue.main.async(execute: {
-                            self.openLoginController()
-                        })
-                        
-                    }
+                    
                 }
                 
                 if let message = response["message"] as? String{
@@ -129,11 +136,12 @@ class ADEnterMobileNumberViewController: UIViewController,UITextFieldDelegate {
     
     func openOtpController() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let controller:ADLoginViewConntroller = storyboard.instantiateViewController(withIdentifier: "ADLoginViewConntroller") as! ADLoginViewConntroller
+        let controller:ADOtpViewController = storyboard.instantiateViewController(withIdentifier: "ADOtpViewController") as! ADOtpViewController
         controller.mobileNumber = self.mobileNumberTextField.text!
-        self.present(controller, animated: true) {
-            
-        }
+        
+        self.present(controller, animated: true, completion: {
+            self.showAlertMessage("OTP sent successfully", alertImage: nil, alertType: .success, context: .statusBar, duration: .seconds(seconds: 2))
+        })
     }
 
     
