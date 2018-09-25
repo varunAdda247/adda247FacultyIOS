@@ -17,7 +17,8 @@ class ADSetNewPinViewController: UIViewController {
     @IBOutlet weak var continueBtn: UIButton!
     
     @IBOutlet weak var continueBtnBottomConstraint: NSLayoutConstraint!
-    
+    var mobileNumber:String!
+
     
     //MARK: View Lifecycle Methods
     override func viewDidLoad() {
@@ -72,8 +73,7 @@ class ADSetNewPinViewController: UIViewController {
     
     func setPinServiceCall() {
         
-        let suffixUrl = "\(APIURLSuffix.login)"
-        
+        let suffixUrl = "\(APIURLSuffix.setPin)?mobile=\(mobileNumber)&pin=\(self.pinTextField.text!)"
         
         _ = ADWebClient.sharedClient.POST(appbBaseUrl: APIURL.baseUrl, suffixUrl: suffixUrl, parameters: nil, success: { (response) in
             print(response)

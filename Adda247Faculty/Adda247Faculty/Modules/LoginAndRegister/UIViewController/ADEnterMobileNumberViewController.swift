@@ -74,7 +74,7 @@ class ADEnterMobileNumberViewController: UIViewController,UITextFieldDelegate {
                         if let statusCode = data["statusCode"] as? NSNumber{
                             
                             if(statusCode == 0){
-                                //Faculty is not on ERP
+                                //Faculty is on ERP
                                 DispatchQueue.main.async(execute: {
                                     self.openOtpController()
                                 })
@@ -88,13 +88,12 @@ class ADEnterMobileNumberViewController: UIViewController,UITextFieldDelegate {
                             else if(statusCode == 2){
                                 //Faculty is on ERP but loging first time, now needs to pass through OTP screen
                                 DispatchQueue.main.async(execute: {
-                                    self.openLoginController()
+                                    self.openOtpController()
                                 })
-                                
                             }
+                            
                         }
                     }
-                    
                 }
                 
                 if let message = response["message"] as? String{

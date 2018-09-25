@@ -76,6 +76,14 @@ class ADOtpViewController: UIViewController{
         
     }
     
+    func openSetNewPinController() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let controller:ADSetNewPinViewController = storyboard.instantiateViewController(withIdentifier: "ADSetNewPinViewController") as! ADSetNewPinViewController
+        self.present(controller, animated: true) {
+           
+        }
+    }
+    
     func verifyOTP(){
         
         if Reachability.connectionAvailable() {
@@ -89,36 +97,41 @@ class ADOtpViewController: UIViewController{
             _ = ADWebClient.sharedClient.POST(appbBaseUrl: APIURL.baseUrl, suffixUrl: suffixUrl, parameters: nil, success: { (response) in
                 
                 if let unwrapped = response as? Dictionary<String, Any> {
-                    /*
-                     {
-                     data =     {
-                     facultyId = "<null>";
-                     facultyName = "<null>";
-                     statusCode = 1;
-                     token = "<null>";
-                     };
-                     message = "OTP mismatch.";
-                     success = 1;
-                     }
-                     */
+                    
                     if let success = unwrapped["success"] as? NSNumber{
-                        if(success == 0){
-                            //successfull
-                        }
-                        else{
-                            //not successfull
-                            if let message = unwrapped["message"] as? String{
-                                DispatchQueue.main.async(execute: {
-                                    self.hideActivityIndicatorView()
-                                    self.showAlertMessage(message, alertImage: nil, alertType: .success, context: .statusBar, duration: .seconds(seconds: 2))
-                                })
-                                
+                        if(success == 1){
+                            if let data = unwrapped["data"] as? Dictionary<String, Any>{
+                                if let statusCode = data["statusCode"] as? NSNumber{
+                                    if(statusCode == 0){
+                                        //OTP Verified successfully.
+                                        //Save token
+                                        if let token  = data["token"] as? String{
+                                            ADUtility.updateToken(token: token)
+                                        }
+                                        
+                                        //Now move to set PIN
+                                        DispatchQueue.main.async(execute: {
+                                            self.hideActivityIndicatorView()
+                                            self.openSetNewPinController()
+                                        })
+                                    }
+                                    else if(statusCode == 1){
+                                        //OTP mismatch
+                                    }
+                                    
+                                    //To display message
+                                    if let message = unwrapped["message"] as? String{
+                                        DispatchQueue.main.async(execute: {
+                                            self.hideActivityIndicatorView()
+                                            self.showAlertMessage(message, alertImage: nil, alertType: .success, context: .statusBar, duration: .seconds(seconds: 2))
+                                        })
+                                        
+                                    }
+
+                                }
                             }
                         }
                     }
-                    //OTP verification is successfull
-                    
-                    
                 }
                 
                 
