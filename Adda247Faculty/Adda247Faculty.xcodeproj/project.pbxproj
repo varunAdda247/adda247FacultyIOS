@@ -69,6 +69,13 @@
 		6C43F1EC214BD43A0008CCE4 /* ADSetNewPinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C43F1EB214BD43A0008CCE4 /* ADSetNewPinViewController.swift */; };
 		6C76B4AB21522162001F869D /* ADHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C76B4AA21522162001F869D /* ADHomeViewController.swift */; };
 		6C9E23C82153AA3C0091D53A /* ADOtpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C9E23C72153AA3C0091D53A /* ADOtpViewController.swift */; };
+		6CC03002215A31EF0010EAF0 /* ADCoreDataHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CC03001215A31EF0010EAF0 /* ADCoreDataHandler.swift */; };
+		6CC03004215A32610010EAF0 /* ADDBHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CC03003215A32610010EAF0 /* ADDBHandler.swift */; };
+		6CC03006215A34A00010EAF0 /* ADAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CC03005215A34A00010EAF0 /* ADAPIManager.swift */; };
+		6CC0300B215A378C0010EAF0 /* Topic+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CC03007215A378C0010EAF0 /* Topic+CoreDataClass.swift */; };
+		6CC0300C215A378C0010EAF0 /* Topic+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CC03008215A378C0010EAF0 /* Topic+CoreDataProperties.swift */; };
+		6CC0300D215A378C0010EAF0 /* TeacherClass+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CC03009215A378C0010EAF0 /* TeacherClass+CoreDataClass.swift */; };
+		6CC0300E215A378C0010EAF0 /* TeacherClass+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CC0300A215A378C0010EAF0 /* TeacherClass+CoreDataProperties.swift */; };
 		A41A78CE6BCA40CC202057EE /* Pods_Adda247Faculty.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7A3B0A787F731CFBE21D8A4 /* Pods_Adda247Faculty.framework */; };
 /* End PBXBuildFile section */
 
@@ -139,6 +146,13 @@
 		6C43F1EB214BD43A0008CCE4 /* ADSetNewPinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ADSetNewPinViewController.swift; sourceTree = "<group>"; };
 		6C76B4AA21522162001F869D /* ADHomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ADHomeViewController.swift; sourceTree = "<group>"; };
 		6C9E23C72153AA3C0091D53A /* ADOtpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ADOtpViewController.swift; sourceTree = "<group>"; };
+		6CC03001215A31EF0010EAF0 /* ADCoreDataHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ADCoreDataHandler.swift; sourceTree = "<group>"; };
+		6CC03003215A32610010EAF0 /* ADDBHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ADDBHandler.swift; sourceTree = "<group>"; };
+		6CC03005215A34A00010EAF0 /* ADAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ADAPIManager.swift; sourceTree = "<group>"; };
+		6CC03007215A378C0010EAF0 /* Topic+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Topic+CoreDataClass.swift"; sourceTree = "<group>"; };
+		6CC03008215A378C0010EAF0 /* Topic+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Topic+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		6CC03009215A378C0010EAF0 /* TeacherClass+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TeacherClass+CoreDataClass.swift"; sourceTree = "<group>"; };
+		6CC0300A215A378C0010EAF0 /* TeacherClass+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TeacherClass+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		A7A3B0A787F731CFBE21D8A4 /* Pods_Adda247Faculty.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Adda247Faculty.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -215,6 +229,7 @@
 			children = (
 				6C3F3B80214915A400A8CDB6 /* AppDelegate.swift */,
 				6C3F3B82214915A400A8CDB6 /* ViewController.swift */,
+				6CC02FFE215A31C40010EAF0 /* CoreData */,
 				6C085CAE214A42400011C501 /* Genric */,
 				6C3F3C09214923B200A8CDB6 /* Constants */,
 				6C3F3BDD214922D400A8CDB6 /* Reachability */,
@@ -339,6 +354,7 @@
 				6C3F3BDA214922D400A8CDB6 /* ADServerAPI.swift */,
 				6C3F3BDB214922D400A8CDB6 /* ADURLSessionManager.swift */,
 				6C3F3BDC214922D400A8CDB6 /* ADWebClient.swift */,
+				6CC03005215A34A00010EAF0 /* ADAPIManager.swift */,
 			);
 			path = ServerConnection;
 			sourceTree = "<group>";
@@ -384,6 +400,35 @@
 				6C76B4AA21522162001F869D /* ADHomeViewController.swift */,
 			);
 			path = UIViewController;
+			sourceTree = "<group>";
+		};
+		6CC02FFE215A31C40010EAF0 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				6CC02FFF215A31C40010EAF0 /* Handler */,
+				6CC03000215A31C40010EAF0 /* ManagedObjects */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
+		6CC02FFF215A31C40010EAF0 /* Handler */ = {
+			isa = PBXGroup;
+			children = (
+				6CC03001215A31EF0010EAF0 /* ADCoreDataHandler.swift */,
+				6CC03003215A32610010EAF0 /* ADDBHandler.swift */,
+			);
+			path = Handler;
+			sourceTree = "<group>";
+		};
+		6CC03000215A31C40010EAF0 /* ManagedObjects */ = {
+			isa = PBXGroup;
+			children = (
+				6CC03007215A378C0010EAF0 /* Topic+CoreDataClass.swift */,
+				6CC03008215A378C0010EAF0 /* Topic+CoreDataProperties.swift */,
+				6CC03009215A378C0010EAF0 /* TeacherClass+CoreDataClass.swift */,
+				6CC0300A215A378C0010EAF0 /* TeacherClass+CoreDataProperties.swift */,
+			);
+			path = ManagedObjects;
 			sourceTree = "<group>";
 		};
 		719A15E93D30529A1D69C88A /* Pods */ = {
@@ -563,22 +608,26 @@
 				6C3F3BF8214922D500A8CDB6 /* ADStoryModule.swift in Sources */,
 				6C3F3C06214922D500A8CDB6 /* ADWebClient.swift in Sources */,
 				6C3F3BF3214922D500A8CDB6 /* ADInsetLabel.swift in Sources */,
+				6CC0300E215A378C0010EAF0 /* TeacherClass+CoreDataProperties.swift in Sources */,
 				6C3F3B81214915A400A8CDB6 /* AppDelegate.swift in Sources */,
 				6C3F3C05214922D500A8CDB6 /* ADURLSessionManager.swift in Sources */,
 				6C3F3BFD214922D500A8CDB6 /* ADUnderLinedLabel.swift in Sources */,
 				6C3F3BE3214922D500A8CDB6 /* ADButton.swift in Sources */,
 				6C3F3BFF214922D500A8CDB6 /* ADView.swift in Sources */,
+				6CC0300B215A378C0010EAF0 /* Topic+CoreDataClass.swift in Sources */,
 				6C3F3BE0214922D500A8CDB6 /* ADApplication.swift in Sources */,
 				6C3F3BB321491E4C00A8CDB6 /* ADLoginViewConntroller.swift in Sources */,
 				6C3F3C02214922D500A8CDB6 /* ADHTTPManager.swift in Sources */,
 				6C3F3BFA214922D500A8CDB6 /* ADTableView.swift in Sources */,
 				6C3F3B89214915A400A8CDB6 /* Adda247Faculty.xcdatamodeld in Sources */,
 				6C3F3C03214922D500A8CDB6 /* ADHTTPSessionManager.swift in Sources */,
+				6CC0300D215A378C0010EAF0 /* TeacherClass+CoreDataClass.swift in Sources */,
 				6C3F3BE2214922D500A8CDB6 /* ADBundle.swift in Sources */,
 				6C085CB9214A42410011C501 /* ADAlertView.swift in Sources */,
 				6C3F3C0F214923B200A8CDB6 /* ADProtocols.swift in Sources */,
 				6C3F3BEB214922D500A8CDB6 /* ADDouble.swift in Sources */,
 				6C3F3BE6214922D500A8CDB6 /* ADCALayer.swift in Sources */,
+				6CC03004215A32610010EAF0 /* ADDBHandler.swift in Sources */,
 				6C3F3C08214922D500A8CDB6 /* Reachability.swift in Sources */,
 				6C3F3C00214922D500A8CDB6 /* ADViewController.swift in Sources */,
 				6C085CC1214A4A940011C501 /* ADEnterMobileNumberViewController.swift in Sources */,
@@ -587,9 +636,11 @@
 				6C3F3BFE214922D500A8CDB6 /* ADVerticalTopAllignLabel.swift in Sources */,
 				6C3F3BEA214922D500A8CDB6 /* ADDictionary.swift in Sources */,
 				6C3F3BE4214922D500A8CDB6 /* ADButtonWithImage.swift in Sources */,
+				6CC0300C215A378C0010EAF0 /* Topic+CoreDataProperties.swift in Sources */,
 				6C3F3C07214922D500A8CDB6 /* ADReachability.swift in Sources */,
 				6C085CBC214A42410011C501 /* ADNavigationTitleView.swift in Sources */,
 				6C3F3C04214922D500A8CDB6 /* ADServerAPI.swift in Sources */,
+				6CC03002215A31EF0010EAF0 /* ADCoreDataHandler.swift in Sources */,
 				6C3F3C01214922D500A8CDB6 /* PageViewControllerExt.swift in Sources */,
 				6C3F3BF6214922D500A8CDB6 /* ADObject.swift in Sources */,
 				6C3F3BEE214922D500A8CDB6 /* ADFloat.swift in Sources */,
@@ -605,6 +656,7 @@
 				6C3F3BEF214922D500A8CDB6 /* ADFont.swift in Sources */,
 				6C3F3BF0214922D500A8CDB6 /* ADImage.swift in Sources */,
 				6C085CBE214A42410011C501 /* ADUtility.swift in Sources */,
+				6CC03006215A34A00010EAF0 /* ADAPIManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
