@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="ADNavigationTitleView" customModule="Adda247" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="291" height="29"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pEJ-rK-DSk">
+                    <rect key="frame" x="102.5" y="0.0" width="86" height="29"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Banking" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CVV-c1-w88">
+                            <rect key="frame" x="0.0" y="4" width="64" height="21"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="21" id="3Kv-WU-qPT"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="17"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H6O-oz-lyJ">
+                            <rect key="frame" x="64" y="4" width="22" height="22"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="22" id="2rA-Py-f1W"/>
+                                <constraint firstAttribute="width" constant="22" id="gen-UX-ROz"/>
+                            </constraints>
+                            <state key="normal" image="expandArrow"/>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="H6O-oz-lyJ" secondAttribute="trailing" id="0qq-Ob-AYl"/>
+                        <constraint firstItem="H6O-oz-lyJ" firstAttribute="centerY" secondItem="pEJ-rK-DSk" secondAttribute="centerY" id="XkK-BT-GTE"/>
+                        <constraint firstItem="CVV-c1-w88" firstAttribute="leading" secondItem="pEJ-rK-DSk" secondAttribute="leading" id="aMN-BO-Gya"/>
+                        <constraint firstItem="H6O-oz-lyJ" firstAttribute="leading" secondItem="CVV-c1-w88" secondAttribute="trailing" id="kf9-wb-0Op"/>
+                        <constraint firstItem="CVV-c1-w88" firstAttribute="centerY" secondItem="pEJ-rK-DSk" secondAttribute="centerY" id="s35-kd-5gT"/>
+                        <constraint firstAttribute="height" constant="29" id="tt7-i3-Pmp"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="pEJ-rK-DSk" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="Q7c-Dc-Lq1"/>
+                <constraint firstItem="pEJ-rK-DSk" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="XQR-v6-uiy"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="arrowBtn" destination="H6O-oz-lyJ" id="9IS-3u-i5T"/>
+                <outlet property="arrowView" destination="pEJ-rK-DSk" id="Tkj-jR-ych"/>
+                <outlet property="titleLbl" destination="CVV-c1-w88" id="hHD-8s-rNm"/>
+            </connections>
+            <point key="canvasLocation" x="-7.5" y="-103.5"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="expandArrow" width="12" height="7"/>
+    </resources>
+</document>

@@ -1,0 +1,252 @@
+//
+//  ADUtility.swift
+//  Adda247
+//
+//  Created by Varun Tomar on 09/05/17.
+//  Copyright © 2017 Metis Eduvantures Pvt. Ltd. All rights reserved.
+//
+
+import Foundation
+import UIKit
+import CoreData
+
+let ALPHABET = "abcABCdefghijkIJKlmnopqrstuvwxyzUVWXYZDEFGHLMNOPQRST";
+
+class ADUtility: NSObject {
+    
+    class func updateCategory(category:String) {
+        UserDefaults.standard.set(category, forKey: UserDefaultsConstant.category)
+        UserDefaults.standard.synchronize()
+    }
+    
+    class func updateLanguage(language:String) {
+        UserDefaults.standard.set(language, forKey: UserDefaultsConstant.language)
+        UserDefaults.standard.synchronize()
+    }
+    
+    class func updateExamId(examId:String) {
+        UserDefaults.standard.set(examId, forKey: UserDefaultsConstant.examId)
+        UserDefaults.standard.synchronize()
+    }
+    
+    class func updateDeviceToken(deviceToken:String) {
+        UserDefaults.standard.set(deviceToken, forKey: UserDefaultsConstant.deviceToken)
+        UserDefaults.standard.synchronize()
+    }
+    
+    class func getDeviceToken()-> String? {
+        return UserDefaults.standard.value(forKey: UserDefaultsConstant.deviceToken) as? String
+    }
+    
+    class func getCategory()->String? {
+        return UserDefaults.standard.value(forKey: UserDefaultsConstant.category) as? String
+    }
+    
+    class func getLanguage()->String? {
+        return UserDefaults.standard.value(forKey: UserDefaultsConstant.language) as? String
+    }
+    
+    class func getExamId()->String? {
+        return UserDefaults.standard.value(forKey: UserDefaultsConstant.examId) as? String
+    }
+
+    class func getUserId()->String? {
+        return UserDefaults.standard.value(forKey: UserDefaultsConstant.userInfoId) as? String
+    }
+    
+    class func getUsername()->String? {
+        return UserDefaults.standard.value(forKey: UserDefaultsConstant.userInfoName) as? String
+    }
+    
+    class func getUseremail()->String? {
+        return UserDefaults.standard.value(forKey: UserDefaultsConstant.userInfoEmail) as? String
+    }
+    
+    class func getUserProfileImageUrl()->String? {
+        return UserDefaults.standard.value(forKey: UserDefaultsConstant.userProfileImage) as? String
+    }
+    
+    class func getQuizSubjectId()->String {
+        if(UserDefaults.standard.value(forKey: "quizSubject") as? String == nil){
+            return ""
+        }
+        return UserDefaults.standard.value(forKey: "quizSubject") as! String
+    }
+    
+    class func getQuizMappingId()->String? {
+        return UserDefaults.standard.value(forKey: "quizMappingId") as? String
+        
+    }
+    
+    
+    class func decipher(cipherText:String)->String {
+        if (cipherText.characters.count == 0){
+            return cipherText;
+        }
+        var builder:NSString = ""
+
+        let tempStr:NSString = cipherText as NSString
+        let tempAlphabetStr:NSString = "abcABCdefghijkIJKlmnopqrstuvwxyzUVWXYZDEFGHLMNOPQRST"
+
+        for var i in (0..<tempStr.length){
+
+            let char: unichar = tempStr.character(at: i)
+
+            if let indexInAlphabetKey = ALPHABET.index(of: Character(UnicodeScalar(char)!)) {
+                //print("character \(char) was found at position #\(index)")
+                let keyVal = (ALPHABET.characters.count + indexInAlphabetKey.encodedOffset - 8) % ALPHABET.characters.count
+                let replaceVal: unichar = tempAlphabetStr.character(at: keyVal)
+                builder = builder.appending(String(describing: UnicodeScalar(replaceVal)!)) as NSString
+            }
+            else{
+                builder = builder.appending(String(describing: UnicodeScalar(char)!)) as NSString
+            }
+           i += 1
+        }
+        
+        
+        
+//        var builder = ""
+//
+//        for var i in (0..<cipherText.characters.count)
+//        {
+//            let indexInCipherText = cipherText.index(cipherText.startIndex, offsetBy: i)
+//
+//            let char: Character = cipherText[indexInCipherText]
+//
+//            if let indexInAlphabetKey = ALPHABET.indexDistance(of: char) {
+//                //print("character \(char) was found at position #\(index)")
+//                let keyVal = (ALPHABET.characters.count + indexInAlphabetKey - 8) % ALPHABET.characters.count
+//                    let keyValueIndex = ALPHABET.index(cipherText.startIndex, offsetBy: keyVal)
+//                    let replaceVal = ALPHABET[keyValueIndex]
+//                    builder.append(replaceVal)
+//            }
+//            else{
+//                builder.append(char)
+//            }
+//            i += 1
+//        }
+//        builder = builder.trim()
+//        return builder
+        
+        var finalStr = builder as String
+        finalStr = finalStr.trim()
+
+        return finalStr
+    }
+    
+    
+<<<<<<< HEAD
+    class func cacheDirectoryForQuiz(_ directoryName:String) -> URL {
+        var cacheURL = URL(string: NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true).first!)
+        cacheURL?.appendPathComponent(directoryName, isDirectory: true)
+        
+        let cacheDirectory: String! = cacheURL?.absoluteString
+        var isDir : ObjCBool = false
+        
+        if !(FileManager.default.fileExists(atPath: cacheDirectory, isDirectory: &isDir)) {
+            try? FileManager.default.createDirectory(atPath: cacheDirectory, withIntermediateDirectories: false, attributes: nil)
+        }
+        return cacheURL!
+=======
+    class func hmsFrom(seconds: Int, completion: @escaping (_ hours: Int, _ minutes: Int, _ seconds: Int)->()) {
+        
+        completion(seconds / 3600, (seconds % 3600) / 60, (seconds % 3600) % 60)
+        
+    }
+    
+    class func getStringFrom(seconds: Int) -> String {
+        
+        return seconds < 10 ? "0\(seconds)" : "\(seconds)"
+>>>>>>> development
+    }
+
+    
+    
+    class func convertArrayToString(array:[Dictionary<String, Any>])->String{
+        var finalString = "["
+        var flag:Bool = false
+        for dictionary in array{
+            if(flag){
+                finalString.append(",")
+            }
+            flag = true
+            if dictionary.keys.count == 1 {
+                finalString.append("null")
+            }
+            else {
+                finalString.append("{")
+                let keysArray = Array(dictionary.keys)
+                var flag1:Bool = false
+                for key in keysArray{
+                    if(flag1){
+                        finalString.append(",")
+                    }
+                    flag1 = true
+                    if let tempValue = dictionary[key] as? String{
+                        finalString.append("\"\(key)\":\"\(tempValue)\"")
+                    }
+                    else if let tempValue = dictionary[key] as? NSNumber{
+                        finalString.append("\"\(key)\":\(tempValue)")
+                    }
+                }
+                finalString.append("}")
+            }
+        }
+        finalString.append("]")
+        return finalString
+    }
+    
+    class func cacheDirectoryForQuiz(_ directoryName:String) -> URL {
+        var cacheURL = URL(string: NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true).first!)
+        cacheURL?.appendPathComponent(directoryName, isDirectory: true)
+        
+        let cacheDirectory: String! = cacheURL?.absoluteString
+        var isDir : ObjCBool = false
+        
+        if !(FileManager.default.fileExists(atPath: cacheDirectory, isDirectory: &isDir)) {
+            try? FileManager.default.createDirectory(atPath: cacheDirectory, withIntermediateDirectories: false, attributes: nil)
+        }
+        return cacheURL!
+    }
+    
+    class func isCacheDirectoryForQuizExist(_ directoryName:String) -> Bool {
+        var cacheURL = URL(string: NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true).first!)
+        cacheURL?.appendPathComponent(directoryName, isDirectory: true)
+        
+        let cacheDirectory: String! = cacheURL?.absoluteString
+        var isDir : ObjCBool = false
+        
+        if (FileManager.default.fileExists(atPath: cacheDirectory, isDirectory: &isDir)) {
+           return true
+        }
+        else{
+           return false
+        }
+    }
+
+    
+    class func updateLabelFrame(label: UILabel,maxSize:CGSize) {
+        let rect = label.text?.boundingRect(with: maxSize,
+                                                    options: .usesLineFragmentOrigin, context: nil)
+        if let actualRect = rect {
+            var frame = label.frame
+            frame.size.height = actualRect.size.height+5
+            label.frame = frame
+        }
+    }
+    
+    class func saveContext(context:NSManagedObjectContext){
+        //SAVE CONTEXT
+        if context.hasChanges {
+            do {
+                try context.save()
+                ADCoreDataHandler.sharedInstance.saveContext()
+            }
+            catch
+            {
+                print("Problem in DB saving")
+            }
+        }
+    }
+}
