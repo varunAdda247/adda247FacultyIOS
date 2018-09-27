@@ -15,6 +15,8 @@
 		6C085CBE214A42410011C501 /* ADUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C085CB7214A42410011C501 /* ADUtility.swift */; };
 		6C085CBF214A42410011C501 /* ADUtility.swift.orig in Resources */ = {isa = PBXBuildFile; fileRef = 6C085CB8214A42410011C501 /* ADUtility.swift.orig */; };
 		6C085CC1214A4A940011C501 /* ADEnterMobileNumberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C085CC0214A4A940011C501 /* ADEnterMobileNumberViewController.swift */; };
+		6C374DC7215B62FC00BAB5FB /* ADClassDataCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C374DC6215B62FC00BAB5FB /* ADClassDataCell.swift */; };
+		6C374DC9215B6C6600BAB5FB /* ADFetchedResultController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C374DC8215B6C6600BAB5FB /* ADFetchedResultController.swift */; };
 		6C3F3B81214915A400A8CDB6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3F3B80214915A400A8CDB6 /* AppDelegate.swift */; };
 		6C3F3B83214915A400A8CDB6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3F3B82214915A400A8CDB6 /* ViewController.swift */; };
 		6C3F3B89214915A400A8CDB6 /* Adda247Faculty.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6C3F3B87214915A400A8CDB6 /* Adda247Faculty.xcdatamodeld */; };
@@ -71,11 +73,16 @@
 		6C9E23C82153AA3C0091D53A /* ADOtpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C9E23C72153AA3C0091D53A /* ADOtpViewController.swift */; };
 		6CC03002215A31EF0010EAF0 /* ADCoreDataHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CC03001215A31EF0010EAF0 /* ADCoreDataHandler.swift */; };
 		6CC03004215A32610010EAF0 /* ADDBHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CC03003215A32610010EAF0 /* ADDBHandler.swift */; };
-		6CC03006215A34A00010EAF0 /* ADAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CC03005215A34A00010EAF0 /* ADAPIManager.swift */; };
 		6CC0300B215A378C0010EAF0 /* Topic+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CC03007215A378C0010EAF0 /* Topic+CoreDataClass.swift */; };
 		6CC0300C215A378C0010EAF0 /* Topic+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CC03008215A378C0010EAF0 /* Topic+CoreDataProperties.swift */; };
 		6CC0300D215A378C0010EAF0 /* TeacherClass+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CC03009215A378C0010EAF0 /* TeacherClass+CoreDataClass.swift */; };
 		6CC0300E215A378C0010EAF0 /* TeacherClass+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CC0300A215A378C0010EAF0 /* TeacherClass+CoreDataProperties.swift */; };
+		6CCA73C5215CB8A100C9DA6A /* ADClassInformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CCA73C4215CB8A100C9DA6A /* ADClassInformationViewController.swift */; };
+		6CCA73C8215CD64600C9DA6A /* ADProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CCA73C7215CD64600C9DA6A /* ADProtocol.swift */; };
+		6CCA73CA215CD74400C9DA6A /* ADClassInfoHeadingAndSubHeadingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CCA73C9215CD74400C9DA6A /* ADClassInfoHeadingAndSubHeadingCell.swift */; };
+		6CCA73CC215CD84E00C9DA6A /* ADClassInfoHeadingSubHeadingAndImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CCA73CB215CD84E00C9DA6A /* ADClassInfoHeadingSubHeadingAndImageCell.swift */; };
+		6CCA73CE215CDFD900C9DA6A /* ADClassInfoHeadingSubHeadingImageAndButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CCA73CD215CDFD900C9DA6A /* ADClassInfoHeadingSubHeadingImageAndButtonCell.swift */; };
+		6CCA73D0215CE08500C9DA6A /* ADClassInfoWithTwoIconsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CCA73CF215CE08500C9DA6A /* ADClassInfoWithTwoIconsCell.swift */; };
 		A41A78CE6BCA40CC202057EE /* Pods_Adda247Faculty.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7A3B0A787F731CFBE21D8A4 /* Pods_Adda247Faculty.framework */; };
 /* End PBXBuildFile section */
 
@@ -90,6 +97,8 @@
 		6C085CB7214A42410011C501 /* ADUtility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ADUtility.swift; sourceTree = "<group>"; };
 		6C085CB8214A42410011C501 /* ADUtility.swift.orig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ADUtility.swift.orig; sourceTree = "<group>"; };
 		6C085CC0214A4A940011C501 /* ADEnterMobileNumberViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ADEnterMobileNumberViewController.swift; sourceTree = "<group>"; };
+		6C374DC6215B62FC00BAB5FB /* ADClassDataCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ADClassDataCell.swift; sourceTree = "<group>"; };
+		6C374DC8215B6C6600BAB5FB /* ADFetchedResultController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ADFetchedResultController.swift; sourceTree = "<group>"; };
 		6C3F3B7D214915A400A8CDB6 /* Adda247Faculty.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Adda247Faculty.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6C3F3B80214915A400A8CDB6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6C3F3B82214915A400A8CDB6 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -148,11 +157,16 @@
 		6C9E23C72153AA3C0091D53A /* ADOtpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ADOtpViewController.swift; sourceTree = "<group>"; };
 		6CC03001215A31EF0010EAF0 /* ADCoreDataHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ADCoreDataHandler.swift; sourceTree = "<group>"; };
 		6CC03003215A32610010EAF0 /* ADDBHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ADDBHandler.swift; sourceTree = "<group>"; };
-		6CC03005215A34A00010EAF0 /* ADAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ADAPIManager.swift; sourceTree = "<group>"; };
 		6CC03007215A378C0010EAF0 /* Topic+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Topic+CoreDataClass.swift"; sourceTree = "<group>"; };
 		6CC03008215A378C0010EAF0 /* Topic+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Topic+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		6CC03009215A378C0010EAF0 /* TeacherClass+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TeacherClass+CoreDataClass.swift"; sourceTree = "<group>"; };
 		6CC0300A215A378C0010EAF0 /* TeacherClass+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TeacherClass+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		6CCA73C4215CB8A100C9DA6A /* ADClassInformationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ADClassInformationViewController.swift; sourceTree = "<group>"; };
+		6CCA73C7215CD64600C9DA6A /* ADProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ADProtocol.swift; sourceTree = "<group>"; };
+		6CCA73C9215CD74400C9DA6A /* ADClassInfoHeadingAndSubHeadingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ADClassInfoHeadingAndSubHeadingCell.swift; sourceTree = "<group>"; };
+		6CCA73CB215CD84E00C9DA6A /* ADClassInfoHeadingSubHeadingAndImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ADClassInfoHeadingSubHeadingAndImageCell.swift; sourceTree = "<group>"; };
+		6CCA73CD215CDFD900C9DA6A /* ADClassInfoHeadingSubHeadingImageAndButtonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ADClassInfoHeadingSubHeadingImageAndButtonCell.swift; sourceTree = "<group>"; };
+		6CCA73CF215CE08500C9DA6A /* ADClassInfoWithTwoIconsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ADClassInfoWithTwoIconsCell.swift; sourceTree = "<group>"; };
 		A7A3B0A787F731CFBE21D8A4 /* Pods_Adda247Faculty.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Adda247Faculty.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -171,6 +185,7 @@
 		6C085CAE214A42400011C501 /* Genric */ = {
 			isa = PBXGroup;
 			children = (
+				6CCA73C6215CD63700C9DA6A /* Protocol */,
 				6C085CAF214A42400011C501 /* AlertMessage */,
 				6C085CB2214A42410011C501 /* UIView */,
 				6C085CB6214A42410011C501 /* Utility */,
@@ -255,6 +270,7 @@
 		6C3F3BA421491A5800A8CDB6 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				6CCA73C1215CB88500C9DA6A /* ClassInformation */,
 				6C76B4A721522122001F869D /* Home */,
 				6C3F3BA521491A7F00A8CDB6 /* LoginAndRegister */,
 			);
@@ -309,6 +325,7 @@
 		6C3F3BB4214922D400A8CDB6 /* SupportingFiles */ = {
 			isa = PBXGroup;
 			children = (
+				6C374DC8215B6C6600BAB5FB /* ADFetchedResultController.swift */,
 				6C3F3BB5214922D400A8CDB6 /* ADApplication.swift */,
 				6C3F3BB6214922D400A8CDB6 /* ADBarButtonItem.swift */,
 				6C3F3BB7214922D400A8CDB6 /* ADBundle.swift */,
@@ -354,7 +371,6 @@
 				6C3F3BDA214922D400A8CDB6 /* ADServerAPI.swift */,
 				6C3F3BDB214922D400A8CDB6 /* ADURLSessionManager.swift */,
 				6C3F3BDC214922D400A8CDB6 /* ADWebClient.swift */,
-				6CC03005215A34A00010EAF0 /* ADAPIManager.swift */,
 			);
 			path = ServerConnection;
 			sourceTree = "<group>";
@@ -390,6 +406,7 @@
 		6C76B4A821522153001F869D /* UITableViewCell */ = {
 			isa = PBXGroup;
 			children = (
+				6C374DC6215B62FC00BAB5FB /* ADClassDataCell.swift */,
 			);
 			path = UITableViewCell;
 			sourceTree = "<group>";
@@ -429,6 +446,42 @@
 				6CC0300A215A378C0010EAF0 /* TeacherClass+CoreDataProperties.swift */,
 			);
 			path = ManagedObjects;
+			sourceTree = "<group>";
+		};
+		6CCA73C1215CB88500C9DA6A /* ClassInformation */ = {
+			isa = PBXGroup;
+			children = (
+				6CCA73C2215CB88500C9DA6A /* UITableViewCell */,
+				6CCA73C3215CB88500C9DA6A /* UIViewController */,
+			);
+			path = ClassInformation;
+			sourceTree = "<group>";
+		};
+		6CCA73C2215CB88500C9DA6A /* UITableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				6CCA73C9215CD74400C9DA6A /* ADClassInfoHeadingAndSubHeadingCell.swift */,
+				6CCA73CB215CD84E00C9DA6A /* ADClassInfoHeadingSubHeadingAndImageCell.swift */,
+				6CCA73CD215CDFD900C9DA6A /* ADClassInfoHeadingSubHeadingImageAndButtonCell.swift */,
+				6CCA73CF215CE08500C9DA6A /* ADClassInfoWithTwoIconsCell.swift */,
+			);
+			path = UITableViewCell;
+			sourceTree = "<group>";
+		};
+		6CCA73C3215CB88500C9DA6A /* UIViewController */ = {
+			isa = PBXGroup;
+			children = (
+				6CCA73C4215CB8A100C9DA6A /* ADClassInformationViewController.swift */,
+			);
+			path = UIViewController;
+			sourceTree = "<group>";
+		};
+		6CCA73C6215CD63700C9DA6A /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				6CCA73C7215CD64600C9DA6A /* ADProtocol.swift */,
+			);
+			path = Protocol;
 			sourceTree = "<group>";
 		};
 		719A15E93D30529A1D69C88A /* Pods */ = {
@@ -596,12 +649,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				6C3F3BF2214922D500A8CDB6 /* ADImageView.swift in Sources */,
+				6CCA73C5215CB8A100C9DA6A /* ADClassInformationViewController.swift in Sources */,
 				6C3F3BF1214922D500A8CDB6 /* ADImageCacheLoader.swift in Sources */,
 				6C3F3BE7214922D500A8CDB6 /* ADColor.swift in Sources */,
 				6C3F3BF9214922D500A8CDB6 /* ADString.swift in Sources */,
 				6C9E23C82153AA3C0091D53A /* ADOtpViewController.swift in Sources */,
 				6C3F3B83214915A400A8CDB6 /* ViewController.swift in Sources */,
 				6C3F3C0E214923B200A8CDB6 /* ADConstants.swift in Sources */,
+				6CCA73C8215CD64600C9DA6A /* ADProtocol.swift in Sources */,
+				6C374DC7215B62FC00BAB5FB /* ADClassDataCell.swift in Sources */,
 				6C3F3BE8214922D500A8CDB6 /* ADDate.swift in Sources */,
 				6C43F1EC214BD43A0008CCE4 /* ADSetNewPinViewController.swift in Sources */,
 				6C085CBB214A42410011C501 /* ADEmptyStateView.swift in Sources */,
@@ -610,11 +666,13 @@
 				6C3F3BF3214922D500A8CDB6 /* ADInsetLabel.swift in Sources */,
 				6CC0300E215A378C0010EAF0 /* TeacherClass+CoreDataProperties.swift in Sources */,
 				6C3F3B81214915A400A8CDB6 /* AppDelegate.swift in Sources */,
+				6CCA73CA215CD74400C9DA6A /* ADClassInfoHeadingAndSubHeadingCell.swift in Sources */,
 				6C3F3C05214922D500A8CDB6 /* ADURLSessionManager.swift in Sources */,
 				6C3F3BFD214922D500A8CDB6 /* ADUnderLinedLabel.swift in Sources */,
 				6C3F3BE3214922D500A8CDB6 /* ADButton.swift in Sources */,
 				6C3F3BFF214922D500A8CDB6 /* ADView.swift in Sources */,
 				6CC0300B215A378C0010EAF0 /* Topic+CoreDataClass.swift in Sources */,
+				6C374DC9215B6C6600BAB5FB /* ADFetchedResultController.swift in Sources */,
 				6C3F3BE0214922D500A8CDB6 /* ADApplication.swift in Sources */,
 				6C3F3BB321491E4C00A8CDB6 /* ADLoginViewConntroller.swift in Sources */,
 				6C3F3C02214922D500A8CDB6 /* ADHTTPManager.swift in Sources */,
@@ -628,6 +686,7 @@
 				6C3F3BEB214922D500A8CDB6 /* ADDouble.swift in Sources */,
 				6C3F3BE6214922D500A8CDB6 /* ADCALayer.swift in Sources */,
 				6CC03004215A32610010EAF0 /* ADDBHandler.swift in Sources */,
+				6CCA73CE215CDFD900C9DA6A /* ADClassInfoHeadingSubHeadingImageAndButtonCell.swift in Sources */,
 				6C3F3C08214922D500A8CDB6 /* Reachability.swift in Sources */,
 				6C3F3C00214922D500A8CDB6 /* ADViewController.swift in Sources */,
 				6C085CC1214A4A940011C501 /* ADEnterMobileNumberViewController.swift in Sources */,
@@ -643,12 +702,14 @@
 				6CC03002215A31EF0010EAF0 /* ADCoreDataHandler.swift in Sources */,
 				6C3F3C01214922D500A8CDB6 /* PageViewControllerExt.swift in Sources */,
 				6C3F3BF6214922D500A8CDB6 /* ADObject.swift in Sources */,
+				6CCA73D0215CE08500C9DA6A /* ADClassInfoWithTwoIconsCell.swift in Sources */,
 				6C3F3BEE214922D500A8CDB6 /* ADFloat.swift in Sources */,
 				6C3F3BF5214922D500A8CDB6 /* ADNavigationBar.swift in Sources */,
 				6C3F3BE5214922D500A8CDB6 /* ADCacher.swift in Sources */,
 				6C3F3BFB214922D500A8CDB6 /* ADTableViewCell.swift in Sources */,
 				6C3F3BF4214922D500A8CDB6 /* ADManagedObjectContext.swift in Sources */,
 				6C3F3BE9214922D500A8CDB6 /* ADDevice.swift in Sources */,
+				6CCA73CC215CD84E00C9DA6A /* ADClassInfoHeadingSubHeadingAndImageCell.swift in Sources */,
 				6C3F3BEC214922D500A8CDB6 /* ADError.swift in Sources */,
 				6C3F3BE1214922D500A8CDB6 /* ADBarButtonItem.swift in Sources */,
 				6C3F3BF7214922D500A8CDB6 /* ADSequence.swift in Sources */,
@@ -656,7 +717,6 @@
 				6C3F3BEF214922D500A8CDB6 /* ADFont.swift in Sources */,
 				6C3F3BF0214922D500A8CDB6 /* ADImage.swift in Sources */,
 				6C085CBE214A42410011C501 /* ADUtility.swift in Sources */,
-				6CC03006215A34A00010EAF0 /* ADAPIManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

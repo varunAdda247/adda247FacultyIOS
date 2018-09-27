@@ -8,19 +8,66 @@
 
 import Foundation
 import UIKit
+import CoreData
 
-class ADHomeViewController: UIViewController,UIActionSheetDelegate {
+class ADHomeViewController: UIViewController,UIActionSheetDelegate, NSFetchedResultsControllerDelegate {
     
     //MARK: Outlets
     @IBOutlet weak var profileImgView: UIImageView!
     @IBOutlet weak var profileNameLbl: UILabel!
     @IBOutlet weak var classScheduleTableView: UITableView!
 
+    
+    fileprivate lazy var fetchedResultsController: NSFetchedResultsController =
+    { () -> NSFetchedResultsController<NSFetchRequestResult> in
+        // Initialize Fetch Request
+        var fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "TeacherClass")
+        
+        var predicate:NSPredicate?
+        let defaults = UserDefaults.standard
+        predicate = NSPredicate(format: "exams.examId == %@  AND category == %@","DAILY","")
+
+        fetchRequest.returnsDistinctResults = true
+        
+        // Add Sort Descriptors
+        let sortDescriptor = NSSortDescriptor(key: "actualStartTs", ascending: false)
+        fetchRequest.sortDescriptors = [sortDescriptor]
+        
+        // Initialize Fetched Results Controller
+        var fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: ADCoreDataHandler.sharedInstance.managedObjectContext, sectionNameKeyPath: nil, cacheName: nil)
+        
+        // Configure Fetched Results Controller
+        fetchedResultsController.delegate = self
+        return fetchedResultsController
+    }()
+    
+    
     //MARK: View Lifecycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         self.configureInitialValues()
+        
+        do {
+            try self.fetchedResultsController.performFetch()
+        } catch {
+            let fetchError = error as NSError
+            print("\(fetchError), \(fetchError.userInfo)")
+        }
+        
+        if(self.fetchedResultsController.fetchedObjects?.count == 0){
+            self.classScheduleTableView.isHidden = true
+            self.classServiceCall()
+        }
+        
+        self.classScheduleTableView.estimatedRowHeight = 115.0
+        self.classScheduleTableView.rowHeight = UITableViewAutomaticDimension
+
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        
+        self.classScheduleTableView.reloadData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -44,6 +91,7 @@ class ADHomeViewController: UIViewController,UIActionSheetDelegate {
         alert.addAction(UIAlertAction(title: "Logout", style: .default , handler:{ (UIAlertAction)in
             //LOGOUT
             print("Logout action")
+            self.logoutAction()
         }))
         
         alert.addAction(UIAlertAction(title: "Cancel", style: .default , handler:{ (UIAlertAction)in
@@ -56,16 +104,29 @@ class ADHomeViewController: UIViewController,UIActionSheetDelegate {
         })
     }
     
+    func logoutAction() {
+        ADUtility.updateToken(token: "")
+        let controller:ADEnterMobileNumberViewController = UIStoryboard.instantiateController(forModule: ADStoryModule.main)
+        let navigationController = UINavigationController(rootViewController: controller)
+        
+        let transition = CATransition()
+        transition.duration = 1
+        transition.timingFunction = CAMediaTimingFunction( name:kCAMediaTimingFunctionEaseInEaseOut)
+        transition.type = kCATransitionFade
+        CATransaction.begin()
+        AppDelegate.getDelegate().window?.layer.add(transition, forKey: nil)
+        
+        AppDelegate.getDelegate().window?.rootViewController = navigationController
+        AppDelegate.getDelegate().window?.makeKeyAndVisible()
+        CATransaction.commit()
+    }
+    
     //MARK: Internal methods
     func configureInitialValues() {
         self.addRightButtonWithImage(imageName: "overflow", target: self)
-        self.classServiceCall()
+        self.profileNameLbl.text = "Hi \(ADUtility.getFacultyName()!)"
     }
     
-    //MARK: IBActions
-//    @IBAction func continueAction(_ sender: AnyObject){
-//
-//    }
     
     func classServiceCall() {
         
@@ -81,55 +142,139 @@ class ADHomeViewController: UIViewController,UIActionSheetDelegate {
 
         let facultyId = ADUtility.getFacultyId()!.int16Value
         tempPara.setObject(facultyId, forKey: "facultyId" as NSCopying)
-
-        //facultyId
-        //startTime
-        //endTime
         
-        _ = ADWebClient.sharedClient.POST(appbBaseUrl: APIURL.baseUrl, suffixUrl: APIURLSuffix.getClasses, parameters: tempPara, success: { (response) in
-            if let response = response as? Dictionary<String,Any>{
-                if let data = response["data"] as? Dictionary<String,Any>{
-                    /*
-                     {
-                     actualEndTs = 1531809843146;
-                     actualStartTs = 1531809833459;
-                     centerName = "Agra - Bhagwan Talkies";
-                     classId = 104; // PRIMARY KEY
-                     className = "ABT087-006-Science";
-                     classStatus = 2; //0: Not started(missed, upcoming, going to start), 1: Active, 2: Completed
-                     endLocation = "28.4437044:77.055694"; // location
-                     endTime = 1531819800000; // Actual time set by server
-                     facultyName = "<null>"; //
-                     lastUpdatedTs = 1531809843146; // to manage latest data in DB
-                     startLocation = "28.4437044:77.055694";// location
-                     startTime = 1531816200000;// Actual time set by server
-                     topics = "<null>";topicId,status(0:fresh, 1: Started but not finish,2:Finished),topicName
-                     },
-                    */
-                    
-                    //Open home view conntroller
-                    DispatchQueue.main.async(execute: {
-                        
-                    })
+        TeacherClass.fetchClassData(parameters: tempPara) { (successfullySaved, error) in
+            if successfullySaved{
+                if ((self.fetchedResultsController.fetchedObjects?.count)! > 0){
+                    self.classScheduleTableView.isHidden = false
+                    self.classScheduleTableView.reloadData()
+                }
+                else{
+                    //No class data
+                    print("No class data found")
                 }
                 
-                if let message = response["message"] as? String{
-                    print(message)
+            }
+        }
+    }
+    
+    
+    
+    
+    // MARK: Fetched Results Controller Delegate Methods
+    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        self.classScheduleTableView.beginUpdates()
+    }
+    
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange sectionInfo: NSFetchedResultsSectionInfo, atSectionIndex sectionIndex: Int, for type: NSFetchedResultsChangeType) {
+        switch type {
+        case .insert:
+            self.classScheduleTableView.insertSections(IndexSet(integer: sectionIndex), with: .fade)
+        case .delete:
+            self.classScheduleTableView.deleteSections(IndexSet(integer: sectionIndex), with: .fade)
+        case .update:
+            break;
+        default:
+            break;
+        }
+    }
+    
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
+        
+        switch (type) {
+        case .insert:
+            //            if indexPath == nil{
+            //                if let indexPath = newIndexPath {
+            //                    self.currentAffairsTableView.insertRows(at: [indexPath as IndexPath], with: .fade)
+            //                }
+            //            }
+            if let indexPath = newIndexPath {
+                self.classScheduleTableView.insertRows(at: [indexPath as IndexPath], with: .fade)
+            }
+            break;
+        case .delete:
+            if let indexPath = indexPath {
+                self.classScheduleTableView.deleteRows(at: [indexPath as IndexPath], with: .fade)
+            }
+            break;
+        case .update:
+            if let indexPath = indexPath {
+                
+                if let cell = self.classScheduleTableView.cellForRow(at: indexPath as IndexPath) as? ADClassDataCell {
+                    
+                    self.configureClassDataCell(cell: cell, atIndexPath: indexPath)
                 }
-                DispatchQueue.main.async(execute: {
-                    self.hideActivityIndicatorView()
-                })
+            }
+            break;
+        case .move:
+            if let indexPath = indexPath {
+                self.classScheduleTableView.deleteRows(at: [indexPath as IndexPath], with: .fade)
             }
             
-            DispatchQueue.main.async(execute: {
-                self.hideActivityIndicatorView()
-            })
-            
-        }) { (error) in
-            DispatchQueue.main.async(execute: {
-                self.hideActivityIndicatorView()
-                self.showAlertMessage("Please check your internet connection", alertImage: nil, alertType: .success, context: .statusBar, duration: .seconds(seconds: 2))
-            })
+            if let newIndexPath = newIndexPath {
+                self.classScheduleTableView.insertRows(at: [newIndexPath as IndexPath], with: .fade)
+            }
+            break;
         }
+    }
+    
+    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        self.classScheduleTableView.endUpdates()
+    }
+}
+
+// MARK: - UITableViewDataSource, UITableViewDelegate Methods
+extension ADHomeViewController : UITableViewDataSource, UITableViewDelegate
+{
+    //MARK: UITableViewDataSource
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return (self.fetchedResultsController.fetchedObjects?.count)!
+    }
+    
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
+    {
+        let cell = self.classScheduleTableView.dequeueReusableCell(withIdentifier: "ADClassDataCell") as! ADClassDataCell
+        
+        // Configure Table View Cell
+        self.configureClassDataCell(cell: cell, atIndexPath: indexPath)
+        
+        return cell
+    }
+    
+    
+    func configureClassDataCell(cell: ADClassDataCell, atIndexPath indexPath: IndexPath) {
+        if self.fetchedResultsController.validateIndexPath(indexPath) {
+            if let cfObj = self.fetchedResultsController.object(at: indexPath) as? TeacherClass{
+                //Upate object
+                cell.statusLbl.text = "Completed"
+                cell.flagView.backgroundColor = UIColor.green
+                cell.classNameLbl.text = cfObj.classNam!
+
+//                if(indexPath.row == 0){
+//                    cell.classNameLbl.text = "To te djd fhjkdf  hsdhksd hjkdh fhhdfksf kjhfsd hjkhdsf jkh"
+//                }
+//                else{
+//                    cell.classNameLbl.text = cfObj.classNam!
+//                }
+                
+                cell.centerLbl.text = cfObj.centerName!
+            }
+        } else {
+            self.classScheduleTableView.reloadData()
+        }
+    }
+    
+    //MARK: UITableViewDelegate
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
+    {
+       // return UITableViewAutomaticDimension
+        return 120.0
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        //Action according to status here
+        
     }
 }

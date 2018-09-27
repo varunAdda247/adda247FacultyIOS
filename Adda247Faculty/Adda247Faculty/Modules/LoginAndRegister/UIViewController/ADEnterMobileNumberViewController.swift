@@ -49,6 +49,7 @@ class ADEnterMobileNumberViewController: UIViewController,UITextFieldDelegate {
     
     //MARK: Internal methods
     func configureInitialValues() {
+        self.activityIndicator.isHidden = true
         self.view.backgroundColor = UIColor.backgroundThemeColor()
         self.continueBtn.backgroundColor = UIColor.pinkThemeColor()
         self.continueBtn.setTitle(NSLocalizedString("Continue", comment: ""), for: .normal)

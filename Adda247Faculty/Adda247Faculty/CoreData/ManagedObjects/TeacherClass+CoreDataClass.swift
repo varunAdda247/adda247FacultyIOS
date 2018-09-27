@@ -13,7 +13,7 @@ import CoreData
 @objc(TeacherClass)
 public class TeacherClass: NSManagedObject {
 
-    class func fetchClassData(parameters:Any?,packageId:String, complitionHandler:@escaping ADBooleanResponseBlock){
+    class func fetchClassData(parameters:Any?, complitionHandler:@escaping ADBooleanResponseBlock){
         
         _ = ADWebClient.sharedClient.POST(appbBaseUrl:APIURL.baseUrl, suffixUrl: APIURLSuffix.getClasses, parameters: parameters, success: { (response) in
             
@@ -45,8 +45,7 @@ public class TeacherClass: NSManagedObject {
     class func insertClassInfoInDB(responseData: Any,complitionCallback:@escaping ADBooleanResponseBlock)
     {
         let jsonResult = responseData as! Dictionary<String, Any>
-        let data = jsonResult["data"] as! Dictionary<String, Any>
-        let batches = data["batches"] as! Array<Dictionary<String, Any>>
+        let batches = jsonResult["batches"] as! Array<Dictionary<String, Any>>
         
         //Parse and fill data here
         let tempContext = ADCoreDataHandler.sharedInstance.managedObjectContext
@@ -58,22 +57,58 @@ public class TeacherClass: NSManagedObject {
                 
                 for i in 0...(batches.count - 1){
                     let tempObj = batches[i]
-                    let object = TeacherClass.teacherClassForId(context: tempContext, classId: tempObj["classId"] as! String)
-                    if(object != nil){
-                        //Update here
-                        object?.actualEndTs = tempObj["actualEndTs"] as! Double
-                        object?.actualStartTs = tempObj["actualStartTs"] as! Double
-                        object?.centerName = tempObj["centerName"] as? String
-                        object?.classId = (tempObj["classId"] as! NSNumber).stringValue
-                        object?.classNam = tempObj["className"] as? String
-                        object?.classStatus = (tempObj["classStatus"] as! NSNumber).int16Value
-                        object?.endLocation = tempObj["endLocation"] as? String
-                        object?.startLocation = tempObj["startLocation"] as? String
-                        object?.endTime = (tempObj["endTime"] as! NSNumber).doubleValue
-                        //Faculty name
+                    
+                    if let classId = tempObj["classId"] as? NSNumber{
+                        
+                        let object = TeacherClass.teacherClassForId(context: tempContext, classId: classId.stringValue)
+                        if(object != nil){
+                            //Update here
+                            object?.classId = classId.stringValue
+                            
+                            if let actualEndTs = tempObj["actualEndTs"] as? NSNumber{
+                                object?.actualEndTs = actualEndTs.doubleValue
+                            }
+                            if let actualStartTs = tempObj["actualStartTs"] as? NSNumber{
+                                object?.actualStartTs = actualStartTs.doubleValue
+                            }
+                            
+                            if let centerName = tempObj["centerName"] as? String{
+                                object?.centerName = centerName
+                            }
+                            if let className = tempObj["className"] as? String{
+                                object?.classNam = className
+                            }
+                            if let classStatus = tempObj["classStatus"] as? NSNumber{
+                                object?.classStatus = classStatus.int16Value
+                            }
+                            
+                            if let endLoc = tempObj["endLocation"] as? String{
+                                object?.endLocation = endLoc
+                            }
+                            
+                            if let startLoc = tempObj["startLocation"] as? String{
+                                object?.startLocation = startLoc
+                            }
+                            //Faculty name
+                            if let facultyName = tempObj["facultyName"] as? String{
+                                object?.facultyName = facultyName
+                            }
+                            if let lastUpdatedTs = tempObj["endLocation"] as? NSNumber{
+                                object?.lastUpdatedTs = lastUpdatedTs.doubleValue
+                            }
+                            if let startTime = tempObj["startTime"] as? NSNumber{
+                                object?.startTime = startTime.doubleValue
+                            }
+                            if let endTime = tempObj["endTime"] as? NSNumber{
+                                object?.endTime = endTime.doubleValue
+                            }
+                        }
                     }
+
                 }
             }
+            
+            ADCoreDataHandler.sharedInstance.saveContext()
             
             //SAVE CONTEXT
             NSLog("LOG : Entitys parsing save done")

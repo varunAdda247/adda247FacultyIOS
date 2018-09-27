@@ -17,6 +17,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        self.setInitialScreen()
+        
         return true
     }
 
@@ -46,6 +48,34 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     class func getDelegate() -> AppDelegate {
         return UIApplication.shared.delegate as! AppDelegate
+    }
+    
+    func setInitialScreen()
+    {
+        //CHECK IF WE NEED TO LOGIN OR NOT
+        var isLoggedIn: Bool = false
+        let defaults = UserDefaults.standard
+        if let token = defaults.value(forKey: UserKeyConstants.token) as? String{
+            if(token.count > 0){
+                isLoggedIn = true
+            }
+        }
+        
+        if (isLoggedIn) {
+            let controller:ADHomeViewController = UIStoryboard.instantiateController(forModule: ADStoryModule.main)
+            let navigationController = UINavigationController(rootViewController: controller)
+            
+            let transition = CATransition()
+            transition.duration = 1
+            transition.timingFunction = CAMediaTimingFunction( name:kCAMediaTimingFunctionEaseInEaseOut)
+            transition.type = kCATransitionFade
+            CATransaction.begin()
+            self.window?.layer.add(transition, forKey: nil)
+
+            self.window?.rootViewController = navigationController
+            self.window?.makeKeyAndVisible()
+            CATransaction.commit()
+        }
     }
     
     // MARK: - Core Data stack
