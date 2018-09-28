@@ -273,9 +273,17 @@ extension ADHomeViewController : UITableViewDataSource, UITableViewDelegate
             if let cfObj = self.fetchedResultsController.object(at: indexPath) as? TeacherClass{
                 //Upate object
                 cell.statusLbl.text = "Completed"
+                if(cfObj.classStatus == 0){
+                    cell.statusLbl.text = "UPCOMING"
+                }
+                else if(cfObj.classStatus == 1){
+                    cell.statusLbl.text = "CLASS STARTED"
+                }
+                else if(cfObj.classStatus == 2){
+                    cell.statusLbl.text = "COMPLETED"
+                }
                 cell.flagView.backgroundColor = UIColor.green
                 cell.classNameLbl.text = cfObj.classNam!
-
                 
                 cell.centerLbl.text = cfObj.centerName!
             }
@@ -296,6 +304,27 @@ extension ADHomeViewController : UITableViewDataSource, UITableViewDelegate
         if let cfObj = self.fetchedResultsController.object(at: indexPath) as? TeacherClass{
             //Upate object
             print("\(cfObj.classStatus)")
+            let controller:ADClassInformationViewController
+            if(cfObj.classStatus == 0){
+                //Open upcoming details
+                controller = ADClassInformationViewController.getClassInfoVC(with: "", teacherClass: cfObj, infoType: ADClassInfoType.tableViewTypeTimeRemainingClassStatus) { (action) in
+                }
+            }
+            else if(cfObj.classStatus == 1){
+                //Open On going details
+                controller = ADClassInformationViewController.getClassInfoVC(with: "", teacherClass: cfObj, infoType: ADClassInfoType.tableViewTypeEndClassStatus) { (action) in
+                }
+            }
+            else {// 2 for completed
+               //Open completed details
+                controller = ADClassInformationViewController.getClassInfoVC(with: "", teacherClass: cfObj, infoType: ADClassInfoType.tableViewTypeCompletedStatus) { (action) in
+                    
+                }
+            }
+            controller.modalPresentationStyle = .overFullScreen
+            controller.modalTransitionStyle = .crossDissolve
+            navigationController?.present(controller, animated: true, completion: {
+            })
         }
     }
 }

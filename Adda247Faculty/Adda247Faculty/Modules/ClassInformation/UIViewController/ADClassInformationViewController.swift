@@ -35,58 +35,53 @@ class ADClassInformationViewController: UIViewController {
     
     let cornerRadius:CGFloat = 10.0
     var teacherClass: TeacherClass?
-    var subtileDataArray: [String]?
     var heading: String?
     var completion: ((String)-> Void)?
-    var selectedQuizStatus:String!
     var infoType: ADClassInfoType!
     
-    var cellTypeArray:[ADTableViewCellType]?
+    var cellTypeArray:[ADTableViewCellType] = []
     
-    static func getFilterQUizVC(with heading:String?,teacherClass:TeacherClass,selectedQuizStatus:String,infoType:ADClassInfoType,closure:((String)-> Void)?) -> ADClassInformationViewController {
+    static func getClassInfoVC(with heading:String, teacherClass:TeacherClass,infoType:ADClassInfoType,closure:((String)-> Void)?) -> ADClassInformationViewController {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let controller:ADClassInformationViewController = storyboard.instantiateViewController(withIdentifier: "ADClassInformationViewController") as! ADClassInformationViewController
         controller.teacherClass = teacherClass
-        controller.heading = heading
         controller.completion = closure
         controller.infoType = infoType
-        controller.selectedQuizStatus = selectedQuizStatus
         
         if(infoType == ADClassInfoType.tableViewTypeCompletedStatus){
-            controller.cellTypeArray?.append(ADTableViewCellType.classInfoHeadingAndSubHeadingCell)
-            controller.cellTypeArray?.append(ADTableViewCellType.classInfoHeadingSubHeadingAndImageCell)
-            controller.cellTypeArray?.append(ADTableViewCellType.classInfoHeadingSubHeadingAndImageCell)
-            controller.cellTypeArray?.append(ADTableViewCellType.classInfoHeadingSubHeadingAndImageCell)
-            controller.cellTypeArray?.append(ADTableViewCellType.classInfoWithTwoIconsCell)
+            controller.cellTypeArray.append(ADTableViewCellType.classInfoHeadingSubHeadingAndImageCell)
+            controller.cellTypeArray.append(ADTableViewCellType.classInfoHeadingSubHeadingAndImageCell)
+            controller.cellTypeArray.append(ADTableViewCellType.classInfoHeadingSubHeadingAndImageCell)
+//            controller.cellTypeArray.append(ADTableViewCellType.classInfoWithTwoIconsCell)
         }
         else if(infoType == ADClassInfoType.tableViewTypeStartClassStatus){
-            controller.cellTypeArray?.append(ADTableViewCellType.classInfoHeadingAndSubHeadingCell)
-            controller.cellTypeArray?.append(ADTableViewCellType.classInfoHeadingSubHeadingImageAndButtonCell)
-            controller.cellTypeArray?.append(ADTableViewCellType.classInfoHeadingSubHeadingAndImageCell)
-            controller.cellTypeArray?.append(ADTableViewCellType.classInfoHeadingSubHeadingAndImageCell)
-            controller.cellTypeArray?.append(ADTableViewCellType.classInfoWithTwoIconsCell)
+            controller.cellTypeArray.append(ADTableViewCellType.classInfoHeadingAndSubHeadingCell)
+            controller.cellTypeArray.append(ADTableViewCellType.classInfoHeadingSubHeadingImageAndButtonCell)
+            controller.cellTypeArray.append(ADTableViewCellType.classInfoHeadingSubHeadingAndImageCell)
+            controller.cellTypeArray.append(ADTableViewCellType.classInfoHeadingSubHeadingAndImageCell)
+            controller.cellTypeArray.append(ADTableViewCellType.classInfoWithTwoIconsCell)
         }
         else if(infoType == ADClassInfoType.tableViewTypeEndClassStatus){
-            controller.cellTypeArray?.append(ADTableViewCellType.classInfoHeadingAndSubHeadingCell)
-            controller.cellTypeArray?.append(ADTableViewCellType.classInfoHeadingSubHeadingImageAndButtonCell)
-            controller.cellTypeArray?.append(ADTableViewCellType.classInfoHeadingSubHeadingAndImageCell)
-            controller.cellTypeArray?.append(ADTableViewCellType.classInfoHeadingSubHeadingAndImageCell)
-            controller.cellTypeArray?.append(ADTableViewCellType.classInfoWithTwoIconsCell)
+            controller.cellTypeArray.append(ADTableViewCellType.classInfoHeadingAndSubHeadingCell)
+            controller.cellTypeArray.append(ADTableViewCellType.classInfoHeadingSubHeadingImageAndButtonCell)
+            controller.cellTypeArray.append(ADTableViewCellType.classInfoHeadingSubHeadingAndImageCell)
+            controller.cellTypeArray.append(ADTableViewCellType.classInfoHeadingSubHeadingAndImageCell)
+            controller.cellTypeArray.append(ADTableViewCellType.classInfoWithTwoIconsCell)
         }
         else if(infoType == ADClassInfoType.tableViewTypeAnotherClassIsActiveStatus){
-            controller.cellTypeArray?.append(ADTableViewCellType.classInfoHeadingAndSubHeadingCell)
-            controller.cellTypeArray?.append(ADTableViewCellType.classInfoHeadingSubHeadingImageAndButtonCell)
-            controller.cellTypeArray?.append(ADTableViewCellType.classInfoHeadingSubHeadingAndImageCell)
+            controller.cellTypeArray.append(ADTableViewCellType.classInfoHeadingAndSubHeadingCell)
+            controller.cellTypeArray.append(ADTableViewCellType.classInfoHeadingSubHeadingImageAndButtonCell)
+            controller.cellTypeArray.append(ADTableViewCellType.classInfoHeadingSubHeadingAndImageCell)
         }
         else if(infoType == ADClassInfoType.tableViewTypeMissedClassStatus){
-            controller.cellTypeArray?.append(ADTableViewCellType.classInfoHeadingAndSubHeadingCell)
-            controller.cellTypeArray?.append(ADTableViewCellType.classInfoHeadingSubHeadingImageAndButtonCell)
-            controller.cellTypeArray?.append(ADTableViewCellType.classInfoHeadingSubHeadingAndImageCell)
+            controller.cellTypeArray.append(ADTableViewCellType.classInfoHeadingAndSubHeadingCell)
+            controller.cellTypeArray.append(ADTableViewCellType.classInfoHeadingSubHeadingImageAndButtonCell)
+            controller.cellTypeArray.append(ADTableViewCellType.classInfoHeadingSubHeadingAndImageCell)
         }
         else if(infoType == ADClassInfoType.tableViewTypeTimeRemainingClassStatus){
-            controller.cellTypeArray?.append(ADTableViewCellType.classInfoHeadingAndSubHeadingCell)
-            controller.cellTypeArray?.append(ADTableViewCellType.classInfoHeadingSubHeadingImageAndButtonCell)
-            controller.cellTypeArray?.append(ADTableViewCellType.classInfoHeadingSubHeadingAndImageCell)
+            controller.cellTypeArray.append(ADTableViewCellType.classInfoHeadingAndSubHeadingCell)
+            controller.cellTypeArray.append(ADTableViewCellType.classInfoHeadingSubHeadingImageAndButtonCell)
+            controller.cellTypeArray.append(ADTableViewCellType.classInfoHeadingSubHeadingAndImageCell)
         }
         
         return controller
@@ -99,13 +94,6 @@ class ADClassInformationViewController: UIViewController {
         headingLabel.text = heading
         crossButton.setImage(UIImage(named: "cross")?.withRenderingMode(.alwaysTemplate), for: .normal)
         crossButton.tintColor = UIColor(red: 3.0/255, green: 3.0/255, blue: 3.0/255, alpha: 1.0)
-        
-//        if(self.infoType == ADClassInfoType.tableViewTypeEndClassStatus){
-//            tableViewHeightConstraint.constant = CGFloat((dataArray != nil) ?dataArray!.count*65:0)
-//        }
-//        else{
-//            tableViewHeightConstraint.constant = CGFloat((dataArray != nil) ?dataArray!.count*48:0)
-//        }
         
         if tableViewHeightConstraint.constant>(UIScreen.height-90) {
             tableViewHeightConstraint.constant = UIScreen.height-90
@@ -162,7 +150,7 @@ class ADClassInformationViewController: UIViewController {
     
     func sendClosure() {
         if (completion != nil) {
-            completion!(selectedQuizStatus)
+            completion!("")
         }
     }
     
@@ -173,12 +161,12 @@ class ADClassInformationViewController: UIViewController {
 extension ADClassInformationViewController: UITableViewDelegate,UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return (self.cellTypeArray?.count)!
+        return (self.cellTypeArray.count)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
-        let cellIdentifier = self.cellTypeArray![indexPath.row].rawValue
+        let cellIdentifier = self.cellTypeArray[indexPath.row].rawValue
         let cell = self.tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! ADClassStatusTableViewCellProtocol
         cell.populate("title", subTitle: "subtitle")
         cell.populate("title", subTitle: "subtitle", iconImage: "")
