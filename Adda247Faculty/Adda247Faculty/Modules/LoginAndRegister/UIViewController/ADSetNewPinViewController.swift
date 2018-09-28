@@ -90,9 +90,9 @@ class ADSetNewPinViewController: UIViewController {
                         ADUtility.updateFacultyName(name: name)
                     }
                     
-                    if let token = data["token"] as? String{
+                    if let facultyId = data["facultyId"] as? NSNumber{
                         //Update token
-                        ADUtility.updateToken(token: token)
+                        ADUtility.updateToken(token: facultyId.stringValue)
                     }
                     
                     //Open home view conntroller

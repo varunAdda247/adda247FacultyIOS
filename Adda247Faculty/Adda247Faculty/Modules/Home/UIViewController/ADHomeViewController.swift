@@ -12,6 +12,13 @@ import CoreData
 
 class ADHomeViewController: UIViewController,UIActionSheetDelegate, NSFetchedResultsControllerDelegate {
     
+    lazy var refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(ADHomeViewController.fetchClassDetails(_:)), for: UIControlEvents.valueChanged)
+        
+        return refreshControl
+    }()
+    
     //MARK: Outlets
     @IBOutlet weak var profileImgView: UIImageView!
     @IBOutlet weak var profileNameLbl: UILabel!
@@ -57,14 +64,13 @@ class ADHomeViewController: UIViewController,UIActionSheetDelegate, NSFetchedRes
         
         if(self.fetchedResultsController.fetchedObjects?.count == 0){
             self.classScheduleTableView.isHidden = true
-//            self.classServiceCall()
         }
         
         self.classServiceCall()
 
         self.classScheduleTableView.estimatedRowHeight = 115.0
         self.classScheduleTableView.rowHeight = UITableViewAutomaticDimension
-
+        self.classScheduleTableView.addSubview(self.refreshControl)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -130,37 +136,53 @@ class ADHomeViewController: UIViewController,UIActionSheetDelegate, NSFetchedRes
     }
     
     
-    func classServiceCall() {
+    @objc func fetchClassDetails(_ refreshControl: UIRefreshControl) {
         
-        let tempPara:NSMutableDictionary = NSMutableDictionary()
-        tempPara.setObject([], forKey: "classDetailsList" as NSCopying)
-        
-        let (startTimeStamp,endTimeStamp) = ADUtility.timeStampForTodayStartAndEndDate()
-        let timeInterval:NSMutableDictionary = NSMutableDictionary()
-        timeInterval.setObject(startTimeStamp, forKey: "startTime" as NSCopying)
-        timeInterval.setObject(endTimeStamp, forKey: "endTime" as NSCopying)
-        tempPara.setObject(timeInterval, forKey: "timeInterval" as NSCopying)
-        tempPara.setObject(false, forKey: "isTopicsRequired" as NSCopying)
-
-        let facultyId = ADUtility.getFacultyId()!.int16Value
-        tempPara.setObject(facultyId, forKey: "facultyId" as NSCopying)
-        
-        TeacherClass.fetchClassData(parameters: tempPara) { (successfullySaved, error) in
-            if successfullySaved{
-                if ((self.fetchedResultsController.fetchedObjects?.count)! > 0){
-                    self.classScheduleTableView.isHidden = false
-                    self.classScheduleTableView.reloadData()
-                }
-                else{
-                    //No class data
-                    print("No class data found")
-                }
-                
-            }
+        if Reachability.connectionAvailable(){
+           self.classServiceCall()
+        }
+        else{
+            self.refreshControl.endRefreshing()
+            self.showAlertMessage(NSLocalizedString("no_internet_connection", comment: ""), alertImage: nil, alertType: .success, context: .statusBar, duration: .seconds(seconds: 2))
         }
     }
     
-    
+    func classServiceCall() {
+        
+        if Reachability.connectionAvailable(){
+            let tempPara:NSMutableDictionary = NSMutableDictionary()
+            tempPara.setObject([], forKey: "classDetailsList" as NSCopying)
+            
+            let (startTimeStamp,endTimeStamp) = ADUtility.timeStampForTodayStartAndEndDate()
+            let timeInterval:NSMutableDictionary = NSMutableDictionary()
+            timeInterval.setObject(startTimeStamp, forKey: "startTime" as NSCopying)
+            timeInterval.setObject(endTimeStamp, forKey: "endTime" as NSCopying)
+            tempPara.setObject(timeInterval, forKey: "timeInterval" as NSCopying)
+            tempPara.setObject(false, forKey: "isTopicsRequired" as NSCopying)
+            
+            let facultyId = ADUtility.getFacultyId()!.int16Value
+            tempPara.setObject(facultyId, forKey: "facultyId" as NSCopying)
+            
+            TeacherClass.fetchClassData(parameters: tempPara) { (successfullySaved, error) in
+                if successfullySaved{
+                    if ((self.fetchedResultsController.fetchedObjects?.count)! > 0){
+                        self.classScheduleTableView.isHidden = false
+                        self.refreshControl.endRefreshing()
+                        self.classScheduleTableView.reloadData()
+                    }
+                    else{
+                        //No class data
+                        print("No class data found")
+                    }
+                    
+                }
+            }
+        }
+        else{
+            self.showAlertMessage(NSLocalizedString("no_internet_connection", comment: ""), alertImage: nil, alertType: .success, context: .statusBar, duration: .seconds(seconds: 2))
+        }
+        
+    }
     
     
     // MARK: Fetched Results Controller Delegate Methods
@@ -271,6 +293,9 @@ extension ADHomeViewController : UITableViewDataSource, UITableViewDelegate
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         //Action according to status here
-        
+        if let cfObj = self.fetchedResultsController.object(at: indexPath) as? TeacherClass{
+            //Upate object
+            print("\(cfObj.classStatus)")
+        }
     }
 }
