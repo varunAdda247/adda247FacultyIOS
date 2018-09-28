@@ -58,6 +58,18 @@ class ADCoreDataHandler: NSObject {
         return context
     }()
     
+    func deletePersistentStore() {
+        let coordinator = NSPersistentStoreCoordinator(managedObjectModel: self.managedObjectModel)
+        let storeUrl = self.applicationDocumentsDirectory.appendingPathComponent("Adda247.sqlite")
+        
+        do{
+            try coordinator.destroyPersistentStore(at: storeUrl, ofType:NSSQLiteStoreType , options: [NSMigratePersistentStoresAutomaticallyOption: true,NSInferMappingModelAutomaticallyOption: true])
+            //try coordinator.addPersistentStore(ofType: NSSQLiteStoreType, configurationName: nil, at: storeUrl, options:  [NSMigratePersistentStoresAutomaticallyOption: true,NSInferMappingModelAutomaticallyOption: true])
+        }
+        catch {
+            print("Delete persistent store")
+        }
+    }
     
     //MARK: - Saving main context if it has changes
     func saveContext() {

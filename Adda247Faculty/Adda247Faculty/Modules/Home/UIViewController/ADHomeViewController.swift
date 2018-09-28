@@ -57,9 +57,11 @@ class ADHomeViewController: UIViewController,UIActionSheetDelegate, NSFetchedRes
         
         if(self.fetchedResultsController.fetchedObjects?.count == 0){
             self.classScheduleTableView.isHidden = true
-            self.classServiceCall()
+//            self.classServiceCall()
         }
         
+        self.classServiceCall()
+
         self.classScheduleTableView.estimatedRowHeight = 115.0
         self.classScheduleTableView.rowHeight = UITableViewAutomaticDimension
 
@@ -252,12 +254,6 @@ extension ADHomeViewController : UITableViewDataSource, UITableViewDelegate
                 cell.flagView.backgroundColor = UIColor.green
                 cell.classNameLbl.text = cfObj.classNam!
 
-//                if(indexPath.row == 0){
-//                    cell.classNameLbl.text = "To te djd fhjkdf  hsdhksd hjkdh fhhdfksf kjhfsd hjkhdsf jkh"
-//                }
-//                else{
-//                    cell.classNameLbl.text = cfObj.classNam!
-//                }
                 
                 cell.centerLbl.text = cfObj.centerName!
             }

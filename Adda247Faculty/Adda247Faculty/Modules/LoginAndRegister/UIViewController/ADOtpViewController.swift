@@ -79,6 +79,7 @@ class ADOtpViewController: UIViewController{
     func openSetNewPinController() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let controller:ADSetNewPinViewController = storyboard.instantiateViewController(withIdentifier: "ADSetNewPinViewController") as! ADSetNewPinViewController
+        controller.mobileNumber = self.mobileNumber
         self.present(controller, animated: true) {
            
         }

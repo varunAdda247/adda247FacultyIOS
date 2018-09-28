@@ -25,7 +25,7 @@ class ADEnterMobileNumberViewController: UIViewController,UITextFieldDelegate {
         // Do any additional setup after loading the view, typically from a nib.
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow(notification:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide(notification:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
-        
+        self.resetDB()
         self.configureInitialValues()
     }
     
@@ -48,6 +48,12 @@ class ADEnterMobileNumberViewController: UIViewController,UITextFieldDelegate {
     }
     
     //MARK: Internal methods
+    func resetDB() {
+        // Create Fetch Request
+        ADCoreDataHandler.sharedInstance.deletePersistentStore()
+        ADUtility.updateToken(token: "")
+    }
+    
     func configureInitialValues() {
         self.activityIndicator.isHidden = true
         self.view.backgroundColor = UIColor.backgroundThemeColor()

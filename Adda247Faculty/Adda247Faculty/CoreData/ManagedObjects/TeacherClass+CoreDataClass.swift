@@ -33,7 +33,15 @@ public class TeacherClass: NSManagedObject {
                         })
                     })
                 }
+                else {
+                    if let message = responseObject["message"] as? String{
+                        if(message == "Wrong token."){
+                            
+                        }
+                    }
+                }
             }
+            
         })
         { (error) in
             DispatchQueue.main.async(execute: {

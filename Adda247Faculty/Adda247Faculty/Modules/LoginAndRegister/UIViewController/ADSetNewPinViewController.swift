@@ -73,9 +73,14 @@ class ADSetNewPinViewController: UIViewController {
     
     func setPinServiceCall() {
         
-        let suffixUrl = "\(APIURLSuffix.setPin)?mobile=\(mobileNumber)&pin=\(self.pinTextField.text!)"
+        let suffixUrl = "\(APIURLSuffix.setPin)"
+        //?mobile=\(mobileNumber!)&pin=\(self.pinTextField.text!)
+        let tempPara:NSMutableDictionary = NSMutableDictionary()
         
-        _ = ADWebClient.sharedClient.POST(appbBaseUrl: APIURL.baseUrl, suffixUrl: suffixUrl, parameters: nil, success: { (response) in
+        tempPara.setObject(mobileNumber!, forKey: "mobile" as NSCopying)
+        tempPara.setObject(self.pinTextField.text!, forKey: "pin" as NSCopying)
+        
+        _ = ADWebClient.sharedClient.POST(appbBaseUrl: APIURL.baseUrl, suffixUrl: suffixUrl, parameters: tempPara, success: { (response) in
             print(response)
             if let response = response as? Dictionary<String,Any>{
                 if let data = response["data"] as? Dictionary<String,Any>{
@@ -92,7 +97,7 @@ class ADSetNewPinViewController: UIViewController {
                     
                     //Open home view conntroller
                     DispatchQueue.main.async(execute: {
-                        
+                        self.openHomeViewController()
                     })
                 }
                 
@@ -140,6 +145,24 @@ class ADSetNewPinViewController: UIViewController {
             return false
         }
         return true
+    }
+    
+    func openHomeViewController() {
+        let controller:ADHomeViewController = UIStoryboard.instantiateController(forModule: ADStoryModule.main)
+        //        self.navigationController?.pushViewController(controller, animated: true)
+        
+        let navigationController = UINavigationController(rootViewController: controller)
+        
+        let appDelegate = AppDelegate.getDelegate()
+        let transition = CATransition()
+        transition.duration = 1
+        transition.timingFunction = CAMediaTimingFunction( name:kCAMediaTimingFunctionEaseInEaseOut)
+        transition.type = kCATransitionFade
+        CATransaction.begin()
+        appDelegate.window?.layer.add(transition, forKey: nil)
+        appDelegate.window?.rootViewController = navigationController
+        appDelegate.window?.makeKeyAndVisible()
+        CATransaction.commit()
     }
     
     func dismissKeyBoard() {
