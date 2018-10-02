@@ -307,12 +307,12 @@ extension ADHomeViewController : UITableViewDataSource, UITableViewDelegate
             let controller:ADClassInformationViewController
             if(cfObj.classStatus == 0){
                 //Open upcoming details
-                controller = ADClassInformationViewController.getClassInfoVC(with: "", teacherClass: cfObj, infoType: ADClassInfoType.tableViewTypeTimeRemainingClassStatus) { (action) in
+                controller = ADClassInformationViewController.getClassInfoVC(with: "", teacherClass: cfObj, infoType: ADClassInfoType.tableViewTypeTimeRemainingClassToStartStatus) { (action) in
                 }
             }
             else if(cfObj.classStatus == 1){
                 //Open On going details
-                controller = ADClassInformationViewController.getClassInfoVC(with: "", teacherClass: cfObj, infoType: ADClassInfoType.tableViewTypeEndClassStatus) { (action) in
+                controller = ADClassInformationViewController.getClassInfoVC(with: "", teacherClass: cfObj, infoType: ADClassInfoType.tableViewTypeToEndClassStatus) { (action) in
                 }
             }
             else {// 2 for completed
@@ -321,10 +321,8 @@ extension ADHomeViewController : UITableViewDataSource, UITableViewDelegate
                     
                 }
             }
-            controller.modalPresentationStyle = .overFullScreen
-            controller.modalTransitionStyle = .crossDissolve
-            navigationController?.present(controller, animated: true, completion: {
-            })
+            
+            self.openChildViewController(content: controller, animate: true)
         }
     }
 }

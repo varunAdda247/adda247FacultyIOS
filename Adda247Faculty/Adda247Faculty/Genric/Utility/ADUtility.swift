@@ -59,6 +59,7 @@ class ADUtility: NSObject {
     
     class func timeStampForTodayStartAndEndDate() -> (start:Double,end:Double){
         
+        //For start day
         var calendar = NSCalendar.current
         calendar.timeZone = NSTimeZone.local
         let startDate = calendar.startOfDay(for: Date())
@@ -71,9 +72,19 @@ class ADUtility: NSObject {
         let endDate = calendar.date(byAdding: components, to: startDate)
         let endDateTimestamp = self.timeStampFor(date: endDate!)
 
-//        let temp1:Double = 1506319541000
-//        let temp2:Double = 1569391541000
-        //return (temp1,temp2)
         return (startDateTimestamp,endDateTimestamp)
+    }
+    
+    class func timeFromTimeStamp(timeStamp:Double) -> String{
+        //As we get time stamp from server in miliseconds, so divided by 1000
+        let unixtimeInterval = timeStamp/1000 //(in seconds)
+        let date = Date(timeIntervalSince1970: unixtimeInterval)
+        let dateFormatter = DateFormatter()
+        dateFormatter.timeZone = TimeZone.current
+        dateFormatter.locale = NSLocale.current
+        dateFormatter.dateFormat = "h:mm a"
+        let strDate = dateFormatter.string(from: date)
+
+        return strDate
     }
 }

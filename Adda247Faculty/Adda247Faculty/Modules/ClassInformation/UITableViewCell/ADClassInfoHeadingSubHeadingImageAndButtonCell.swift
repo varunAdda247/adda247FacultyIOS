@@ -32,13 +32,7 @@ class ADClassInfoHeadingSubHeadingImageAndButtonCell: UITableViewCell,ADClassSta
         subHeadingLbl.text = nil
     }
     
-    func populate(_ title: String, subTitle: String) {
+    func populate(_ title:String,subTitle:String,iconImage:String) {
         
-    }
-    
-    func populate(_ title:String,subTitle:String,iconImage:String)
-    {
-        headingLbl.text = title
-        subHeadingLbl.text = subTitle
     }
 }

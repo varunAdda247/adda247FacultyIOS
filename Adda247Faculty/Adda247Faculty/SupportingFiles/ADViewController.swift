@@ -213,21 +213,20 @@ extension UIViewController {
         UIView.animate(withDuration: 0.4, animations: {
             frame.origin.y = 0
             content.view.frame = frame
-            self.navigationController?.isNavigationBarHidden = true
+//            self.navigationController?.isNavigationBarHidden = true
             
         }) { (isCompleted) in
-            
+           // self.navigationController?.isNavigationBarHidden = true
         }
         } else {
             frame.origin.y = 0
             content.view.frame = frame
-            self.navigationController?.isNavigationBarHidden = true
-
+            //self.navigationController?.isNavigationBarHidden = true
         }
     }
     
     func removeChildViewController(content: UIViewController, animate: Bool) {
-        self.navigationController?.isNavigationBarHidden = false
+        //self.navigationController?.isNavigationBarHidden = false
         var frame = content.view.frame
         if animate {
         UIView.animate(withDuration: 0.4, animations: {

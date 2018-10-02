@@ -9,7 +9,5 @@
 import Foundation
 
 protocol ADClassStatusTableViewCellProtocol {
-    func populate(_ title:String,subTitle:String)
     func populate(_ title:String,subTitle:String,iconImage:String)
-
 }

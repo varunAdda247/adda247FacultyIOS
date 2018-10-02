@@ -30,14 +30,7 @@ class ADClassInfoHeadingAndSubHeadingCell: UITableViewCell,ADClassStatusTableVie
         subHeadingLbl.text = nil
     }
     
-    func populate(_ title: String, subTitle: String) {
-        headingLbl.text = title
-        subHeadingLbl.text = subTitle
+    func populate(_ title:String,subTitle:String,iconImage:String) {
+        
     }
-    
-    func populate(_ title:String,subTitle:String,iconImage:String)
-    {
-       
-    }
-    
 }

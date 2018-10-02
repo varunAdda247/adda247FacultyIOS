@@ -11,10 +11,10 @@ import UIKit
 
 class ADClassInfoWithTwoIconsCell: UITableViewCell,ADClassStatusTableViewCellProtocol {
     
-    @IBOutlet weak var headingLbl: UILabel!
-    @IBOutlet weak var subHeadingLbl: UILabel!
-    @IBOutlet weak var iconImage: UIImageView!
-    @IBOutlet weak var actionBtn: UIButton!
+    @IBOutlet weak var startTimeLbl: UILabel!
+    @IBOutlet weak var endTimeLbl: UILabel!
+    @IBOutlet weak var iconImage1: UIImageView!
+    @IBOutlet weak var iconImage2: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -23,23 +23,20 @@ class ADClassInfoWithTwoIconsCell: UITableViewCell,ADClassStatusTableViewCellPro
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-        
         // Configure the view for the selected state
     }
     
     override func prepareForReuse() {
-        headingLbl.text = nil
-        subHeadingLbl.text = nil
+        startTimeLbl.text = nil
+        endTimeLbl.text = nil
     }
     
-    func populate(_ title: String, subTitle: String) {
+    func populate(_ title:String,subTitle:String,iconImage:String) {
         
     }
     
-    func populate(_ title:String,subTitle:String,iconImage:String)
-    {
-        headingLbl.text = title
-        subHeadingLbl.text = subTitle
+    func populate(startTime:String, endTime:String)  {
+        startTimeLbl.text = startTime
+        endTimeLbl.text = endTime
     }
-    
 }
