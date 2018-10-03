@@ -65,13 +65,12 @@ class ADClassInformationViewController: UIViewController {
             controller.cellTypeArray.append(ADTableViewCellType.classInfoHeadingSubHeadingAndImageCell)
         }
         else if(infoType == ADClassInfoType.tableViewTypeToEndClassStatus){
-            controller.cellTypeArray.append(ADTableViewCellType.classInfoHeadingAndSubHeadingCell)
-            controller.cellTypeArray.append(ADTableViewCellType.classInfoHeadingSubHeadingImageAndButtonCell)
+            controller.cellTypeArray.append(ADTableViewCellType.classInfoHeadingSubHeadingAndImageCell)
             controller.cellTypeArray.append(ADTableViewCellType.classInfoHeadingSubHeadingAndImageCell)
             controller.cellTypeArray.append(ADTableViewCellType.classInfoHeadingSubHeadingAndImageCell)
         }
         else if(infoType == ADClassInfoType.tableViewTypeAnotherClassIsActiveStatus){
-            controller.cellTypeArray.append(ADTableViewCellType.classInfoHeadingSubHeadingImageAndButtonCell)
+        controller.cellTypeArray.append(ADTableViewCellType.classInfoHeadingSubHeadingImageAndButtonCell)
             controller.cellTypeArray.append(ADTableViewCellType.classInfoHeadingSubHeadingAndImageCell)
         }
         else if(infoType == ADClassInfoType.tableViewTypeMissedClassStatus){
@@ -197,9 +196,7 @@ extension ADClassInformationViewController: UITableViewDelegate,UITableViewDataS
         }
         else if(infoType == ADClassInfoType.tableViewTypeMissedClassStatus || infoType == ADClassInfoType.tableViewTypeTimeRemainingClassToStartStatus){
             self.populateCellForMissedStatus(cell: cell, indexPath: indexPath)
-            
         }
-        
         return cell as! UITableViewCell
     }
     

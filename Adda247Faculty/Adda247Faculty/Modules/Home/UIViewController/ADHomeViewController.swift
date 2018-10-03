@@ -245,6 +245,20 @@ class ADHomeViewController: UIViewController,UIActionSheetDelegate, NSFetchedRes
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         self.classScheduleTableView.endUpdates()
     }
+    
+    func getClassStatus(classObj:TeacherClass) -> String {
+        
+        if(ADUtility.timeStampFor(date: Date()) > classObj.endTime){
+            //Missed class
+            return "MISSED CLASS"
+        }
+        else{
+            //Start class
+            print("Start class")
+            let startTime = ADUtility.timeFromTimeStamp(timeStamp: (classObj.startTime))
+            return "Today \(startTime)"
+         }
+     }
 }
 
 // MARK: - UITableViewDataSource, UITableViewDelegate Methods
@@ -274,7 +288,7 @@ extension ADHomeViewController : UITableViewDataSource, UITableViewDelegate
                 //Upate object
                 cell.statusLbl.text = "Completed"
                 if(cfObj.classStatus == 0){
-                    cell.statusLbl.text = "UPCOMING"
+                    cell.statusLbl.text = self.getClassStatus(classObj: cfObj)
                 }
                 else if(cfObj.classStatus == 1){
                     cell.statusLbl.text = "CLASS STARTED"
