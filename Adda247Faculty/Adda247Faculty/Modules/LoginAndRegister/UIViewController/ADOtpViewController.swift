@@ -16,7 +16,8 @@ class ADOtpViewController: UIViewController{
     @IBOutlet weak var numberOfCharectorsLbl: UILabel!
     @IBOutlet weak var forgotPasswordLbl: UILabel!
     @IBOutlet weak var resendBtn: UIButton!
-    
+    @IBOutlet weak var resendBtnBottomConstraint: NSLayoutConstraint!
+
     
     let OTP_TEXT_LIMIT = 4
     var mobileNumber:String!
@@ -27,6 +28,8 @@ class ADOtpViewController: UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow(notification:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide(notification:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
         self.configureInitialValues()
     }
     
@@ -54,7 +57,7 @@ class ADOtpViewController: UIViewController{
            
             self.showActivityIndicatorInteractionEnabledView(true)
             
-            let suffixUrl = "\(APIURLSuffix.resendOtp)?mobile=\(self.mobileNumber)"
+            let suffixUrl = "\(APIURLSuffix.resendOtp)?mobile=\(self.mobileNumber!)"
             
             //Service Call to Resend OTP to email
             _ = ADWebClient.sharedClient.POST(appbBaseUrl: APIURL.baseUrl, suffixUrl: suffixUrl, parameters: nil, success: { (response) in
@@ -148,6 +151,33 @@ class ADOtpViewController: UIViewController{
             self.showAlertMessage(NSLocalizedString("no_internet_connection", comment: ""), alertImage: nil, alertType: .success, context: .statusBar, duration: .seconds(seconds: 2))
         }
         
+    }
+    
+    //MARK : Keyboard Notification
+    @objc func keyboardWillShow(notification: NSNotification) {
+        
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+            //            if(iPhone4or4S || iPhone5or5S){
+            //                self.loginBtn.isHidden = true
+            //            }
+            let height = keyboardSize.height
+            UIView.animate(withDuration: 0.1, animations: { () -> Void in
+                self.resendBtnBottomConstraint.constant = height
+                self.view.layoutIfNeeded()
+            })
+        }
+    }
+    
+    @objc func keyboardWillHide(notification: NSNotification) {
+        
+        UIView.animate(withDuration: 0.1, animations: { () -> Void in
+            
+            self.resendBtnBottomConstraint.constant = 0
+            self.view.layoutIfNeeded()
+            //            if(iPhone4or4S || iPhone5or5S){
+            //                self.loginBtn.isHidden = false
+            //            }
+        })
     }
     
     @objc func textFieldDidChange(_ textField: UITextField) {

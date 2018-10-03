@@ -89,12 +89,25 @@ class ADLoginViewConntroller: UIViewController {
     }
     
     func forgotPinAction() {
+        self.openOtpController()
+        
+//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//        let controller:ADSetNewPinViewController = storyboard.instantiateViewController(withIdentifier: "ADSetNewPinViewController") as! ADSetNewPinViewController
+//        controller.mobileNumber = self.mobileNumber
+//        self.present(controller, animated: true) {
+//
+//        }
+    }
+    
+    
+    func openOtpController() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let controller:ADSetNewPinViewController = storyboard.instantiateViewController(withIdentifier: "ADSetNewPinViewController") as! ADSetNewPinViewController
+        let controller:ADOtpViewController = storyboard.instantiateViewController(withIdentifier: "ADOtpViewController") as! ADOtpViewController
         controller.mobileNumber = self.mobileNumber
-        self.present(controller, animated: true) {
-            
-        }
+        
+        self.present(controller, animated: true, completion: {
+            self.showAlertMessage("OTP sent successfully", alertImage: nil, alertType: .success, context: .statusBar, duration: .seconds(seconds: 2))
+        })
     }
     
     func loginServiceCall() {
@@ -158,6 +171,7 @@ class ADLoginViewConntroller: UIViewController {
     }
     
     func openHomeViewController() {
+        self.dismissKeyBoard()
         
         let controller:ADHomeViewController = UIStoryboard.instantiateController(forModule: ADStoryModule.main)
 //        self.navigationController?.pushViewController(controller, animated: true)

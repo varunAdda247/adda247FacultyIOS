@@ -9,6 +9,7 @@
 import UIKit
 
 enum ADClassInfoType: String{
+    
     case tableViewTypeCompletedStatus = "CompletedClass"
     case tableViewTypeToStartClassStatus = "StartClass"
     case tableViewTypeToEndClassStatus = "EndClass"
@@ -34,6 +35,10 @@ class ADClassInformationViewController: UIViewController {
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var crossButton: UIButton!
     
+    @IBOutlet weak var bottomView: UIView!
+    @IBOutlet weak var bottomLbl: UILabel!
+
+
     let cornerRadius:CGFloat = 10.0
     var teacherClass: TeacherClass?
     var heading: String?
@@ -53,35 +58,28 @@ class ADClassInformationViewController: UIViewController {
             controller.cellTypeArray.append(ADTableViewCellType.classInfoHeadingSubHeadingAndImageCell)
             controller.cellTypeArray.append(ADTableViewCellType.classInfoHeadingSubHeadingAndImageCell)
             controller.cellTypeArray.append(ADTableViewCellType.classInfoWithTwoIconsCell)
-//            controller.cellTypeArray.append(ADTableViewCellType.classInfoWithTwoIconsCell)
         }
         else if(infoType == ADClassInfoType.tableViewTypeToStartClassStatus){
-            controller.cellTypeArray.append(ADTableViewCellType.classInfoHeadingAndSubHeadingCell)
-            controller.cellTypeArray.append(ADTableViewCellType.classInfoHeadingSubHeadingImageAndButtonCell)
+          controller.cellTypeArray.append(ADTableViewCellType.classInfoHeadingSubHeadingImageAndButtonCell)
             controller.cellTypeArray.append(ADTableViewCellType.classInfoHeadingSubHeadingAndImageCell)
             controller.cellTypeArray.append(ADTableViewCellType.classInfoHeadingSubHeadingAndImageCell)
-           // controller.cellTypeArray.append(ADTableViewCellType.classInfoWithTwoIconsCell)
         }
         else if(infoType == ADClassInfoType.tableViewTypeToEndClassStatus){
             controller.cellTypeArray.append(ADTableViewCellType.classInfoHeadingAndSubHeadingCell)
             controller.cellTypeArray.append(ADTableViewCellType.classInfoHeadingSubHeadingImageAndButtonCell)
             controller.cellTypeArray.append(ADTableViewCellType.classInfoHeadingSubHeadingAndImageCell)
             controller.cellTypeArray.append(ADTableViewCellType.classInfoHeadingSubHeadingAndImageCell)
-           // controller.cellTypeArray.append(ADTableViewCellType.classInfoWithTwoIconsCell)
         }
         else if(infoType == ADClassInfoType.tableViewTypeAnotherClassIsActiveStatus){
-           //controller.cellTypeArray.append(ADTableViewCellType.classInfoHeadingAndSubHeadingCell)
             controller.cellTypeArray.append(ADTableViewCellType.classInfoHeadingSubHeadingImageAndButtonCell)
             controller.cellTypeArray.append(ADTableViewCellType.classInfoHeadingSubHeadingAndImageCell)
         }
         else if(infoType == ADClassInfoType.tableViewTypeMissedClassStatus){
-            //controller.cellTypeArray.append(ADTableViewCellType.classInfoHeadingAndSubHeadingCell)
-            controller.cellTypeArray.append(ADTableViewCellType.classInfoHeadingSubHeadingImageAndButtonCell)
+            controller.cellTypeArray.append(ADTableViewCellType.classInfoHeadingSubHeadingAndImageCell)
             controller.cellTypeArray.append(ADTableViewCellType.classInfoHeadingSubHeadingAndImageCell)
         }
         else if(infoType == ADClassInfoType.tableViewTypeTimeRemainingClassToStartStatus){
-//            controller.cellTypeArray.append(ADTableViewCellType.classInfoHeadingAndSubHeadingCell)
-            controller.cellTypeArray.append(ADTableViewCellType.classInfoHeadingSubHeadingImageAndButtonCell)
+            controller.cellTypeArray.append(ADTableViewCellType.classInfoHeadingSubHeadingAndImageCell)
             controller.cellTypeArray.append(ADTableViewCellType.classInfoHeadingSubHeadingAndImageCell)
         }
         
@@ -113,6 +111,50 @@ class ADClassInformationViewController: UIViewController {
         self.view.layoutIfNeeded()
         
         self.headingLabel.text = self.teacherClass?.classNam
+        
+        self.setBottomLblText()
+    }
+    
+    
+    func setBottomLblText() {
+        if(infoType == ADClassInfoType.tableViewTypeCompletedStatus){
+            self.bottomLbl.textColor = UIColor.init(hexString: "#00c853")
+            self.bottomLbl.text = "CLASS COMPLETED"
+        }
+        else if(infoType == ADClassInfoType.tableViewTypeMissedClassStatus){
+            self.bottomLbl.textColor = UIColor.init(hexString: "#f44336")
+            self.bottomLbl.text = "YOU MISSED THIS CLASS"
+        }
+        else if(infoType == ADClassInfoType.tableViewTypeTimeRemainingClassToStartStatus){
+            self.bottomLbl.textColor = UIColor.init(hexString: "#00c853")
+            let startTime = ADUtility.timeFromTimeStamp(timeStamp: (self.teacherClass?.startTime)!)
+            self.bottomLbl.text = "YOU HAVE TIME REMAINING FOR THIS CLASS \n CHECK AFTER \(startTime)"
+        }
+        else if(infoType == ADClassInfoType.tableViewTypeToStartClassStatus){
+            self.bottomLbl.textColor = UIColor.white
+            self.bottomView.backgroundColor = UIColor.init(hexString: "#00c853")
+            self.bottomLbl.text = "START CLASS"
+            
+            let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(startClassTapGesture))
+            self.bottomView.addGestureRecognizer(tapGestureRecognizer)
+        }
+        else if(infoType == ADClassInfoType.tableViewTypeToEndClassStatus){
+            self.bottomLbl.textColor = UIColor.white
+            self.bottomView.backgroundColor = UIColor.pinkThemeColor()
+            self.bottomLbl.text = "END CLASS"
+            
+            let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(endClassTapGesture))
+            self.bottomView.addGestureRecognizer(tapGestureRecognizer)
+        }
+    }
+    
+    @objc fileprivate func startClassTapGesture(sender: UITapGestureRecognizer) {
+        self.teacherClass?.classStatus = 1
+        self.crossButtonAction(self)
+    }
+    
+    @objc fileprivate func endClassTapGesture(sender: UITapGestureRecognizer) {
+        
     }
     
     @objc func buttonAction(_ sender: UIButton!) {
@@ -153,6 +195,10 @@ extension ADClassInformationViewController: UITableViewDelegate,UITableViewDataS
         if(infoType == ADClassInfoType.tableViewTypeCompletedStatus){
            self.populateCellForCompltedStatus(cell: cell, indexPath: indexPath)
         }
+        else if(infoType == ADClassInfoType.tableViewTypeMissedClassStatus || infoType == ADClassInfoType.tableViewTypeTimeRemainingClassToStartStatus){
+            self.populateCellForMissedStatus(cell: cell, indexPath: indexPath)
+            
+        }
         
         return cell as! UITableViewCell
     }
@@ -167,8 +213,8 @@ extension ADClassInformationViewController: UITableViewDelegate,UITableViewDataS
         switch indexPath.row {
         case 0:
             let cell = cell as! ADClassInfoHeadingSubHeadingAndImageCell
-            let actualStartTime = ADUtility.timeFromTimeStamp(timeStamp: (self.teacherClass?.actualStartTs)!)
-            cell.populate(actualStartTime, subTitle: "Scheduled on", iconImage: "")
+            let startTime = ADUtility.timeFromTimeStamp(timeStamp: (self.teacherClass?.startTime)!)
+            cell.populate("Today \(startTime)", subTitle: "Scheduled on", iconImage: "")
             break
         case 1:
             let cell = cell as! ADClassInfoHeadingSubHeadingAndImageCell
@@ -187,6 +233,23 @@ extension ADClassInformationViewController: UITableViewDelegate,UITableViewDataS
             break
         default:
            break
+        }
+    }
+    
+    func populateCellForMissedStatus(cell:ADClassStatusTableViewCellProtocol,indexPath: IndexPath) {
+        switch indexPath.row {
+        case 0:
+            let cell = cell as! ADClassInfoHeadingSubHeadingAndImageCell
+            let startTime = ADUtility.timeFromTimeStamp(timeStamp: (self.teacherClass?.startTime)!)
+            cell.populate("Today \(startTime)", subTitle: "Scheduled on", iconImage: "")
+            break
+        case 1:
+            let cell = cell as! ADClassInfoHeadingSubHeadingAndImageCell
+            cell.populate((self.teacherClass?.centerName)!, subTitle: "Center", iconImage: "")
+            break
+       
+        default:
+            break
         }
     }
 }

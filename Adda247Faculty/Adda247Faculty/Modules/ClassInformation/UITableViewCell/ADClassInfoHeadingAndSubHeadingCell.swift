@@ -26,8 +26,8 @@ class ADClassInfoHeadingAndSubHeadingCell: UITableViewCell,ADClassStatusTableVie
     }
     
     override func prepareForReuse() {
-        headingLbl.text = nil
-        subHeadingLbl.text = nil
+//        headingLbl.text = nil
+//        subHeadingLbl.text = nil
     }
     
     func populate(_ title:String,subTitle:String,iconImage:String) {

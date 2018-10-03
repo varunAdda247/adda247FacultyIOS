@@ -307,8 +307,27 @@ extension ADHomeViewController : UITableViewDataSource, UITableViewDelegate
             let controller:ADClassInformationViewController
             if(cfObj.classStatus == 0){
                 //Open upcoming details
-                controller = ADClassInformationViewController.getClassInfoVC(with: "", teacherClass: cfObj, infoType: ADClassInfoType.tableViewTypeTimeRemainingClassToStartStatus) { (action) in
+                //Check if user missed the class or time remaining to start
+                if(ADUtility.timeStampFor(date: Date()) > cfObj.endTime){
+                    //Missed class
+                    print("Missed class")
+                    controller = ADClassInformationViewController.getClassInfoVC(with: "", teacherClass: cfObj, infoType: ADClassInfoType.tableViewTypeMissedClassStatus) { (action) in
+                    }
+
                 }
+                else if((cfObj.startTime - ADUtility.timeStampFor(date: Date())) > (5*60*1000)){
+                    //Time remaining to start class : if want to start from 5 minutes earlier
+                    print("Time remain to start class")
+                    controller = ADClassInformationViewController.getClassInfoVC(with: "", teacherClass: cfObj, infoType: ADClassInfoType.tableViewTypeTimeRemainingClassToStartStatus) { (action) in
+                    }
+                }
+                else{
+                    //Start class
+                    print("Start class")
+                    controller = ADClassInformationViewController.getClassInfoVC(with: "", teacherClass: cfObj, infoType: ADClassInfoType.tableViewTypeToStartClassStatus) { (action) in
+                    }
+                }
+               
             }
             else if(cfObj.classStatus == 1){
                 //Open On going details

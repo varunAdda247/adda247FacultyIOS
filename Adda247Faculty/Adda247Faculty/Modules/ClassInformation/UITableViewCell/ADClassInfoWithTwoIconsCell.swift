@@ -27,8 +27,8 @@ class ADClassInfoWithTwoIconsCell: UITableViewCell,ADClassStatusTableViewCellPro
     }
     
     override func prepareForReuse() {
-        startTimeLbl.text = nil
-        endTimeLbl.text = nil
+//        startTimeLbl.text = nil
+//        endTimeLbl.text = nil
     }
     
     func populate(_ title:String,subTitle:String,iconImage:String) {
