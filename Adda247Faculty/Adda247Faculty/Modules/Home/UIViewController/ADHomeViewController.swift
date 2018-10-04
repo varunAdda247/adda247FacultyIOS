@@ -32,8 +32,9 @@ class ADHomeViewController: UIViewController,UIActionSheetDelegate, NSFetchedRes
         
         var predicate:NSPredicate?
         let defaults = UserDefaults.standard
-        predicate = NSPredicate(format: "exams.examId == %@  AND category == %@","DAILY","")
-
+        let (startTimeStamp,endTimeStamp) = ADUtility.timeStampForTodayStartAndEndDate()
+        predicate = NSPredicate(format: "startTime > %f  AND startTime < %f",startTimeStamp,endTimeStamp)
+        fetchRequest.predicate = predicate
         fetchRequest.returnsDistinctResults = true
         
         // Add Sort Descriptors
@@ -133,6 +134,22 @@ class ADHomeViewController: UIViewController,UIActionSheetDelegate, NSFetchedRes
     func configureInitialValues() {
         self.addRightButtonWithImage(imageName: "overflow", target: self)
         self.profileNameLbl.text = "Hi \(ADUtility.getFacultyName()!)"
+        
+       // let profileImage = nil
+        self.profileImgView.maskCircle(anyImage: UIImage(named: "profilePlaceHolder")!)
+        
+//        if(profileImage != nil){
+//            //let url:URL! = URL(string: profileImage!)
+//            let downloadURL = NSURL(string: profileImage!)!
+//            //cell.userImageView.af_setImage(withURL: downloadURL as URL)
+//        }
+        
+        
+        self.classScheduleTableView?.layer.cornerRadius = 5
+        self.classScheduleTableView?.layer.masksToBounds = true
+        self.classScheduleTableView?.layer.borderColor = UIColor.clear.cgColor
+        self.classScheduleTableView?.layer.borderWidth = 1
+        self.classScheduleTableView?.clipsToBounds = true
     }
     
     
@@ -246,15 +263,17 @@ class ADHomeViewController: UIViewController,UIActionSheetDelegate, NSFetchedRes
         self.classScheduleTableView.endUpdates()
     }
     
-    func getClassStatus(classObj:TeacherClass) -> String {
+    func getClassStatus(classObj:TeacherClass,cell:ADClassDataCell) -> String {
         
         if(ADUtility.timeStampFor(date: Date()) > classObj.endTime){
             //Missed class
+            cell.flagView.backgroundColor = UIColor.init(hexString: "#f44336")
             return "MISSED CLASS"
         }
         else{
-            //Start class
+            //Start classce
             print("Start class")
+            cell.flagView.backgroundColor = UIColor.init(hexString: "#1976d2")
             let startTime = ADUtility.timeFromTimeStamp(timeStamp: (classObj.startTime))
             return "Today \(startTime)"
          }
@@ -288,15 +307,16 @@ extension ADHomeViewController : UITableViewDataSource, UITableViewDelegate
                 //Upate object
                 cell.statusLbl.text = "Completed"
                 if(cfObj.classStatus == 0){
-                    cell.statusLbl.text = self.getClassStatus(classObj: cfObj)
+                    cell.statusLbl.text = self.getClassStatus(classObj: cfObj, cell: cell)
                 }
                 else if(cfObj.classStatus == 1){
                     cell.statusLbl.text = "CLASS STARTED"
+                    cell.flagView.backgroundColor = UIColor.init(hexString: "#ec407a")
                 }
                 else if(cfObj.classStatus == 2){
                     cell.statusLbl.text = "COMPLETED"
+                    cell.flagView.backgroundColor = UIColor.init(hexString: "#00c853")
                 }
-                cell.flagView.backgroundColor = UIColor.green
                 cell.classNameLbl.text = cfObj.classNam!
                 
                 cell.centerLbl.text = cfObj.centerName!

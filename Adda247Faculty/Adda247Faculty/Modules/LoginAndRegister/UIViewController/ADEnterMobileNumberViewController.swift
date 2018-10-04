@@ -17,7 +17,7 @@ class ADEnterMobileNumberViewController: UIViewController,UITextFieldDelegate {
     @IBOutlet weak var continueBtnBottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var messageLbl: UILabel!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
-
+    
     var phoneNumberLength = 10
     //MARK: View Lifecycle Methods
     override func viewDidLoad() {
@@ -64,70 +64,78 @@ class ADEnterMobileNumberViewController: UIViewController,UITextFieldDelegate {
     @IBAction func continueAction(_ sender: AnyObject){
         
         if (self.checkValidation()){
-            //Make server call to check number registration
-            let params:NSMutableDictionary = NSMutableDictionary()
-            params.setObject(self.mobileNumberTextField.text!, forKey: "mobile" as NSCopying)
             
-           let suffixUrl = "\(APIURLSuffix.phoneNumberVerification)?mobile=\(self.mobileNumberTextField.text!)"
-
-           self.showDataLoadingMessage()
-            
-           _ = ADWebClient.sharedClient.POST(appbBaseUrl: APIURL.baseUrl, suffixUrl: suffixUrl, parameters: nil, success: { (response) in
-            print(response)
-            if let response = response as? Dictionary<String,Any>{
-                if let success = response["success"] as? NSNumber{
-                    print(success)
-                    if let data = response["data"] as? Dictionary<String,Any>{
-                        if let statusCode = data["statusCode"] as? NSNumber{
-                            
-                            if(statusCode == 0){
-                                //Faculty is on ERP
-                                DispatchQueue.main.async(execute: {
-                                    self.openOtpController()
-                                })
+            if(Reachability.connectionAvailable()){
+                
+                //Make server call to check number registration
+                let params:NSMutableDictionary = NSMutableDictionary()
+                params.setObject(self.mobileNumberTextField.text!, forKey: "mobile" as NSCopying)
+                
+                let suffixUrl = "\(APIURLSuffix.phoneNumberVerification)?mobile=\(self.mobileNumberTextField.text!)"
+                
+                self.showDataLoadingMessage()
+                
+                _ = ADWebClient.sharedClient.POST(appbBaseUrl: APIURL.baseUrl, suffixUrl: suffixUrl, parameters: nil, success: { (response) in
+                    print(response)
+                    if let response = response as? Dictionary<String,Any>{
+                        if let success = response["success"] as? NSNumber{
+                            print(success)
+                            if let data = response["data"] as? Dictionary<String,Any>{
+                                if let statusCode = data["statusCode"] as? NSNumber{
+                                    
+                                    if(statusCode == 0){
+                                        //Faculty is on ERP
+                                        DispatchQueue.main.async(execute: {
+                                            self.openOtpController()
+                                        })
+                                    }
+                                    else if(statusCode == 1){
+                                        //Faculty is on ERP and have loged in before so just open login screen from here
+                                        DispatchQueue.main.async(execute: {
+                                            self.openLoginController()
+                                        })
+                                    }
+                                    else if(statusCode == 2){
+                                        //Faculty is on ERP but loging first time, now needs to pass through OTP screen
+                                        DispatchQueue.main.async(execute: {
+                                            self.openOtpController()
+                                        })
+                                    }
+                                    
+                                }
                             }
-                            else if(statusCode == 1){
-                                //Faculty is on ERP and have loged in before so just open login screen from here
-                                DispatchQueue.main.async(execute: {
-                                    self.openLoginController()
-                                })
-                            }
-                            else if(statusCode == 2){
-                                //Faculty is on ERP but loging first time, now needs to pass through OTP screen
-                                DispatchQueue.main.async(execute: {
-                                    self.openOtpController()
-                                })
-                            }
+                        }
+                        
+                        if let message = response["message"] as? String{
+                            DispatchQueue.main.async(execute: {
+                                //self.hideActivityIndicatorView()
+                                // self.stopDataLoadingMessage()
+                                self.activityIndicator.isHidden = true
+                                self.activityIndicator.stopAnimating()
+                                self.messageLbl.isHidden = false
+                                self.messageLbl.text = message
+                            })
                             
                         }
                     }
-                }
-                
-                if let message = response["message"] as? String{
+                    
                     DispatchQueue.main.async(execute: {
                         //self.hideActivityIndicatorView()
-                       // self.stopDataLoadingMessage()
-                        self.activityIndicator.isHidden = true
-                        self.activityIndicator.stopAnimating()
-                        self.messageLbl.isHidden = false
-                        self.messageLbl.text = message
+                        //self.stopDataLoadingMessage()
                     })
                     
+                }) { (error) in
+                    DispatchQueue.main.async(execute: {//Subjects3Shreya8130710060qwert
+                        self.stopDataLoadingMessage()
+                        self.messageLbl.text = ""
+                        self.showAlertMessage("Please check your internet connection", alertImage: nil, alertType: .success, context: .statusBar, duration: .seconds(seconds: 2))
+                    })
                 }
             }
-           
-            DispatchQueue.main.async(execute: {
-                //self.hideActivityIndicatorView()
-                //self.stopDataLoadingMessage()
-            })
-                
-            }) { (error) in
-                DispatchQueue.main.async(execute: {//Subjects3Shreya8130710060qwert
-                    self.stopDataLoadingMessage()
-                    self.messageLbl.text = ""
-                    self.showAlertMessage("Please check your internet connection", alertImage: nil, alertType: .success, context: .statusBar, duration: .seconds(seconds: 2))
-                })
+            else{
+                 self.showAlertMessage("Please check your internet connection", alertImage: nil, alertType: .success, context: .statusBar, duration: .seconds(seconds: 2))
             }
+            
         }
     }
     

@@ -120,37 +120,47 @@ class ADLoginViewConntroller: UIViewController {
 
         self.showActivityIndicatorInteractionEnabledView(false)
         _ = ADWebClient.sharedClient.POST(appbBaseUrl: APIURL.baseUrl, suffixUrl: suffixUrl, parameters: params, success: { (response) in
-            print(response)
             if let response = response as? Dictionary<String,Any>{
-                if let data = response["data"] as? Dictionary<String,Any>{
-                    
-                    if let name = data["facultyName"] as? String{
-                        //Update faculty name
-                        ADUtility.updateFacultyName(name: name)
+                
+                if let success = response["success"] as? NSNumber{
+                    if(success.boolValue){
+                        if let data = response["data"] as? Dictionary<String,Any>{
+                            
+                            if let name = data["facultyName"] as? String{
+                                //Update faculty name
+                                ADUtility.updateFacultyName(name: name)
+                            }
+                            
+                            if let token = data["token"] as? String{
+                                //Update token
+                                ADUtility.updateToken(token: token)
+                            }
+                            
+                            if let id = data["facultyId"] as? String{
+                                //Update token
+                                ADUtility.updateFacultyId(id: id)
+                            }
+                            else if let id = data["facultyId"] as? NSNumber{
+                                ADUtility.updateFacultyId(id: id.stringValue)
+                            }
+                            
+                            //Open home view conntroller
+                            DispatchQueue.main.async(execute: {
+                                self.openHomeViewController()
+                            })
+                        }
                     }
-                    
-                    if let token = data["token"] as? String{
-                        //Update token
-                        ADUtility.updateToken(token: token)
+                    else{
+                        if let message = response["message"] as? String{
+                            print(message)
+                            DispatchQueue.main.async(execute: {
+                                self.showAlertMessage(message, alertImage: nil, alertType: .success, context: .statusBar, duration: .seconds(seconds: 2))
+                            })
+                        }
+
                     }
-                    
-                    if let id = data["facultyId"] as? String{
-                        //Update token
-                        ADUtility.updateFacultyId(id: id)
-                    }
-                    else if let id = data["facultyId"] as? NSNumber{
-                        ADUtility.updateFacultyId(id: id.stringValue)
-                    }
-                    
-                    //Open home view conntroller
-                    DispatchQueue.main.async(execute: {
-                        self.openHomeViewController()
-                    })
                 }
                 
-                if let message = response["message"] as? String{
-                   print(message)
-                }
                 DispatchQueue.main.async(execute: {
                     self.hideActivityIndicatorView()
                 })

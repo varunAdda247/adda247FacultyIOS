@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreLocation
 
 enum ADClassInfoType: String{
     
@@ -27,7 +28,7 @@ enum ADTableViewCellType: String{
 }
 
 
-class ADClassInformationViewController: UIViewController {
+class ADClassInformationViewController: UIViewController, CLLocationManagerDelegate {
     @IBOutlet weak var headingLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var containerViewTopConstraint: NSLayoutConstraint!
@@ -47,6 +48,9 @@ class ADClassInformationViewController: UIViewController {
     
     var cellTypeArray:[ADTableViewCellType] = []
     
+    var locationManager: CLLocationManager?
+    var startLocation: String?
+    
     static func getClassInfoVC(with heading:String, teacherClass:TeacherClass,infoType:ADClassInfoType,closure:((String)-> Void)?) -> ADClassInformationViewController {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let controller:ADClassInformationViewController = storyboard.instantiateViewController(withIdentifier: "ADClassInformationViewController") as! ADClassInformationViewController
@@ -60,7 +64,6 @@ class ADClassInformationViewController: UIViewController {
             controller.cellTypeArray.append(ADTableViewCellType.classInfoWithTwoIconsCell)
         }
         else if(infoType == ADClassInfoType.tableViewTypeToStartClassStatus){
-          controller.cellTypeArray.append(ADTableViewCellType.classInfoHeadingSubHeadingImageAndButtonCell)
             controller.cellTypeArray.append(ADTableViewCellType.classInfoHeadingSubHeadingAndImageCell)
             controller.cellTypeArray.append(ADTableViewCellType.classInfoHeadingSubHeadingAndImageCell)
         }
@@ -92,6 +95,7 @@ class ADClassInformationViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.determineMyCurrentLocation()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -149,11 +153,65 @@ class ADClassInformationViewController: UIViewController {
     
     @objc fileprivate func startClassTapGesture(sender: UITapGestureRecognizer) {
         self.teacherClass?.classStatus = 1
+        self.teacherClass?.actualEndTs = ADUtility.timeStampFor(date: Date())
+        self.serviceCallToStartClass()
+        //Start class
+    }
+    
+    func serviceCallToStartClass() {
         self.crossButtonAction(self)
+        
+        if(Reachability.connectionAvailable()){
+            
+            let tempPara = ADUtility.getObjectAsParameterForClassStartAndEndCall(classes: [self.teacherClass!], startLocation: startLocation)
+            
+            _ = ADWebClient.sharedClient.POST(appbBaseUrl: APIURL.baseUrl, suffixUrl: APIURLSuffix.getClasses, parameters: tempPara, success: { (response) in
+                 if let response = response as? Dictionary<String,Any>{
+                     if let success = response["success"] as? NSNumber{
+                        if(success.boolValue){
+                            print("DATA SAVE SUCCESSFULLY")
+                        }
+                    }
+                }
+            }, failure: { (error) in
+                
+            })
+        }
+        else{
+            self.showAlertMessage("Please check your internet connection", alertImage: nil, alertType: .success, context: .statusBar, duration: .seconds(seconds: 2))
+        }
+        
     }
     
     @objc fileprivate func endClassTapGesture(sender: UITapGestureRecognizer) {
-        
+        //End class
+        self.teacherClass?.classStatus = 2
+        self.teacherClass?.actualEndTs = ADUtility.timeStampFor(date: Date())
+        self.serviceCallToEndClass()
+    }
+    
+    func serviceCallToEndClass()  {
+        self.crossButtonAction(self)
+        if(Reachability.connectionAvailable()){
+            
+            let tempPara = ADUtility.getObjectAsParameterForClassStartAndEndCall(classes: [self.teacherClass!], startLocation: startLocation)
+            
+            _ = ADWebClient.sharedClient.POST(appbBaseUrl: APIURL.baseUrl, suffixUrl: APIURLSuffix.getClasses, parameters: tempPara, success: { (response) in
+                if let response = response as? Dictionary<String,Any>{
+                    if let success = response["success"] as? NSNumber{
+                        if(success.boolValue){
+                            print("DATA SAVE SUCCESSFULLY")
+                        }
+                    }
+                }
+            }, failure: { (error) in
+                
+            })
+        }
+        else{
+            self.showAlertMessage("Please check your internet connection", alertImage: nil, alertType: .success, context: .statusBar, duration: .seconds(seconds: 2))
+        }
+
     }
     
     @objc func buttonAction(_ sender: UIButton!) {
@@ -168,13 +226,45 @@ class ADClassInformationViewController: UIViewController {
     @IBAction func crossButtonAction(_ sender: Any) {
         
         self.removeChildViewController(content: self, animate: true)
-            
     }
     
     func sendClosure() {
         if (completion != nil) {
             completion!("")
         }
+    }
+    
+   // MARK: - Location
+    func determineMyCurrentLocation() {
+        
+        if locationManager == nil {
+            locationManager = CLLocationManager()
+            locationManager?.delegate = self
+            locationManager?.desiredAccuracy = kCLLocationAccuracyBest
+            self.locationManager?.requestAlwaysAuthorization()
+        }
+        
+        if CLLocationManager.locationServicesEnabled() {
+            self.locationManager?.startUpdatingLocation()
+            //locationManager.startUpdatingHeading()
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        let userLocation:CLLocation = locations[0] as CLLocation
+        
+        // Call stopUpdatingLocation() to stop listening for location updates,
+        // other wise this function will be called every time when user location changes.
+        
+        manager.stopUpdatingLocation()
+        startLocation = "\(userLocation.coordinate.latitude):\(userLocation.coordinate.longitude)"
+//        print("user latitude = \(userLocation.coordinate.latitude)")
+//        print("user longitude = \(userLocation.coordinate.longitude)")
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error)
+    {
+        print("Error \(error)")
     }
 }
 
@@ -197,6 +287,12 @@ extension ADClassInformationViewController: UITableViewDelegate,UITableViewDataS
         else if(infoType == ADClassInfoType.tableViewTypeMissedClassStatus || infoType == ADClassInfoType.tableViewTypeTimeRemainingClassToStartStatus){
             self.populateCellForMissedStatus(cell: cell, indexPath: indexPath)
         }
+        else if(infoType == ADClassInfoType.tableViewTypeToStartClassStatus){
+            self.populateCellForToStartClassStatus(cell: cell, indexPath: indexPath)
+        }
+        else if(infoType == ADClassInfoType.tableViewTypeToEndClassStatus){
+            self.populateCellForToEndClassStatus(cell: cell, indexPath: indexPath)
+        }
         return cell as! UITableViewCell
     }
     
@@ -205,6 +301,9 @@ extension ADClassInformationViewController: UITableViewDelegate,UITableViewDataS
     {
        return 65.0
     }
+    
+    
+    
     
     func populateCellForCompltedStatus(cell:ADClassStatusTableViewCellProtocol,indexPath: IndexPath) {
         switch indexPath.row {
@@ -219,8 +318,8 @@ extension ADClassInformationViewController: UITableViewDelegate,UITableViewDataS
             break
         case 2:
             let cell = cell as! ADClassInfoWithTwoIconsCell
-            let startTimeTemp = ADUtility.timeFromTimeStamp(timeStamp: (self.teacherClass?.startTime)!)
-            let endTimeTemp = ADUtility.timeFromTimeStamp(timeStamp: (self.teacherClass?.endTime)!)
+            let startTimeTemp = ADUtility.timeFromTimeStamp(timeStamp: (self.teacherClass?.actualStartTs)!)
+            let endTimeTemp = ADUtility.timeFromTimeStamp(timeStamp: (self.teacherClass?.actualEndTs)!)
 
             cell.populate(startTime: startTimeTemp, endTime: endTimeTemp)
             break
@@ -245,6 +344,44 @@ extension ADClassInformationViewController: UITableViewDelegate,UITableViewDataS
             cell.populate((self.teacherClass?.centerName)!, subTitle: "Center", iconImage: "")
             break
        
+        default:
+            break
+        }
+    }
+    
+    func populateCellForToStartClassStatus(cell:ADClassStatusTableViewCellProtocol,indexPath: IndexPath) {
+        switch indexPath.row {
+        case 0:
+            let cell = cell as! ADClassInfoHeadingSubHeadingAndImageCell
+            let startTime = ADUtility.timeFromTimeStamp(timeStamp: (self.teacherClass?.startTime)!)
+            cell.populate("Today \(startTime)", subTitle: "Scheduled on", iconImage: "")
+            break
+        case 1:
+            let cell = cell as! ADClassInfoHeadingSubHeadingAndImageCell
+            cell.populate((self.teacherClass?.centerName)!, subTitle: "Center", iconImage: "")
+            break
+            
+        default:
+            break
+        }
+    }
+    
+    func populateCellForToEndClassStatus(cell:ADClassStatusTableViewCellProtocol,indexPath: IndexPath) {
+        switch indexPath.row {
+        case 0:
+            let cell = cell as! ADClassInfoHeadingSubHeadingAndImageCell
+            let startTime = ADUtility.timeFromTimeStamp(timeStamp: (self.teacherClass?.startTime)!)
+            cell.populate("Today \(startTime)", subTitle: "Scheduled on", iconImage: "")
+            break
+        case 1:
+            let cell = cell as! ADClassInfoHeadingSubHeadingAndImageCell
+            cell.populate((self.teacherClass?.centerName)!, subTitle: "Center", iconImage: "")
+            break
+        case 2:
+            let cell = cell as! ADClassInfoHeadingSubHeadingAndImageCell
+            let actualStartTime = ADUtility.timeFromTimeStamp(timeStamp: (self.teacherClass?.actualStartTs)!)
+            cell.populate(actualStartTime, subTitle: "Start time", iconImage: "")
+            break
         default:
             break
         }

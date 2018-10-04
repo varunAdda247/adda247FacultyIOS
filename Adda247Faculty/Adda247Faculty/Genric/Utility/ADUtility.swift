@@ -87,4 +87,42 @@ class ADUtility: NSObject {
 
         return strDate
     }
+    
+    class func getObjectAsParameterForClassStartAndEndCall(classes:[TeacherClass],startLocation:String?)-> NSMutableDictionary{
+        
+        let tempPara:NSMutableDictionary = NSMutableDictionary()
+        
+        var classListArray:[NSMutableDictionary] = []
+        for teacherClass in classes{
+            let paramsClass:NSMutableDictionary = NSMutableDictionary()
+            paramsClass.setObject(teacherClass.actualStartTs, forKey: "actualStartTs" as NSCopying)
+            paramsClass.setObject(teacherClass.actualEndTs, forKey: "actualEndTs" as NSCopying)
+
+            paramsClass.setObject((teacherClass.centerName)!, forKey: "centerName" as NSCopying)
+            paramsClass.setObject((teacherClass.classId)!, forKey: "classId" as NSCopying)
+            paramsClass.setObject((teacherClass.classNam)!, forKey: "className" as NSCopying)
+            paramsClass.setObject((teacherClass.classStatus), forKey: "classStatus" as NSCopying)
+            paramsClass.setObject(ADUtility.getFacultyName()!, forKey: "facultyName" as NSCopying)
+            paramsClass.setObject(startLocation ?? "", forKey: "startLocation" as NSCopying)
+            paramsClass.setObject((teacherClass.startTime), forKey: "startTime" as NSCopying)
+            
+            classListArray.append(paramsClass)
+            
+        }
+       
+        tempPara.setObject(classListArray, forKey: "classDetailsList" as NSCopying)
+        
+        let (startTimeStamp,endTimeStamp) = ADUtility.timeStampForTodayStartAndEndDate()
+        let timeInterval:NSMutableDictionary = NSMutableDictionary()
+        timeInterval.setObject(startTimeStamp, forKey: "startTime" as NSCopying)
+        timeInterval.setObject(endTimeStamp, forKey: "endTime" as NSCopying)
+        tempPara.setObject(timeInterval, forKey: "timeInterval" as NSCopying)
+        tempPara.setObject(false, forKey: "isTopicsRequired" as NSCopying)
+        
+        let facultyId = ADUtility.getFacultyId()!.int16Value
+        tempPara.setObject(facultyId, forKey: "facultyId" as NSCopying)
+        
+        return tempPara
+    }
+    
 }
