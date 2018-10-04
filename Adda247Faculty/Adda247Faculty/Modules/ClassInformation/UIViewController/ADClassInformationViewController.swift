@@ -158,30 +158,6 @@ class ADClassInformationViewController: UIViewController, CLLocationManagerDeleg
         //Start class
     }
     
-    func serviceCallToStartClass() {
-        self.crossButtonAction(self)
-        
-        if(Reachability.connectionAvailable()){
-            
-            let tempPara = ADUtility.getObjectAsParameterForClassStartAndEndCall(classes: [self.teacherClass!], startLocation: startLocation)
-            
-            _ = ADWebClient.sharedClient.POST(appbBaseUrl: APIURL.baseUrl, suffixUrl: APIURLSuffix.getClasses, parameters: tempPara, success: { (response) in
-                 if let response = response as? Dictionary<String,Any>{
-                     if let success = response["success"] as? NSNumber{
-                        if(success.boolValue){
-                            print("DATA SAVE SUCCESSFULLY")
-                        }
-                    }
-                }
-            }, failure: { (error) in
-                
-            })
-        }
-        else{
-            self.showAlertMessage("Please check your internet connection", alertImage: nil, alertType: .success, context: .statusBar, duration: .seconds(seconds: 2))
-        }
-        
-    }
     
     @objc fileprivate func endClassTapGesture(sender: UITapGestureRecognizer) {
         //End class
@@ -190,6 +166,23 @@ class ADClassInformationViewController: UIViewController, CLLocationManagerDeleg
         self.serviceCallToEndClass()
     }
     
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+    @IBAction func crossButtonAction(_ sender: Any) {
+        
+        self.removeChildViewController(content: self, animate: true)
+    }
+    
+    func sendClosure() {
+        if (completion != nil) {
+            completion!("")
+        }
+    }
+    
+    // MARK: - Service Call
     func serviceCallToEndClass()  {
         self.crossButtonAction(self)
         if(Reachability.connectionAvailable()){
@@ -211,28 +204,34 @@ class ADClassInformationViewController: UIViewController, CLLocationManagerDeleg
         else{
             self.showAlertMessage("Please check your internet connection", alertImage: nil, alertType: .success, context: .statusBar, duration: .seconds(seconds: 2))
         }
-
-    }
-    
-    @objc func buttonAction(_ sender: UIButton!) {
-        print("Button tapped")
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-    @IBAction func crossButtonAction(_ sender: Any) {
         
-        self.removeChildViewController(content: self, animate: true)
     }
     
-    func sendClosure() {
-        if (completion != nil) {
-            completion!("")
+    func serviceCallToStartClass() {
+        self.crossButtonAction(self)
+        
+        if(Reachability.connectionAvailable()){
+            
+            let tempPara = ADUtility.getObjectAsParameterForClassStartAndEndCall(classes: [self.teacherClass!], startLocation: startLocation)
+            
+            _ = ADWebClient.sharedClient.POST(appbBaseUrl: APIURL.baseUrl, suffixUrl: APIURLSuffix.getClasses, parameters: tempPara, success: { (response) in
+                if let response = response as? Dictionary<String,Any>{
+                    if let success = response["success"] as? NSNumber{
+                        if(success.boolValue){
+                            print("DATA SAVE SUCCESSFULLY")
+                        }
+                    }
+                }
+            }, failure: { (error) in
+                
+            })
         }
+        else{
+            self.showAlertMessage("Please check your internet connection", alertImage: nil, alertType: .success, context: .statusBar, duration: .seconds(seconds: 2))
+        }
+        
     }
+    
     
    // MARK: - Location
     func determineMyCurrentLocation() {
