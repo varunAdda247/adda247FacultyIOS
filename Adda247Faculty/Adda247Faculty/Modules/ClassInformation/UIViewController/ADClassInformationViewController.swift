@@ -153,11 +153,10 @@ class ADClassInformationViewController: UIViewController, CLLocationManagerDeleg
     
     @objc fileprivate func startClassTapGesture(sender: UITapGestureRecognizer) {
         self.teacherClass?.classStatus = 1
-        self.teacherClass?.actualEndTs = ADUtility.timeStampFor(date: Date())
+        self.teacherClass?.actualStartTs = ADUtility.timeStampFor(date: Date())
         self.serviceCallToStartClass()
         //Start class
     }
-    
     
     @objc fileprivate func endClassTapGesture(sender: UITapGestureRecognizer) {
         //End class

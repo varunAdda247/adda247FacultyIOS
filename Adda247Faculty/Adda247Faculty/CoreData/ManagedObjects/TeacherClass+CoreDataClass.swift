@@ -36,7 +36,8 @@ public class TeacherClass: NSManagedObject {
                 else {
                     if let message = responseObject["message"] as? String{
                         if(message == "Wrong token."){
-                            
+                            //
+                            complitionHandler(false, ADError.init(errorDomain: "", errorCode: 1005, localizedDescription: message))
                         }
                     }
                 }
@@ -74,10 +75,10 @@ public class TeacherClass: NSManagedObject {
                             object?.classId = classId.stringValue
                             
                             if let actualEndTs = tempObj["actualEndTs"] as? NSNumber{
-                                object?.actualEndTs = actualEndTs.doubleValue
+                                object?.actualEndTs = actualEndTs.int64Value
                             }
                             if let actualStartTs = tempObj["actualStartTs"] as? NSNumber{
-                                object?.actualStartTs = actualStartTs.doubleValue
+                                object?.actualStartTs = actualStartTs.int64Value
                             }
                             
                             if let centerName = tempObj["centerName"] as? String{
@@ -102,13 +103,14 @@ public class TeacherClass: NSManagedObject {
                                 object?.facultyName = facultyName
                             }
                             if let lastUpdatedTs = tempObj["endLocation"] as? NSNumber{
-                                object?.lastUpdatedTs = lastUpdatedTs.doubleValue
+                                object?.lastUpdatedTs = lastUpdatedTs.int64Value
                             }
                             if let startTime = tempObj["startTime"] as? NSNumber{
-                                object?.startTime = startTime.doubleValue
+                                
+                                object?.startTime = startTime.int64Value
                             }
                             if let endTime = tempObj["endTime"] as? NSNumber{
-                                object?.endTime = endTime.doubleValue
+                                object?.endTime = endTime.int64Value
                             }
                         }
                     }
@@ -124,11 +126,9 @@ public class TeacherClass: NSManagedObject {
         }
     }
     
-    
     class func deletePaidTestInfoFromDB(tempContext:NSManagedObjectContext, set:Set<String>,packageInfo:TeacherClass){
         
     }
-    
     
     class func teacherClassForId(context: NSManagedObjectContext,classId:String)-> TeacherClass? {
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "TeacherClass")

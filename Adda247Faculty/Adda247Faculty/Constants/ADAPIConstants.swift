@@ -15,16 +15,15 @@ struct APIURLSuffix {
     static let getClasses = "faculty/classes"
     static let resendOtp = "/faculty/otp"
     static let setPin = "faculty/app/registration"
-
 }
 
 struct APIURL {
     
     //PROD
-    //static let baseUrl = "https://erp.adda247.com/user/"
+    static let baseUrl = "https://erp.adda247.com/user/"
     
     //TEST
-    static let baseUrl = "http://erp-stag.adda247.com/user/"
+    //static let baseUrl = "http://erp-stag.adda247.com/user/"
     
 }
 

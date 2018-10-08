@@ -2,7 +2,7 @@
 //  TeacherClass+CoreDataProperties.swift
 //  Adda247Faculty
 //
-//  Created by Varun Tomar on 26/09/18.
+//  Created by Varun Tomar on 05/10/18.
 //  Copyright © 2018 Adda247. All rights reserved.
 //
 //
@@ -17,18 +17,18 @@ extension TeacherClass {
         return NSFetchRequest<TeacherClass>(entityName: "TeacherClass")
     }
 
-    @NSManaged public var actualEndTs: Double
-    @NSManaged public var actualStartTs: Double
+    @NSManaged public var actualEndTs: Int64
+    @NSManaged public var actualStartTs: Int64
     @NSManaged public var centerName: String?
     @NSManaged public var classId: String?
     @NSManaged public var classNam: String?
     @NSManaged public var classStatus: Int16
     @NSManaged public var endLocation: String?
-    @NSManaged public var endTime: Double
-    @NSManaged public var lastUpdatedTs: Double
-    @NSManaged public var startLocation: String?
-    @NSManaged public var startTime: Double
+    @NSManaged public var endTime: Int64
     @NSManaged public var facultyName: String?
+    @NSManaged public var lastUpdatedTs: Int64
+    @NSManaged public var startLocation: String?
+    @NSManaged public var startTime: Int64
     @NSManaged public var topics: NSSet?
 
 }

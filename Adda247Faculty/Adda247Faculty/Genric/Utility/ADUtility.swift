@@ -52,22 +52,22 @@ class ADUtility: NSObject {
     }
     
     //Date and Timestamp
-    class func timeStampFor(date: Date) -> Double{
+    class func timeStampFor(date: Date) -> Int64{
         //Return in milisecond
-        return date.timeIntervalSince1970*1000
+        return Int64(date.timeIntervalSince1970*1000)
     }
     
-    class func timeStampForTodayStartAndEndDate() -> (start:Double,end:Double){
+    class func timeStampForTodayStartAndEndDate() -> (start:Int64,end:Int64){
         
         //For start day
         var calendar = NSCalendar.current
-        calendar.timeZone = NSTimeZone.local
+        calendar.timeZone = TimeZone.current//TimeZone.current
         let startDate = calendar.startOfDay(for: Date())
         let startDateTimestamp = self.timeStampFor(date: startDate)
         
         //For End Date
         var components = DateComponents()
-        components.day = 10
+        components.day = 1
         components.second = -1
         let endDate = calendar.date(byAdding: components, to: startDate)
         let endDateTimestamp = self.timeStampFor(date: endDate!)
@@ -75,12 +75,12 @@ class ADUtility: NSObject {
         return (startDateTimestamp,endDateTimestamp)
     }
     
-    class func timeFromTimeStamp(timeStamp:Double) -> String{
+    class func timeFromTimeStamp(timeStamp:Int64) -> String{
         //As we get time stamp from server in miliseconds, so divided by 1000
         let unixtimeInterval = timeStamp/1000 //(in seconds)
-        let date = Date(timeIntervalSince1970: unixtimeInterval)
+        let date = Date(timeIntervalSince1970: TimeInterval(unixtimeInterval))
         let dateFormatter = DateFormatter()
-        dateFormatter.timeZone = TimeZone.current
+        dateFormatter.timeZone = TimeZone.current//TimeZone(abbreviation: "GMT")
         dateFormatter.locale = NSLocale.current
         dateFormatter.dateFormat = "h:mm a"
         let strDate = dateFormatter.string(from: date)
@@ -123,6 +123,29 @@ class ADUtility: NSObject {
         tempPara.setObject(facultyId, forKey: "facultyId" as NSCopying)
         
         return tempPara
+    }
+    
+    class func dateFromTimestamp(timestamp : Double)->Date{
+        
+        //let unixTimestamp = Int64(timestamp)
+        let date = Date(timeIntervalSince1970: TimeInterval(timestamp/1000))
+        var calendar = NSCalendar.current
+        calendar.timeZone = TimeZone(abbreviation: "UTC")!//TimeZone.current
+        
+        let year = calendar.component(.year, from: date)
+        let month = calendar.component(.month, from: date)
+        let day = calendar.component(.day, from: date)
+        
+        var dateComponents = DateComponents()
+        dateComponents.year = year
+        dateComponents.month = month
+        dateComponents.day = day
+        dateComponents.hour = 0
+        dateComponents.minute = 0
+        dateComponents.second = 0
+        dateComponents.calendar = calendar
+        
+        return dateComponents.date!
     }
     
 }

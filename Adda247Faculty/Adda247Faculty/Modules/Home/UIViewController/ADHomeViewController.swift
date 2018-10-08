@@ -33,12 +33,16 @@ class ADHomeViewController: UIViewController,UIActionSheetDelegate, NSFetchedRes
         var predicate:NSPredicate?
         let defaults = UserDefaults.standard
         let (startTimeStamp,endTimeStamp) = ADUtility.timeStampForTodayStartAndEndDate()
-        predicate = NSPredicate(format: "startTime > %f  AND startTime < %f",startTimeStamp,endTimeStamp)
+
+        predicate = NSPredicate(format: "startTime >= %ld AND startTime <= %ld",startTimeStamp,endTimeStamp)
+        
+       // predicate = NSPredicate(format: "startTime < %d",endTimeStamp)
+
         fetchRequest.predicate = predicate
         fetchRequest.returnsDistinctResults = true
         
         // Add Sort Descriptors
-        let sortDescriptor = NSSortDescriptor(key: "actualStartTs", ascending: false)
+        let sortDescriptor = NSSortDescriptor(key: "startTime", ascending: false)
         fetchRequest.sortDescriptors = [sortDescriptor]
         
         // Initialize Fetched Results Controller
@@ -137,14 +141,7 @@ class ADHomeViewController: UIViewController,UIActionSheetDelegate, NSFetchedRes
         
        // let profileImage = nil
         self.profileImgView.maskCircle(anyImage: UIImage(named: "profilePlaceHolder")!)
-        
-//        if(profileImage != nil){
-//            //let url:URL! = URL(string: profileImage!)
-//            let downloadURL = NSURL(string: profileImage!)!
-//            //cell.userImageView.af_setImage(withURL: downloadURL as URL)
-//        }
-        
-        
+                
         self.classScheduleTableView?.layer.cornerRadius = 5
         self.classScheduleTableView?.layer.masksToBounds = true
         self.classScheduleTableView?.layer.borderColor = UIColor.clear.cgColor
@@ -189,9 +186,17 @@ class ADHomeViewController: UIViewController,UIActionSheetDelegate, NSFetchedRes
                     }
                     else{
                         //No class data
-                        print("No class data found")
+                        self.showAlertMessage("You don't have any classes scheduled for today", alertImage: nil, alertType: .success, context: .statusBar, duration: .seconds(seconds: 2))
                     }
                     
+                }
+                else{
+                    if(error?.code == 1005){
+                        //Authentication error
+                        self.showAlertViewControllerWithTitle("", message: "Your account was logged in from another device. Try logging in again.", actionButtonTitle: "Login", completionHandler: {[weak self] (action) in
+                            self?.logoutAction()
+                        })
+                    }
                 }
             }
         }
@@ -305,6 +310,7 @@ extension ADHomeViewController : UITableViewDataSource, UITableViewDelegate
         if self.fetchedResultsController.validateIndexPath(indexPath) {
             if let cfObj = self.fetchedResultsController.object(at: indexPath) as? TeacherClass{
                 //Upate object
+                print("Start time : \(cfObj.startTime) :: Center : \(cfObj.centerName!)")
                 cell.statusLbl.text = "Completed"
                 if(cfObj.classStatus == 0){
                     cell.statusLbl.text = self.getClassStatus(classObj: cfObj, cell: cell)
