@@ -16,6 +16,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        UINavigationBar.appearance().barTintColor = UIColor.navigationBarColor()
+        UINavigationBar.appearance().tintColor = UIColor.white
+        UINavigationBar.appearance().titleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.white]
         self.setInitialScreen()
         
         return true
@@ -56,7 +59,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let defaults = UserDefaults.standard
         if let token = defaults.value(forKey: UserKeyConstants.token) as? String{
             if(token.count > 0){
-                isLoggedIn = true
+                
+                if let facultyId = ADUtility.getFacultyId(){
+                    if(facultyId.count > 0){
+                        isLoggedIn = true
+                    }
+                    else{
+                        isLoggedIn = true
+                    }
+                }
+                else{
+                    isLoggedIn = false
+                }
+                
+//                if ADUtility.getFacultyId() != nil{
+//                    isLoggedIn = true
+//                }
             }
         }
         

@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 
-class ADLoginViewConntroller: UIViewController {
+class ADLoginViewConntroller: UIViewController,UITextFieldDelegate {
     
     //MARK: Outlets
     @IBOutlet weak var pinTextField: UITextField!
@@ -89,10 +89,36 @@ class ADLoginViewConntroller: UIViewController {
     }
     
     func forgotPinAction() {
-        self.openOtpController()
-        
+        self.sendOTPAction()
     }
     
+    func sendOTPAction() {
+        
+        if Reachability.connectionAvailable() {
+            
+            self.showActivityIndicatorInteractionEnabledView(true)
+            
+            let suffixUrl = "\(APIURLSuffix.resendOtp)?mobile=\(self.mobileNumber)"
+            
+            //Service Call to Resend OTP to email
+            _ = ADWebClient.sharedClient.POST(appbBaseUrl: APIURL.baseUrl, suffixUrl: suffixUrl, parameters: nil, success: { (response) in
+                DispatchQueue.main.async(execute: {
+                    self.hideActivityIndicatorView()
+                    self.openOtpController()
+                })
+                
+            }) { (error) in
+                DispatchQueue.main.async(execute: {
+                    self.hideActivityIndicatorView()
+                })
+            }
+            
+        }
+        else{
+            self.showAlertMessage(NSLocalizedString("no_internet_connection", comment: ""), alertImage: nil, alertType: .success, context: .statusBar, duration: .seconds(seconds: 2))
+        }
+        
+    }
     
     func openOtpController() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -197,7 +223,7 @@ class ADLoginViewConntroller: UIViewController {
     
     func checkValidation() -> Bool {
         if (self.pinTextField.text?.isBlank)! {
-            self.showAlertMessage(NSLocalizedString("please_enter_register_email_id", comment: ""), alertImage: nil, alertType: .success, context: .statusBar, duration: .seconds(seconds: 2))
+            self.showAlertMessage("Please enter registered email id", alertImage: nil, alertType: .success, context: .statusBar, duration: .seconds(seconds: 2))
             return false
         }
         else if false == (self.pinTextField.text?.isPhoneNumberValid())!{
@@ -224,12 +250,13 @@ class ADLoginViewConntroller: UIViewController {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         let currentText = textField.text ?? ""
         guard let stringRange = Range(range, in: currentText) else { return false }
-        
+
         let updatedText = currentText.replacingCharacters(in: stringRange, with: string)
-        
+
         return updatedText.count <= ADUtility.pinLength
     }
     
+ 
     //MARK : Keyboard Notification
     @objc func keyboardWillShow(notification: NSNotification) {
         

@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class ADSetNewPinViewController: UIViewController {
+class ADSetNewPinViewController: UIViewController,UITextFieldDelegate {
     
     //MARK: Outlets
     @IBOutlet weak var pinTextField: UITextField!
@@ -91,12 +91,13 @@ class ADSetNewPinViewController: UIViewController {
                     }
                     
                     if let facultyId = data["facultyId"] as? NSNumber{
-                        //Update token
+                        //Update 
                         ADUtility.updateFacultyId(id: facultyId.stringValue)
                     }
                     
                     //Open home view conntroller
                     DispatchQueue.main.async(execute: {
+                        self.dismissKeyBoard()
                         self.openHomeViewController()
                     })
                 }
@@ -167,6 +168,7 @@ class ADSetNewPinViewController: UIViewController {
     
     func dismissKeyBoard() {
         self.pinTextField.resignFirstResponder()
+        self.confirmPinTextField.resignFirstResponder()
     }
     
     //MARK : Textfield delegate

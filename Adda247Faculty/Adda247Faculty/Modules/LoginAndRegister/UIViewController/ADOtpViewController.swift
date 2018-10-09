@@ -18,18 +18,23 @@ class ADOtpViewController: UIViewController{
     @IBOutlet weak var resendBtn: UIButton!
     @IBOutlet weak var resendBtnBottomConstraint: NSLayoutConstraint!
 
-    
+    @IBOutlet weak var tryAfterSomeTimeLbl: UILabel!
+    var timer: Timer?
+    var count = 30
+
     let OTP_TEXT_LIMIT = 4
     var mobileNumber:String!
+    var tap:UITapGestureRecognizer?
     
-    // self.showAlertMessage("Internet is not available", alertImage: nil, alertType: .success, context: .statusBar, duration: .seconds(seconds: 1))
     
     //MARK: View Lifecycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow(notification:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide(notification:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+//        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow(notification:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+//        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide(notification:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+//
+        self.resendBtn.isHidden = true
         self.configureInitialValues()
     }
     
@@ -37,6 +42,11 @@ class ADOtpViewController: UIViewController{
         super.viewWillAppear(animated)
         self.navigationController?.isNavigationBarHidden = true
         self.otpTextField.text = ""
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        self.timer?.invalidate()
     }
     
     override func didReceiveMemoryWarning() {
@@ -49,6 +59,50 @@ class ADOtpViewController: UIViewController{
         self.view.backgroundColor = UIColor.backgroundThemeColor()
         self.messageLbl.text = "Please enter the OTP sent to \(self.mobileNumber!)"
         self.otpTextField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
+        
+        //Disable Resend button for 30 seconds
+        self.resendBtn.isEnabled = false
+        self.startTimer()
+        
+    }
+    
+    func startTimer()  {
+        self.removeTapGesture()
+        self.timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(self.getTime), userInfo: nil, repeats: true)
+        self.tryAfterSomeTimeLbl.text = "Retry after \(count) seconds"
+    }
+    
+    func stopTimer()  {
+        self.timer?.invalidate()
+    }
+    
+    func addTapGesture()  {
+        self.tap = UITapGestureRecognizer(target: self, action: #selector(ADOtpViewController.tapFunction))
+        self.tryAfterSomeTimeLbl.isUserInteractionEnabled = true
+        self.tryAfterSomeTimeLbl.addGestureRecognizer(tap!)
+    }
+    
+    @objc func tapFunction(sender:UITapGestureRecognizer) {
+        self.resendOTPAction()
+    }
+    
+    func removeTapGesture()  {
+        if let tap = self.tap{
+            self.tryAfterSomeTimeLbl.removeGestureRecognizer(tap)
+        }
+    }
+    
+    @objc func getTime() {
+        count = count - 1
+        if(count >= 0){
+            self.tryAfterSomeTimeLbl.text = "Retry after \(count) seconds"
+        }
+        else{
+            self.addTapGesture()
+            self.tryAfterSomeTimeLbl.text = "RESEND OTP"
+            self.stopTimer()
+            self.count = 30
+        }
     }
     
     @IBAction func resendOTPAction() {
@@ -64,6 +118,7 @@ class ADOtpViewController: UIViewController{
                 DispatchQueue.main.async(execute: {
                     self.hideActivityIndicatorView()
                     self.showAlertMessage("OTP sent successfully", alertImage: nil, alertType: .success, context: .statusBar, duration: .seconds(seconds: 1))
+                    self.startTimer()
                 })
                 
             }) { (error) in
@@ -154,31 +209,26 @@ class ADOtpViewController: UIViewController{
     }
     
     //MARK : Keyboard Notification
-    @objc func keyboardWillShow(notification: NSNotification) {
-        
-        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-            //            if(iPhone4or4S || iPhone5or5S){
-            //                self.loginBtn.isHidden = true
-            //            }
-            let height = keyboardSize.height
-            UIView.animate(withDuration: 0.1, animations: { () -> Void in
-                self.resendBtnBottomConstraint.constant = height
-                self.view.layoutIfNeeded()
-            })
-        }
-    }
-    
-    @objc func keyboardWillHide(notification: NSNotification) {
-        
-        UIView.animate(withDuration: 0.1, animations: { () -> Void in
-            
-            self.resendBtnBottomConstraint.constant = 0
-            self.view.layoutIfNeeded()
-            //            if(iPhone4or4S || iPhone5or5S){
-            //                self.loginBtn.isHidden = false
-            //            }
-        })
-    }
+//    @objc func keyboardWillShow(notification: NSNotification) {
+//
+//        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+//            let height = keyboardSize.height
+//            UIView.animate(withDuration: 0.1, animations: { () -> Void in
+//                self.resendBtnBottomConstraint.constant = height
+//                self.view.layoutIfNeeded()
+//            })
+//        }
+//    }
+//
+//    @objc func keyboardWillHide(notification: NSNotification) {
+//
+//        UIView.animate(withDuration: 0.1, animations: { () -> Void in
+//
+//            self.resendBtnBottomConstraint.constant = 0
+//            self.view.layoutIfNeeded()
+//
+//        })
+//    }
     
     @objc func textFieldDidChange(_ textField: UITextField) {
         self.numberOfCharectorsLbl.text = "\((textField.text?.utf16.count ?? 0))/\(OTP_TEXT_LIMIT)"

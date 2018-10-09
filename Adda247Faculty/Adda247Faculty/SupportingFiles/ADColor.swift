@@ -39,12 +39,17 @@ extension UIColor{
     
     static func navigationBarColor()-> UIColor{
         //UIColor(red: 249.0/255.0, green: 249.0/255.0, blue: 249.0/255.0, alpha: 1.0)
-        return UIColor(red: 03.0/255.0, green: 169.0/255.0, blue: 244.0/255.0, alpha: 1.0)
+//        return UIColor(red: 03.0/255.0, green: 169.0/255.0, blue: 244.0/255.0, alpha: 1.0)
+        return UIColor(red: 13.0/255.0, green: 71.0/255.0, blue: 161.0/255.0, alpha: 1.0)
+
     }
     
     static func backgroundThemeColor()-> UIColor{
     
-        return UIColor(red: 03.0/255.0, green: 169.0/255.0, blue: 244.0/255.0, alpha: 1.0)
+        //backgroundThemeColor
+//        return UIColor(red: 03.0/255.0, green: 169.0/255.0, blue: 244.0/255.0, alpha: 1.0)
+
+        return UIColor(red: 13.0/255.0, green: 71.0/255.0, blue: 161.0/255.0, alpha: 1.0)
     }
     
     static func pinkThemeColor()-> UIColor{

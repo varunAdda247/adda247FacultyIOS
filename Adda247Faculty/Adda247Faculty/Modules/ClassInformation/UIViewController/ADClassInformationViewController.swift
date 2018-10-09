@@ -73,7 +73,7 @@ class ADClassInformationViewController: UIViewController, CLLocationManagerDeleg
             controller.cellTypeArray.append(ADTableViewCellType.classInfoHeadingSubHeadingAndImageCell)
         }
         else if(infoType == ADClassInfoType.tableViewTypeAnotherClassIsActiveStatus){
-        controller.cellTypeArray.append(ADTableViewCellType.classInfoHeadingSubHeadingImageAndButtonCell)
+            controller.cellTypeArray.append(ADTableViewCellType.classInfoHeadingSubHeadingAndImageCell)
             controller.cellTypeArray.append(ADTableViewCellType.classInfoHeadingSubHeadingAndImageCell)
         }
         else if(infoType == ADClassInfoType.tableViewTypeMissedClassStatus){
@@ -130,7 +130,7 @@ class ADClassInformationViewController: UIViewController, CLLocationManagerDeleg
         }
         else if(infoType == ADClassInfoType.tableViewTypeTimeRemainingClassToStartStatus){
             self.bottomLbl.textColor = UIColor.init(hexString: "#00c853")
-            let startTime = ADUtility.timeFromTimeStamp(timeStamp: (self.teacherClass?.startTime)!)
+            let startTime = ADUtility.timeFromTimeStamp(timeStamp: ((self.teacherClass?.startTime)! - (5*60*1000)))
             self.bottomLbl.text = "YOU HAVE TIME REMAINING FOR THIS CLASS \n CHECK AFTER \(startTime)"
         }
         else if(infoType == ADClassInfoType.tableViewTypeToStartClassStatus){
@@ -148,6 +148,10 @@ class ADClassInformationViewController: UIViewController, CLLocationManagerDeleg
             
             let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(endClassTapGesture))
             self.bottomView.addGestureRecognizer(tapGestureRecognizer)
+        }
+        else if(infoType == ADClassInfoType.tableViewTypeAnotherClassIsActiveStatus){
+            self.bottomLbl.textColor = UIColor.init(hexString: "#f44336")
+            self.bottomLbl.text = "ANOTHER CLASS IS ACTIVE"
         }
     }
     
@@ -228,7 +232,6 @@ class ADClassInformationViewController: UIViewController, CLLocationManagerDeleg
         else{
             self.showAlertMessage("Please check your internet connection", alertImage: nil, alertType: .success, context: .statusBar, duration: .seconds(seconds: 2))
         }
-        
     }
     
     
@@ -239,7 +242,8 @@ class ADClassInformationViewController: UIViewController, CLLocationManagerDeleg
             locationManager = CLLocationManager()
             locationManager?.delegate = self
             locationManager?.desiredAccuracy = kCLLocationAccuracyBest
-            self.locationManager?.requestAlwaysAuthorization()
+//            self.locationManager?.requestAlwaysAuthorization()
+            self.locationManager?.requestWhenInUseAuthorization()
         }
         
         if CLLocationManager.locationServicesEnabled() {
@@ -282,7 +286,8 @@ extension ADClassInformationViewController: UITableViewDelegate,UITableViewDataS
         if(infoType == ADClassInfoType.tableViewTypeCompletedStatus){
            self.populateCellForCompltedStatus(cell: cell, indexPath: indexPath)
         }
-        else if(infoType == ADClassInfoType.tableViewTypeMissedClassStatus || infoType == ADClassInfoType.tableViewTypeTimeRemainingClassToStartStatus){
+        else if(infoType == ADClassInfoType.tableViewTypeMissedClassStatus || infoType == ADClassInfoType.tableViewTypeTimeRemainingClassToStartStatus || infoType == ADClassInfoType.tableViewTypeAnotherClassIsActiveStatus){
+            
             self.populateCellForMissedStatus(cell: cell, indexPath: indexPath)
         }
         else if(infoType == ADClassInfoType.tableViewTypeToStartClassStatus){
@@ -291,6 +296,7 @@ extension ADClassInformationViewController: UITableViewDelegate,UITableViewDataS
         else if(infoType == ADClassInfoType.tableViewTypeToEndClassStatus){
             self.populateCellForToEndClassStatus(cell: cell, indexPath: indexPath)
         }
+    
         return cell as! UITableViewCell
     }
     

@@ -9,8 +9,10 @@
 import Foundation
 import UIKit
 import CoreData
+import CoreLocation
 
-class ADHomeViewController: UIViewController,UIActionSheetDelegate, NSFetchedResultsControllerDelegate {
+
+class ADHomeViewController: UIViewController,UIActionSheetDelegate, NSFetchedResultsControllerDelegate, CLLocationManagerDelegate {
     
     lazy var refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
@@ -20,10 +22,14 @@ class ADHomeViewController: UIViewController,UIActionSheetDelegate, NSFetchedRes
     }()
     
     //MARK: Outlets
-    @IBOutlet weak var profileImgView: UIImageView!
+   // @IBOutlet weak var profileImgView: UIImageView!
     @IBOutlet weak var profileNameLbl: UILabel!
     @IBOutlet weak var classScheduleTableView: UITableView!
 
+    
+    @IBOutlet weak var emptyView: UIView!
+
+    var locationManager: CLLocationManager?
     
     fileprivate lazy var fetchedResultsController: NSFetchedResultsController =
     { () -> NSFetchedResultsController<NSFetchRequestResult> in
@@ -85,8 +91,10 @@ class ADHomeViewController: UIViewController,UIActionSheetDelegate, NSFetchedRes
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.navigationController?.navigationBar.defaultSettings()
+        //self.navigationController?.navigationBar.defaultSettings()
         self.navigationItem.title = "Home"
+
+        self.determineMyCurrentLocation()
     }
     
     override func didReceiveMemoryWarning() {
@@ -96,6 +104,38 @@ class ADHomeViewController: UIViewController,UIActionSheetDelegate, NSFetchedRes
     override func rightBarButtonTap() {
         //TODO
         self.openActionSheetToLogout()
+    }
+    
+    func addEmptyView() {
+        emptyView?.isHidden = false
+    }
+    
+    func removeEmptyView() {
+        if(emptyView !=  nil){
+            emptyView?.isHidden = true
+        }
+    }
+    
+    func determineMyCurrentLocation() {
+        
+        if locationManager == nil {
+            locationManager = CLLocationManager()
+            locationManager?.delegate = self
+            locationManager?.desiredAccuracy = kCLLocationAccuracyBest
+            //self.locationManager?.requestAlwaysAuthorization()
+            self.locationManager?.requestWhenInUseAuthorization()
+        }
+        
+        if CLLocationManager.locationServicesEnabled() {
+            self.locationManager?.startUpdatingLocation()
+            //locationManager.startUpdatingHeading()
+        }
+    }
+
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+    
+        manager.stopUpdatingLocation()
+     
     }
     
     func openActionSheetToLogout() {
@@ -119,6 +159,8 @@ class ADHomeViewController: UIViewController,UIActionSheetDelegate, NSFetchedRes
     
     func logoutAction() {
         ADUtility.updateToken(token: "")
+        ADUtility.updateFacultyId(id: "")
+
         let controller:ADEnterMobileNumberViewController = UIStoryboard.instantiateController(forModule: ADStoryModule.main)
         let navigationController = UINavigationController(rootViewController: controller)
         
@@ -137,10 +179,12 @@ class ADHomeViewController: UIViewController,UIActionSheetDelegate, NSFetchedRes
     //MARK: Internal methods
     func configureInitialValues() {
         self.addRightButtonWithImage(imageName: "overflow", target: self)
-        self.profileNameLbl.text = "Hi \(ADUtility.getFacultyName()!)"
+        if let facultyName = ADUtility.getFacultyName(){
+            self.profileNameLbl.text = "Hi \(facultyName)"
+        }
         
        // let profileImage = nil
-        self.profileImgView.maskCircle(anyImage: UIImage(named: "profilePlaceHolder")!)
+       // self.profileImgView.maskCircle(anyImage: UIImage(named: "profilePlaceHolder")!)
                 
         self.classScheduleTableView?.layer.cornerRadius = 5
         self.classScheduleTableView?.layer.masksToBounds = true
@@ -174,8 +218,9 @@ class ADHomeViewController: UIViewController,UIActionSheetDelegate, NSFetchedRes
             tempPara.setObject(timeInterval, forKey: "timeInterval" as NSCopying)
             tempPara.setObject(false, forKey: "isTopicsRequired" as NSCopying)
             
-            let facultyId = ADUtility.getFacultyId()!.int16Value
-            tempPara.setObject(facultyId, forKey: "facultyId" as NSCopying)
+            if let facultyId = ADUtility.getFacultyId(){
+                tempPara.setObject(facultyId, forKey: "facultyId" as NSCopying)
+            }
             
             TeacherClass.fetchClassData(parameters: tempPara) { (successfullySaved, error) in
                 if successfullySaved{
@@ -183,9 +228,11 @@ class ADHomeViewController: UIViewController,UIActionSheetDelegate, NSFetchedRes
                         self.classScheduleTableView.isHidden = false
                         self.refreshControl.endRefreshing()
                         self.classScheduleTableView.reloadData()
+                        //self.removeEmptyView()
                     }
                     else{
                         //No class data
+                        //self.addEmptyView()
                         self.showAlertMessage("You don't have any classes scheduled for today", alertImage: nil, alertType: .success, context: .statusBar, duration: .seconds(seconds: 2))
                     }
                     
@@ -201,7 +248,7 @@ class ADHomeViewController: UIViewController,UIActionSheetDelegate, NSFetchedRes
             }
         }
         else{
-            self.showAlertMessage(NSLocalizedString("no_internet_connection", comment: ""), alertImage: nil, alertType: .success, context: .statusBar, duration: .seconds(seconds: 2))
+            self.showAlertMessage("No internet connection", alertImage: nil, alertType: .success, context: .statusBar, duration: .seconds(seconds: 2))
         }
         
     }
@@ -339,11 +386,54 @@ extension ADHomeViewController : UITableViewDataSource, UITableViewDelegate
         return 120.0
     }
     
+    func isLocationEnabledByUser() -> Bool {
+        if CLLocationManager.locationServicesEnabled() {
+            switch(CLLocationManager.authorizationStatus()) {
+            case .notDetermined:
+                return false
+            case .restricted:
+                return false
+            case .denied:
+                return false
+            case .authorizedAlways, .authorizedWhenInUse:
+                return true
+            }
+        } else {
+            print("Location services are not enabled")
+            return false
+        }
+    }
+    
+    
+    func openAlertControllerToMoveToSettigns() {
+        let alertController = UIAlertController (title: "You must on your location sharing to continue", message: "Go to Settings?", preferredStyle: .alert)
+        
+        let settingsAction = UIAlertAction(title: "Settings", style: .default) { (_) -> Void in
+            let settingsUrl = URL(string: UIApplicationOpenSettingsURLString)
+            if let url = settingsUrl {
+                UIApplication.shared.openURL(url)
+            }
+        }
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .default, handler: nil)
+        alertController.addAction(settingsAction)
+        alertController.addAction(cancelAction)
+        
+        present(alertController, animated: true, completion: nil)
+    }
+    
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         //Action according to status here
         if let cfObj = self.fetchedResultsController.object(at: indexPath) as? TeacherClass{
             //Upate object
             print("\(cfObj.classStatus)")
+        
+            if(!self.isLocationEnabledByUser()){//If not enaled that stop user to move forword
+                self.openAlertControllerToMoveToSettigns()
+                return
+            }
+            
             let controller:ADClassInformationViewController
             if(cfObj.classStatus == 0){
                 //Open upcoming details
@@ -358,14 +448,27 @@ extension ADHomeViewController : UITableViewDataSource, UITableViewDelegate
                 else if((cfObj.startTime - ADUtility.timeStampFor(date: Date())) > (5*60*1000)){
                     //Time remaining to start class : if want to start from 5 minutes earlier
                     print("Time remain to start class")
-                    controller = ADClassInformationViewController.getClassInfoVC(with: "", teacherClass: cfObj, infoType: ADClassInfoType.tableViewTypeTimeRemainingClassToStartStatus) { (action) in
+                    if(self.isAnotherClassIsActive()){
+                        controller = ADClassInformationViewController.getClassInfoVC(with: "", teacherClass: cfObj, infoType: ADClassInfoType.tableViewTypeAnotherClassIsActiveStatus) { (action) in
+                        }
+                    }
+                    else{
+                        controller = ADClassInformationViewController.getClassInfoVC(with: "", teacherClass: cfObj, infoType: ADClassInfoType.tableViewTypeTimeRemainingClassToStartStatus) { (action) in
+                        }
                     }
                 }
                 else{
                     //Start class
                     print("Start class")
-                    controller = ADClassInformationViewController.getClassInfoVC(with: "", teacherClass: cfObj, infoType: ADClassInfoType.tableViewTypeToStartClassStatus) { (action) in
+                    if(self.isAnotherClassIsActive()){
+                        controller = ADClassInformationViewController.getClassInfoVC(with: "", teacherClass: cfObj, infoType: ADClassInfoType.tableViewTypeAnotherClassIsActiveStatus) { (action) in
+                        }
                     }
+                    else{
+                        controller = ADClassInformationViewController.getClassInfoVC(with: "", teacherClass: cfObj, infoType: ADClassInfoType.tableViewTypeToStartClassStatus) { (action) in
+                        }
+                    }
+                   
                 }
                
             }
@@ -383,5 +486,16 @@ extension ADHomeViewController : UITableViewDataSource, UITableViewDelegate
             
             self.openChildViewController(content: controller, animate: true)
         }
+    }
+
+    
+    func isAnotherClassIsActive() -> Bool {
+        for object in self.fetchedResultsController.fetchedObjects!{
+            let tempObj = object as? TeacherClass
+            if(tempObj?.classStatus == 1){
+                return true
+            }
+        }
+        return false
     }
 }
