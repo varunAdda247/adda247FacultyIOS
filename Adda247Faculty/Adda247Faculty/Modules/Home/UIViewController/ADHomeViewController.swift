@@ -91,9 +91,7 @@ class ADHomeViewController: UIViewController,UIActionSheetDelegate, NSFetchedRes
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        //self.navigationController?.navigationBar.defaultSettings()
         self.navigationItem.title = "Home"
-
         self.determineMyCurrentLocation()
     }
     
@@ -104,6 +102,22 @@ class ADHomeViewController: UIViewController,UIActionSheetDelegate, NSFetchedRes
     override func rightBarButtonTap() {
         //TODO
         self.openActionSheetToLogout()
+    }
+    
+    func backgroundServiceCallToSendPandingDataToServer() {
+        DispatchQueue.global(qos: .background).async {
+           var tempArray:[TeacherClass] = []
+           if((self.fetchedResultsController.fetchedObjects?.count)! > 0){
+            for object in self.fetchedResultsController.fetchedObjects!{
+                let tempObj = object as! TeacherClass
+                if(!tempObj.isUpdatedOnServer){
+                    //Need to update this data to server
+                    tempArray.append(tempObj)
+                }
+            }
+            ADServiceCallManager.sendPandingDataToServer(array: tempArray)
+           }
+        }
     }
     
     func addEmptyView() {

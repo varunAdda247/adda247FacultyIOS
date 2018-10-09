@@ -71,6 +71,7 @@
 		6C43F1EC214BD43A0008CCE4 /* ADSetNewPinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C43F1EB214BD43A0008CCE4 /* ADSetNewPinViewController.swift */; };
 		6C76B4AB21522162001F869D /* ADHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C76B4AA21522162001F869D /* ADHomeViewController.swift */; };
 		6C9E23C82153AA3C0091D53A /* ADOtpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C9E23C72153AA3C0091D53A /* ADOtpViewController.swift */; };
+		6CA5C808216CB5770000EBD7 /* ADServiceCallManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CA5C807216CB5770000EBD7 /* ADServiceCallManager.swift */; };
 		6CC03002215A31EF0010EAF0 /* ADCoreDataHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CC03001215A31EF0010EAF0 /* ADCoreDataHandler.swift */; };
 		6CC03004215A32610010EAF0 /* ADDBHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CC03003215A32610010EAF0 /* ADDBHandler.swift */; };
 		6CC0300B215A378C0010EAF0 /* Topic+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CC03007215A378C0010EAF0 /* Topic+CoreDataClass.swift */; };
@@ -155,6 +156,7 @@
 		6C43F1EB214BD43A0008CCE4 /* ADSetNewPinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ADSetNewPinViewController.swift; sourceTree = "<group>"; };
 		6C76B4AA21522162001F869D /* ADHomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ADHomeViewController.swift; sourceTree = "<group>"; };
 		6C9E23C72153AA3C0091D53A /* ADOtpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ADOtpViewController.swift; sourceTree = "<group>"; };
+		6CA5C807216CB5770000EBD7 /* ADServiceCallManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ADServiceCallManager.swift; sourceTree = "<group>"; };
 		6CC03001215A31EF0010EAF0 /* ADCoreDataHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ADCoreDataHandler.swift; sourceTree = "<group>"; };
 		6CC03003215A32610010EAF0 /* ADDBHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ADDBHandler.swift; sourceTree = "<group>"; };
 		6CC03007215A378C0010EAF0 /* Topic+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Topic+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -185,6 +187,7 @@
 		6C085CAE214A42400011C501 /* Genric */ = {
 			isa = PBXGroup;
 			children = (
+				6CA5C806216CB5660000EBD7 /* ServiceManager */,
 				6CCA73C6215CD63700C9DA6A /* Protocol */,
 				6C085CAF214A42400011C501 /* AlertMessage */,
 				6C085CB2214A42410011C501 /* UIView */,
@@ -417,6 +420,14 @@
 				6C76B4AA21522162001F869D /* ADHomeViewController.swift */,
 			);
 			path = UIViewController;
+			sourceTree = "<group>";
+		};
+		6CA5C806216CB5660000EBD7 /* ServiceManager */ = {
+			isa = PBXGroup;
+			children = (
+				6CA5C807216CB5770000EBD7 /* ADServiceCallManager.swift */,
+			);
+			path = ServiceManager;
 			sourceTree = "<group>";
 		};
 		6CC02FFE215A31C40010EAF0 /* CoreData */ = {
@@ -678,6 +689,7 @@
 				6C3F3C02214922D500A8CDB6 /* ADHTTPManager.swift in Sources */,
 				6C3F3BFA214922D500A8CDB6 /* ADTableView.swift in Sources */,
 				6C3F3B89214915A400A8CDB6 /* Adda247Faculty.xcdatamodeld in Sources */,
+				6CA5C808216CB5770000EBD7 /* ADServiceCallManager.swift in Sources */,
 				6C3F3C03214922D500A8CDB6 /* ADHTTPSessionManager.swift in Sources */,
 				6CC0300D215A378C0010EAF0 /* TeacherClass+CoreDataClass.swift in Sources */,
 				6C3F3BE2214922D500A8CDB6 /* ADBundle.swift in Sources */,
@@ -845,7 +857,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 84Q9U867KV;
 				INFOPLIST_FILE = Adda247Faculty/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -865,7 +877,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 84Q9U867KV;
 				INFOPLIST_FILE = Adda247Faculty/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

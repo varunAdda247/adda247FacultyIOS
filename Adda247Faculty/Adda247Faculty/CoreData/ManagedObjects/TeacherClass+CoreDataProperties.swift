@@ -2,7 +2,7 @@
 //  TeacherClass+CoreDataProperties.swift
 //  Adda247Faculty
 //
-//  Created by Varun Tomar on 05/10/18.
+//  Created by Varun Tomar on 09/10/18.
 //  Copyright © 2018 Adda247. All rights reserved.
 //
 //
@@ -29,6 +29,7 @@ extension TeacherClass {
     @NSManaged public var lastUpdatedTs: Int64
     @NSManaged public var startLocation: String?
     @NSManaged public var startTime: Int64
+    @NSManaged public var isUpdatedOnServer: Bool
     @NSManaged public var topics: NSSet?
 
 }

@@ -454,14 +454,14 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="359" height="107"/>
                                                     <subviews>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ETn-06-nXN">
-                                                            <rect key="frame" x="20" y="9" width="20" height="20"/>
+                                                            <rect key="frame" x="20" y="9" width="0.0" height="20"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="20" id="MPm-Wu-Om1"/>
-                                                                <constraint firstAttribute="width" constant="20" id="mrJ-nh-aFv"/>
+                                                                <constraint firstAttribute="width" id="mrJ-nh-aFv"/>
                                                             </constraints>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HTg-JC-4US">
-                                                            <rect key="frame" x="48" y="8" width="297" height="22"/>
+                                                            <rect key="frame" x="20" y="8" width="325" height="22"/>
                                                             <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="16"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -500,7 +500,7 @@
                                                         <constraint firstItem="RLd-Lp-SBX" firstAttribute="leading" secondItem="F9I-t1-zBw" secondAttribute="leading" constant="20" id="lS1-Ek-DGq"/>
                                                         <constraint firstItem="ETn-06-nXN" firstAttribute="top" secondItem="F9I-t1-zBw" secondAttribute="top" constant="9" id="nBh-QJ-oY5"/>
                                                         <constraint firstItem="1az-Yn-4Pf" firstAttribute="top" secondItem="F9I-t1-zBw" secondAttribute="top" constant="8" id="oyG-z2-BF8"/>
-                                                        <constraint firstItem="HTg-JC-4US" firstAttribute="leading" secondItem="ETn-06-nXN" secondAttribute="trailing" constant="8" id="uR2-Bf-4v1"/>
+                                                        <constraint firstItem="HTg-JC-4US" firstAttribute="leading" secondItem="ETn-06-nXN" secondAttribute="trailing" id="uR2-Bf-4v1"/>
                                                         <constraint firstItem="1az-Yn-4Pf" firstAttribute="leading" secondItem="F9I-t1-zBw" secondAttribute="leading" id="yDq-tj-lyn"/>
                                                     </constraints>
                                                 </view>
@@ -776,20 +776,20 @@
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="EXE-Qt-abU">
-                                                            <rect key="frame" x="15" y="19" width="20" height="20"/>
+                                                            <rect key="frame" x="15" y="19" width="0.0" height="20"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="width" constant="20" id="1mg-TR-GP0"/>
+                                                                <constraint firstAttribute="width" id="1mg-TR-GP0"/>
                                                                 <constraint firstAttribute="height" constant="20" id="M2O-1S-47j"/>
                                                             </constraints>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Isk-wX-rUQ">
-                                                            <rect key="frame" x="43" y="9" width="34" height="20"/>
+                                                            <rect key="frame" x="23" y="9" width="34" height="20"/>
                                                             <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="14"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4uI-oP-Nr1">
-                                                            <rect key="frame" x="42" y="28" width="313" height="22"/>
+                                                            <rect key="frame" x="22" y="28" width="333" height="22"/>
                                                             <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="16"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -818,20 +818,20 @@
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Llo-fV-h77">
-                                                            <rect key="frame" x="15" y="19" width="20" height="20"/>
+                                                            <rect key="frame" x="15" y="19" width="0.0" height="20"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="width" constant="20" id="K3h-gB-NrU"/>
+                                                                <constraint firstAttribute="width" id="K3h-gB-NrU"/>
                                                                 <constraint firstAttribute="height" constant="20" id="ulC-Lx-fkn"/>
                                                             </constraints>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c69-a3-3N3">
-                                                            <rect key="frame" x="43" y="9" width="34" height="20"/>
+                                                            <rect key="frame" x="23" y="9" width="34" height="20"/>
                                                             <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="14"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oSm-Ex-xsb">
-                                                            <rect key="frame" x="42" y="28" width="253" height="22"/>
+                                                            <rect key="frame" x="22" y="28" width="273" height="22"/>
                                                             <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="16"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -866,28 +866,28 @@
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="160-1A-rcy">
-                                                            <rect key="frame" x="15" y="22" width="20" height="20"/>
+                                                            <rect key="frame" x="15" y="22" width="0.0" height="20"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="width" constant="20" id="8qQ-Y1-zoe"/>
+                                                                <constraint firstAttribute="width" id="8qQ-Y1-zoe"/>
                                                                 <constraint firstAttribute="height" constant="20" id="gcY-ia-mjo"/>
                                                             </constraints>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Start time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iHc-rP-Z23">
-                                                            <rect key="frame" x="43" y="13" width="61" height="20"/>
+                                                            <rect key="frame" x="23" y="13" width="61" height="20"/>
                                                             <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="14"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ymj-mo-oaF">
-                                                            <rect key="frame" x="41" y="33" width="39" height="22"/>
+                                                            <rect key="frame" x="21" y="33" width="39" height="22"/>
                                                             <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="16"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="HyB-1O-Xpg">
-                                                            <rect key="frame" x="250" y="22" width="20" height="20"/>
+                                                            <rect key="frame" x="270" y="22" width="0.0" height="20"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="width" constant="20" id="KBc-8n-HKQ"/>
+                                                                <constraint firstAttribute="width" id="KBc-8n-HKQ"/>
                                                                 <constraint firstAttribute="height" constant="20" id="ssk-X8-waW"/>
                                                             </constraints>
                                                         </imageView>

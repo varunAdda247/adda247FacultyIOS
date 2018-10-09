@@ -88,7 +88,7 @@ class ADUtility: NSObject {
         return strDate
     }
     
-    class func getObjectAsParameterForClassStartAndEndCall(classes:[TeacherClass],startLocation:String?)-> NSMutableDictionary{
+    class func getObjectAsParameterForClassStartAndEndCall(classes:[TeacherClass])-> NSMutableDictionary{
         
         let tempPara:NSMutableDictionary = NSMutableDictionary()
         
@@ -103,7 +103,8 @@ class ADUtility: NSObject {
             paramsClass.setObject((teacherClass.classNam)!, forKey: "className" as NSCopying)
             paramsClass.setObject((teacherClass.classStatus), forKey: "classStatus" as NSCopying)
             paramsClass.setObject(ADUtility.getFacultyName()!, forKey: "facultyName" as NSCopying)
-            paramsClass.setObject(startLocation ?? "", forKey: "startLocation" as NSCopying)
+            paramsClass.setObject(teacherClass.startLocation ?? "", forKey: "startLocation" as NSCopying)
+            paramsClass.setObject(teacherClass.endLocation ?? "", forKey: "endLocation" as NSCopying)
             paramsClass.setObject((teacherClass.startTime), forKey: "startTime" as NSCopying)
             
             classListArray.append(paramsClass)

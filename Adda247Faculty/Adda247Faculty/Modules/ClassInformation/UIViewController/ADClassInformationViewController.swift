@@ -102,6 +102,11 @@ class ADClassInformationViewController: UIViewController, CLLocationManagerDeleg
         super.viewDidAppear(animated)
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        ADCoreDataHandler.sharedInstance.saveContext()
+    }
+    
     func initializeView() {
         containerView.layer.cornerRadius = cornerRadius
         containerView.layer.masksToBounds = true
@@ -190,7 +195,7 @@ class ADClassInformationViewController: UIViewController, CLLocationManagerDeleg
         self.crossButtonAction(self)
         if(Reachability.connectionAvailable()){
             
-            let tempPara = ADUtility.getObjectAsParameterForClassStartAndEndCall(classes: [self.teacherClass!], startLocation: startLocation)
+            let tempPara = ADUtility.getObjectAsParameterForClassStartAndEndCall(classes: [self.teacherClass!])
             
             _ = ADWebClient.sharedClient.POST(appbBaseUrl: APIURL.baseUrl, suffixUrl: APIURLSuffix.getClasses, parameters: tempPara, success: { (response) in
                 if let response = response as? Dictionary<String,Any>{
@@ -215,21 +220,25 @@ class ADClassInformationViewController: UIViewController, CLLocationManagerDeleg
         
         if(Reachability.connectionAvailable()){
             
-            let tempPara = ADUtility.getObjectAsParameterForClassStartAndEndCall(classes: [self.teacherClass!], startLocation: startLocation)
+            let tempPara = ADUtility.getObjectAsParameterForClassStartAndEndCall(classes: [self.teacherClass!])
             
             _ = ADWebClient.sharedClient.POST(appbBaseUrl: APIURL.baseUrl, suffixUrl: APIURLSuffix.getClasses, parameters: tempPara, success: { (response) in
                 if let response = response as? Dictionary<String,Any>{
                     if let success = response["success"] as? NSNumber{
                         if(success.boolValue){
-                            print("DATA SAVE SUCCESSFULLY")
+                            self.teacherClass?.isUpdatedOnServer = true
+                        }
+                        else{
+                            self.teacherClass?.isUpdatedOnServer = false
                         }
                     }
                 }
             }, failure: { (error) in
-                
+                self.teacherClass?.isUpdatedOnServer = false
             })
         }
         else{
+            self.teacherClass?.isUpdatedOnServer = false
             self.showAlertMessage("Please check your internet connection", alertImage: nil, alertType: .success, context: .statusBar, duration: .seconds(seconds: 2))
         }
     }
@@ -260,6 +269,9 @@ class ADClassInformationViewController: UIViewController, CLLocationManagerDeleg
         
         manager.stopUpdatingLocation()
         startLocation = "\(userLocation.coordinate.latitude):\(userLocation.coordinate.longitude)"
+        self.teacherClass?.startLocation = startLocation!
+        self.teacherClass?.endLocation = startLocation!
+        
 //        print("user latitude = \(userLocation.coordinate.latitude)")
 //        print("user longitude = \(userLocation.coordinate.longitude)")
     }

@@ -223,7 +223,7 @@ class ADLoginViewConntroller: UIViewController,UITextFieldDelegate {
     
     func checkValidation() -> Bool {
         if (self.pinTextField.text?.isBlank)! {
-            self.showAlertMessage("Please enter registered email id", alertImage: nil, alertType: .success, context: .statusBar, duration: .seconds(seconds: 2))
+            self.showAlertMessage("Please enter correct Pin", alertImage: nil, alertType: .success, context: .statusBar, duration: .seconds(seconds: 2))
             return false
         }
         else if false == (self.pinTextField.text?.isPhoneNumberValid())!{

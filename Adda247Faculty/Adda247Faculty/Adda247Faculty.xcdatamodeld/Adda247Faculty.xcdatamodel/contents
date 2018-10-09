@@ -10,6 +10,7 @@
         <attribute name="endLocation" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="endTime" optional="YES" attributeType="Integer 64" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="facultyName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="isUpdatedOnServer" optional="YES" attributeType="Boolean" defaultValueString="YES" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="lastUpdatedTs" optional="YES" attributeType="Integer 64" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="startLocation" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="startTime" optional="YES" attributeType="Integer 64" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
@@ -21,7 +22,7 @@
         <attribute name="status" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
     </entity>
     <elements>
-        <element name="TeacherClass" positionX="-63" positionY="-18" width="128" height="240"/>
+        <element name="TeacherClass" positionX="-63" positionY="-18" width="128" height="255"/>
         <element name="Topic" positionX="-54" positionY="72" width="128" height="90"/>
     </elements>
 </model>
