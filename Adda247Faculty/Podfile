@@ -1,24 +1,9 @@
 # Uncomment the next line to define a global platform for your project
- platform :ios, '9.0'
+ platform :ios, '10.0'
 
 target 'Adda247Faculty' do
   use_frameworks!
 
   # Pods for Adda247Faculty
-  pod 'Alamofire',
-      :git => 'https://github.com/Alamofire/Alamofire.git',
-      :branch => 'master'
-
-  pod 'SwiftyJSON',
-      :git => 'https://github.com/SwiftyJSON/SwiftyJSON.git',
-      :branch => 'master'
-
-  pod 'AlamofireImage'
-  pod 'Firebase/Auth'
-  pod 'GoogleSignIn'
-
-  pod 'Fabric'
-  pod 'Crashlytics'
-
-
+ 
 end

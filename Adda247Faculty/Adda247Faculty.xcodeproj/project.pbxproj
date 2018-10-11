@@ -58,9 +58,7 @@
 		6C3F3BFF214922D500A8CDB6 /* ADView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3F3BD4214922D400A8CDB6 /* ADView.swift */; };
 		6C3F3C00214922D500A8CDB6 /* ADViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3F3BD5214922D400A8CDB6 /* ADViewController.swift */; };
 		6C3F3C01214922D500A8CDB6 /* PageViewControllerExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3F3BD6214922D400A8CDB6 /* PageViewControllerExt.swift */; };
-		6C3F3C02214922D500A8CDB6 /* ADHTTPManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3F3BD8214922D400A8CDB6 /* ADHTTPManager.swift */; };
 		6C3F3C03214922D500A8CDB6 /* ADHTTPSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3F3BD9214922D400A8CDB6 /* ADHTTPSessionManager.swift */; };
-		6C3F3C04214922D500A8CDB6 /* ADServerAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3F3BDA214922D400A8CDB6 /* ADServerAPI.swift */; };
 		6C3F3C05214922D500A8CDB6 /* ADURLSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3F3BDB214922D400A8CDB6 /* ADURLSessionManager.swift */; };
 		6C3F3C06214922D500A8CDB6 /* ADWebClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3F3BDC214922D400A8CDB6 /* ADWebClient.swift */; };
 		6C3F3C07214922D500A8CDB6 /* ADReachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3F3BDE214922D400A8CDB6 /* ADReachability.swift */; };
@@ -143,9 +141,7 @@
 		6C3F3BD4214922D400A8CDB6 /* ADView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ADView.swift; sourceTree = "<group>"; };
 		6C3F3BD5214922D400A8CDB6 /* ADViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ADViewController.swift; sourceTree = "<group>"; };
 		6C3F3BD6214922D400A8CDB6 /* PageViewControllerExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageViewControllerExt.swift; sourceTree = "<group>"; };
-		6C3F3BD8214922D400A8CDB6 /* ADHTTPManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ADHTTPManager.swift; sourceTree = "<group>"; };
 		6C3F3BD9214922D400A8CDB6 /* ADHTTPSessionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ADHTTPSessionManager.swift; sourceTree = "<group>"; };
-		6C3F3BDA214922D400A8CDB6 /* ADServerAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ADServerAPI.swift; sourceTree = "<group>"; };
 		6C3F3BDB214922D400A8CDB6 /* ADURLSessionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ADURLSessionManager.swift; sourceTree = "<group>"; };
 		6C3F3BDC214922D400A8CDB6 /* ADWebClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ADWebClient.swift; sourceTree = "<group>"; };
 		6C3F3BDE214922D400A8CDB6 /* ADReachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ADReachability.swift; sourceTree = "<group>"; };
@@ -369,9 +365,7 @@
 		6C3F3BD7214922D400A8CDB6 /* ServerConnection */ = {
 			isa = PBXGroup;
 			children = (
-				6C3F3BD8214922D400A8CDB6 /* ADHTTPManager.swift */,
 				6C3F3BD9214922D400A8CDB6 /* ADHTTPSessionManager.swift */,
-				6C3F3BDA214922D400A8CDB6 /* ADServerAPI.swift */,
 				6C3F3BDB214922D400A8CDB6 /* ADURLSessionManager.swift */,
 				6C3F3BDC214922D400A8CDB6 /* ADWebClient.swift */,
 			);
@@ -523,8 +517,6 @@
 				6C3F3B79214915A400A8CDB6 /* Sources */,
 				6C3F3B7A214915A400A8CDB6 /* Frameworks */,
 				6C3F3B7B214915A400A8CDB6 /* Resources */,
-				2335D9D33C22B1E90166B8C9 /* [CP] Embed Pods Frameworks */,
-				3DFABAFBA3603C5248D8F2F8 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -586,54 +578,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		2335D9D33C22B1E90166B8C9 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-Adda247Faculty/Pods-Adda247Faculty-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
-				"${BUILT_PRODUCTS_DIR}/AlamofireImage/AlamofireImage.framework",
-				"${BUILT_PRODUCTS_DIR}/GTMOAuth2/GTMOAuth2.framework",
-				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
-				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
-				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
-				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireImage.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMOAuth2.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Adda247Faculty/Pods-Adda247Faculty-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		3DFABAFBA3603C5248D8F2F8 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-Adda247Faculty/Pods-Adda247Faculty-resources.sh",
-				"${PODS_ROOT}/GoogleSignIn/Resources/GoogleSignIn.bundle",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleSignIn.bundle",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Adda247Faculty/Pods-Adda247Faculty-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		9FBC31221134A059796899E0 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -686,7 +630,6 @@
 				6C374DC9215B6C6600BAB5FB /* ADFetchedResultController.swift in Sources */,
 				6C3F3BE0214922D500A8CDB6 /* ADApplication.swift in Sources */,
 				6C3F3BB321491E4C00A8CDB6 /* ADLoginViewConntroller.swift in Sources */,
-				6C3F3C02214922D500A8CDB6 /* ADHTTPManager.swift in Sources */,
 				6C3F3BFA214922D500A8CDB6 /* ADTableView.swift in Sources */,
 				6C3F3B89214915A400A8CDB6 /* Adda247Faculty.xcdatamodeld in Sources */,
 				6CA5C808216CB5770000EBD7 /* ADServiceCallManager.swift in Sources */,
@@ -710,7 +653,6 @@
 				6CC0300C215A378C0010EAF0 /* Topic+CoreDataProperties.swift in Sources */,
 				6C3F3C07214922D500A8CDB6 /* ADReachability.swift in Sources */,
 				6C085CBC214A42410011C501 /* ADNavigationTitleView.swift in Sources */,
-				6C3F3C04214922D500A8CDB6 /* ADServerAPI.swift in Sources */,
 				6CC03002215A31EF0010EAF0 /* ADCoreDataHandler.swift in Sources */,
 				6C3F3C01214922D500A8CDB6 /* PageViewControllerExt.swift in Sources */,
 				6C3F3BF6214922D500A8CDB6 /* ADObject.swift in Sources */,
@@ -854,6 +796,7 @@
 			baseConfigurationReference = 6B37E5605C96827C4A1C31B0 /* Pods-Adda247Faculty.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 84Q9U867KV;
 				INFOPLIST_FILE = Adda247Faculty/Info.plist;
@@ -864,8 +807,9 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = Adda247.Adda247Faculty;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -874,6 +818,7 @@
 			baseConfigurationReference = 1FDC6926061B85893F3463A5 /* Pods-Adda247Faculty.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 84Q9U867KV;
 				INFOPLIST_FILE = Adda247Faculty/Info.plist;
@@ -884,8 +829,9 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = Adda247.Adda247Faculty;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

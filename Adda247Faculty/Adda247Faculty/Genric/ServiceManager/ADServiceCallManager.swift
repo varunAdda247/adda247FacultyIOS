@@ -22,7 +22,8 @@ class ADServiceCallManager: NSObject {
                 if let response = response as? Dictionary<String,Any>{
                     if let success = response["success"] as? NSNumber{
                         if(success.boolValue){
-                            //Set is updated onn server
+                            //Set is updated one on server
+                            print("Sending data successfull")
                             for object in array{
                                 object.isUpdatedOnServer = true
                             }

@@ -18,12 +18,11 @@ struct APIURLSuffix {
 }
 
 struct APIURL {
-    
     //PROD
-    //static let baseUrl = "https://erp.adda247.com/user/"
+    static let baseUrl = "https://erp.adda247.com/user/"
     
     //TEST
-    static let baseUrl = "http://erp-stag.adda247.com/user/"
+    //static let baseUrl = "http://erp-stag.adda247.com/user/"
     
 }
 

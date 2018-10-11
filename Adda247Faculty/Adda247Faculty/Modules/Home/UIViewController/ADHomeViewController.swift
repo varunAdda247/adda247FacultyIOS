@@ -64,6 +64,11 @@ class ADHomeViewController: UIViewController,UIActionSheetDelegate, NSFetchedRes
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        let notificationCenter = NotificationCenter.default
+        notificationCenter.addObserver(self, selector: #selector(appDidBecomeActive), name: Notification.Name.UIApplicationDidBecomeActive, object: nil)
+        
+        
         self.configureInitialValues()
         
         do {
@@ -84,15 +89,44 @@ class ADHomeViewController: UIViewController,UIActionSheetDelegate, NSFetchedRes
         self.classScheduleTableView.addSubview(self.refreshControl)
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        
-        self.classScheduleTableView.reloadData()
+    @objc func appDidBecomeActive() {
+        //This is for when user kept app in background for whole day and open it next day
+        self.updateFetchPredicate()
     }
+
+    
+    func updateFetchPredicate() {
+        var predicate:NSPredicate?
+        let (startTimeStamp,endTimeStamp) = ADUtility.timeStampForTodayStartAndEndDate()
+        
+        predicate = NSPredicate(format: "startTime >= %ld AND startTime <= %ld",startTimeStamp,endTimeStamp)
+        fetchedResultsController.fetchRequest.predicate = predicate
+        do {
+            try fetchedResultsController.performFetch()
+            self.classScheduleTableView.reloadData()
+            if fetchedResultsController.fetchedObjects != nil && fetchedResultsController.fetchedObjects!.count == 0 {
+               //No data
+            }
+        } catch {
+            print("Fetch failed")
+        }
+        
+        self.classServiceCall()
+    }
+    
+    
+    
+    
+//    override func viewDidAppear(_ animated: Bool) {
+//
+//        self.classScheduleTableView.reloadData()
+//    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationItem.title = "Home"
         self.determineMyCurrentLocation()
+        self.backgroundServiceCallToSendPandingDataToServer()
     }
     
     override func didReceiveMemoryWarning() {
@@ -247,6 +281,7 @@ class ADHomeViewController: UIViewController,UIActionSheetDelegate, NSFetchedRes
                     else{
                         //No class data
                         //self.addEmptyView()
+                        self.refreshControl.endRefreshing()
                         self.showAlertMessage("You don't have any classes scheduled for today", alertImage: nil, alertType: .success, context: .statusBar, duration: .seconds(seconds: 2))
                     }
                     
@@ -254,6 +289,7 @@ class ADHomeViewController: UIViewController,UIActionSheetDelegate, NSFetchedRes
                 else{
                     if(error?.code == 1005){
                         //Authentication error
+                        self.refreshControl.endRefreshing()
                         self.showAlertViewControllerWithTitle("", message: "Your account was logged in from another device. Try logging in again.", actionButtonTitle: "Login", completionHandler: {[weak self] (action) in
                             self?.logoutAction()
                         })

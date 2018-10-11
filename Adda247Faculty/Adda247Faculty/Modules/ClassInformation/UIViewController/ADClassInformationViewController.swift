@@ -319,8 +319,6 @@ extension ADClassInformationViewController: UITableViewDelegate,UITableViewDataS
     }
     
     
-    
-    
     func populateCellForCompltedStatus(cell:ADClassStatusTableViewCellProtocol,indexPath: IndexPath) {
         switch indexPath.row {
         case 0:
